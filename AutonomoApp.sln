@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.Data", "src\AutonomoApp.Data\AutonomoApp.Data.csproj", "{3F7836D5-AF9F-42E3-8B85-8EACF90FD356}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.Business", "src\AutonomoApp.Business\AutonomoApp.Business.csproj", "{27CA5327-C770-4B71-8C99-481869943E8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.Api", "src\AutonomoApp.Api\AutonomoApp.Api.csproj", "{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{27CA5327-C770-4B71-8C99-481869943E8B} = {27CA5327-C770-4B71-8C99-481869943E8B}
+		{3F7836D5-AF9F-42E3-8B85-8EACF90FD356} = {3F7836D5-AF9F-42E3-8B85-8EACF90FD356}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.ConsoleApp", "src\AutonomoApp.Console\AutonomoApp.ConsoleApp.csproj", "{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F7836D5-AF9F-42E3-8B85-8EACF90FD356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F7836D5-AF9F-42E3-8B85-8EACF90FD356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F7836D5-AF9F-42E3-8B85-8EACF90FD356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F7836D5-AF9F-42E3-8B85-8EACF90FD356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CA5327-C770-4B71-8C99-481869943E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CA5327-C770-4B71-8C99-481869943E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CA5327-C770-4B71-8C99-481869943E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CA5327-C770-4B71-8C99-481869943E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C191093-7528-4CC7-88B7-B17681D288D2}
+	EndGlobalSection
+EndGlobal
