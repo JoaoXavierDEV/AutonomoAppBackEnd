@@ -16,54 +16,37 @@ namespace AutonomoApp.ConsoleApp
             try
             {
                 var banco = new InserirDados();
-                
-
-                Console.WriteLine("Buildddddd");
-
-
-                //EnsureCreatedAndDeleted(db);
-
-                //banco.CarregarDadosCategorias();
-                banco.ResetarDB();
-                //HealthCheckBancoDeDados();
-                //TesteFunc();
+                Marshall();
+                banco.BuildEntity();
                 //Console.ReadKey();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                //throw;
             }
 
         }
-        static void EnsureCreatedAndDeleted(AutonomoAppContext db)
+
+        static void Marshall()
         {
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
-        }
-        static void HealthCheckBancoDeDados()
-        {
-            using var db = new AutonomoAppContext();
-            var canConnect = db.Database.CanConnect();
-            Console.WriteLine(canConnect ? "Posso me conectar" : "Não posso me conectar");
-        }
+            Console.WriteLine(
+                $"   # ============================================================================================================= #   " +
+                $"   # ||    \n" +
+                $"   # ||    ███╗   ███╗   █████╗   ██████╗   ███████╗  ██╗  ██╗   █████╗   ██╗       ██╗      \n" +
+                $"   # ||    ████╗ ████║  ██╔══██╗  ██╔══██╗  ██╔════╝  ██║  ██║  ██╔══██╗  ██║       ██║      \n" +
+                $"   # ||    ██╔████╔██║  ███████║  ██████╔╝  ███████╗  ███████║  ███████║  ██║       ██║      \n" +
+                $"   # ||    ██║╚██╔╝██║  ██╔══██║  ██╔══██╗  ╚════██║  ██╔══██║  ██╔══██║  ██║       ██║      \n" +
+                $"   # ||    ██║ ╚═╝ ██║  ██║  ██║  ██║  ██║  ███████║  ██║  ██║  ██║  ██║  ███████╗  ███████╗ \n" +
+                $"   # ||    ╚═╝     ╚═╝  ╚═╝  ╚═╝  ╚═╝  ╚═╝  ╚══════╝  ╚═╝  ╚═╝  ╚═╝  ╚═╝  ╚══════╝  ╚══════╝ \n" +
+                $"   # ||    \n" +
+                $"   # ||    AutonomoApp Milestone 1 - Build: {DateTime.Now}\n" +
+                $"   # ||    \n" +
+                $"   # ============================================================================================================= #   "
 
-
-
-        static void TesteFunc()
-        {
-
-            Console.ReadKey();
-
+                );
         }
 
 
     }
-
-    public record struct DadosDTO(string rua)
-    {
-        public string Nome = string.Empty;
-    };
-
 
 }

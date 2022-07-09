@@ -9,6 +9,6 @@ public class ServicoSolicitacaoMapping : IEntityTypeConfiguration<ServicoSolicit
     public void Configure(EntityTypeBuilder<ServicoSolicitacao> builder)
     {
         builder.HasKey(p => p.Id);
-        builder.ToTable("HistoricoDePedidos");
+        builder.ToTable("AAHistoricoDePedidos");
     }
 }

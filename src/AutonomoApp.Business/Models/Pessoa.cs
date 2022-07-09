@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutonomoApp.Business.Extensions;
 using AutonomoApp.Business.Models.Enums;
 
@@ -7,7 +8,8 @@ namespace AutonomoApp.Business.Models;
 public abstract class Pessoa : EntityBase
 {
     public virtual string Nome { get; set; }
-    public virtual List<ServicoSolicitacao>? HistoricoDePedidos{ get; }
+    public virtual IEnumerable<ServicoSolicitacao> HistoricoDePedidos { get; set; } 
+    public virtual Endereco Endereco { get; set; }
     public string Documento { get; set; }
     public virtual TipoDocumentoEnum TipoDocumentoEnum { get; set; }
 
@@ -15,7 +17,7 @@ public abstract class Pessoa : EntityBase
     public virtual string GetDocumento() => string.Format($"{TipoDocumentoEnum.GetEnumDescription()} {Documento}");
     public virtual void AddServicoHistoricoPedidos(ServicoSolicitacao servicoSolicitacao)
     {
-        HistoricoDePedidos?.Add(servicoSolicitacao);
+        HistoricoDePedidos?.Append(servicoSolicitacao);
     }
     
 }

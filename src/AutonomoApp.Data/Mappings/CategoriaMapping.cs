@@ -1,4 +1,5 @@
-﻿using AutonomoApp.Business.Models;
+﻿using System.Security.Cryptography.X509Certificates;
+using AutonomoApp.Business.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,17 +11,30 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
     {
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id)
-            .ValueGeneratedOnAdd()
-            .HasColumnName("Id");
+        //builder.Property(p => p.Id)
+        //    .ValueGeneratedOnAdd()
+        //    .HasColumnName("Id");
 
         builder
             .Property(p => p.Nome)
             .HasColumnName("Nome")
             .HasColumnType("varchar(20)");
 
-        builder.Property(p => p.IdEnum)
-            .HasColumnName("IdEnum");
+        //builder
+        //    .HasMany(p => p.Servicos)
+        //    .WithOne()
+        //  //  .WithOne(x => x.Categoria)
+        //    .HasForeignKey(x => x.CategoriaId)
+        //    .OnDelete(DeleteBehavior.NoAction);
+
+        //builder
+        //    .HasMany(p => p.Subcategorias)
+        //.WithOne(x => x.Categoria)
+        //.HasForeignKey(x => x.CategoriaId);
+
+        //builder.Property(p => p.CategoriaId)
+        //    .HasColumnName("CategoriaId");
+
 
         //builder
         //    .Property(p => p.CategoriaEnum)
@@ -33,6 +47,6 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
             .IsRequired(false)
             .HasColumnType("varchar(150)");
 
-        builder.ToTable("Categorias");
+        builder.ToTable("AACategorias");
     }
 }

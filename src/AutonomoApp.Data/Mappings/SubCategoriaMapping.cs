@@ -11,7 +11,7 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
         //builder.Ignore(p => p.SubCategoriaEnum);
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id).ValueGeneratedOnAdd();
+        //builder.Property(p => p.Id).ValueGeneratedOnAdd();
         
         builder.Property(p => p.Nome);
         builder
@@ -19,6 +19,16 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
             .IsRequired(false)
             .HasColumnType("varchar(150)");
 
-        builder.ToTable("SubCategorias");
+
+
+        //builder
+        //    .hasone(x => x.categoria)
+        //    .withmany(x => x.subcategorias)
+        //    .hasforeignkey(x => x.categoriaid)
+        //    ;
+
+
+
+        builder.ToTable("AASubCategorias");
     }
 }
