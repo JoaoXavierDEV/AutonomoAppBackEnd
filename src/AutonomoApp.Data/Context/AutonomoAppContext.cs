@@ -17,6 +17,7 @@ public class AutonomoAppContext : DbContext
     public DbSet<ServicoSolicitacao> ServicoSolicitacao { get; set; }
     public DbSet<Servico> Servico { get; set; }
     public DbSet<ServicoCategoria> ServicoCategoria { get; set; }
+    public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

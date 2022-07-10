@@ -8,7 +8,7 @@ public class ServicoCategoriaMapping : IEntityTypeConfiguration<ServicoCategoria
 {
     public void Configure(EntityTypeBuilder<ServicoCategoria> builder)
     {
-        builder.HasKey(x => new { x.Id ,x.ServicoId, x.CategoriaId });
+        builder.HasKey(x => new { x.ServicoId, x.CategoriaId });
 
         builder
             .HasOne(bc => bc.Servico)
@@ -21,5 +21,24 @@ public class ServicoCategoriaMapping : IEntityTypeConfiguration<ServicoCategoria
             .HasForeignKey(bc => bc.CategoriaId);
 
         builder.ToTable("AAServicoCategoria");
+    }
+}
+public class ServicoSubCategoriaMapping : IEntityTypeConfiguration<ServicoSubCategoria>
+{
+    public void Configure(EntityTypeBuilder<ServicoSubCategoria> builder)
+    {
+        builder.HasKey(x => new { x.ServicoId, x.SubCategoriaId });
+
+        builder
+            .HasOne(bc => bc.Servico)
+            .WithMany(c => c.ServicoSubCategoria)
+            .HasForeignKey(bc => bc.ServicoId);
+        
+        builder
+            .HasOne(bc => bc.Subcategoria)
+            .WithMany(c => c.ServicoSubCategoria)
+            .HasForeignKey(bc => bc.ServicoId);
+
+        builder.ToTable("AAServicoSubCategoria");
     }
 }

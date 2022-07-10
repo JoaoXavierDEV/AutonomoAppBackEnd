@@ -22,13 +22,6 @@
   </Class>
   <Class Name="AutonomoApp.Business.Models.Servico">
     <Position X="3.75" Y="4" Width="1.5" />
-    <AssociationLine Name="ServicoCategoria" Type="AutonomoApp.Business.Models.ServicoCategoria" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="5.25" Y="4.812" />
-        <Point X="8.25" Y="4.812" />
-        <Point X="8.25" Y="2.425" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAJAAAAAACAAAAEAABAAEAAAAAAAAEAAEA=</HashCode>
       <FileName>Models\Servico.cs</FileName>
@@ -36,9 +29,6 @@
     <ShowAsAssociation>
       <Property Name="Cliente" />
     </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="ServicoCategoria" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Pessoa">
     <Position X="7" Y="5.25" Width="2" />
@@ -47,23 +37,12 @@
       <FileName>Models\Pessoa.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AutonomoApp.Business.Models.ServicoCategoria">
+  <Class Name="AutonomoApp.Business.Models.ServicoSubCategoria">
     <Position X="7.5" Y="1" Width="1.5" />
-    <AssociationLine Name="Servico" Type="AutonomoApp.Business.Models.Servico" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="7.844" Y="2.425" />
-        <Point X="7.844" Y="4.375" />
-        <Point X="5.25" Y="4.375" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>AAAAAACAAAAAAAAACAAAAAAAAAAQAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ServicoCategoria.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Categoria" />
-      <Property Name="Servico" />
-    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

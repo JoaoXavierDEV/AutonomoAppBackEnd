@@ -16,7 +16,7 @@ public class ServicoMapping : IEntityTypeConfiguration<Servico>
         builder.Property(p => p.Tags)
             .HasConversion(splitStringConverter);
 
-        builder.HasKey(p => p.Id);
+        // builder.HasKey(p => p.Id);
 
 
 

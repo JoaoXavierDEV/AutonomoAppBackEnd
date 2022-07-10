@@ -11,17 +11,18 @@ public class PessoaMapping : IEntityTypeConfiguration<Pessoa>
         builder.HasKey(p => p.Id);
         builder.ToTable("AAPessoa");
     }
-}public class PessoaFisicaMapping : IEntityTypeConfiguration<PessoaFisica>
+}
+public class PessoaFisicaMapping : IEntityTypeConfiguration<PessoaFisica>
 {
     public void Configure(EntityTypeBuilder<PessoaFisica> builder)
     {
-        builder.ToTable("AA.PessoaFisica");
+        builder.ToTable("AAPessoaFisica");
     }
 }
 public class PessoaJuridicaMapping : IEntityTypeConfiguration<PessoaJuridica>
 {
     public void Configure(EntityTypeBuilder<PessoaJuridica> builder)
     {
-        builder.ToTable("AA.PessoaJuridica");
+        builder.ToTable("AAPessoaJuridica");
     }
 }

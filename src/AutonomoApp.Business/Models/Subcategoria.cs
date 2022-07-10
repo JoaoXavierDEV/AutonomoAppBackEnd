@@ -15,8 +15,8 @@ public class Subcategoria : EntityBase
     //public virtual Categoria Categoria { get; set; } = new Categoria();
 
     /* EF */
-    //public virtual Guid ServicoId { get; set; }
-    public virtual IEnumerable<Servico>? Servicos { get; set; } //= new List<Servico>();
+    public virtual Guid ServicoId { get; set; }
+    public virtual IEnumerable<ServicoSubCategoria>? ServicoSubCategoria { get; set; } //= new List<Servico>();
 }
 
 

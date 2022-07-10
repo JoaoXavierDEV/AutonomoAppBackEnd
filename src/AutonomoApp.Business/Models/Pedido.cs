@@ -6,7 +6,7 @@ namespace AutonomoApp.Business.Models
 {
     public class ServicoSolicitacao : EntityBase
     {
-        public Servico ServicoSolicitado { get; set; }
+        public virtual Servico ServicoSolicitado { get; set; }
         public DateTime DataSolicitacao { get; }
         public DateTime? DataConclusao { get; set; }
         public DateTime DataConclusaoEstimada { get; set; }
