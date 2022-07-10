@@ -15,10 +15,11 @@ namespace AutonomoApp.ConsoleApp
     {
         public void BuildEntity()
         {
-            //ResetarDb();
-            // CarregarDadosCategorias();
+            ResetarDb();
+            CarregarDadosCategoriasV2();
             //CarregarDadosPessoa();
-            // CarregarServico();
+            CarregarServico();
+            RelacionamentosCateSubCat();
             GetServico();
         }
 
@@ -29,7 +30,7 @@ namespace AutonomoApp.ConsoleApp
             db.Database.EnsureCreated();
         }
 
-        public void CarregarDadosCategorias()
+        /*private void CarregarDadosCategorias()
         {
             AutonomoAppContext db = new();
             db.Categorias.AddRange(
@@ -116,6 +117,95 @@ namespace AutonomoApp.ConsoleApp
 
             db.SaveChanges();
             db.ChangeTracker.Clear();
+        }*/
+        private void CarregarDadosCategoriasV2()
+        {
+            AutonomoAppContext db = new();
+
+
+            db.Categorias.AddRange(
+                new Categoria()
+                {
+                    Id = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                    CatEnumId = (int)CategoriaEnum.Tecnologia,
+                    Nome = CategoriaEnum.Tecnologia.GetEnumDescription(),
+                    Descricao = "Serviços de TI",
+                },
+                new Categoria()
+                {
+                    Id = Guid.Parse("7FC9F7DC-7262-4869-B33D-C4A9645964E1"),
+                    CatEnumId = (int)CategoriaEnum.ServicosGerais,
+                    Nome = CategoriaEnum.ServicosGerais.GetEnumDescription(),
+                    Descricao = "Serviços de Limpezae afins",
+                },
+                new Categoria()
+                {
+                    Id = Guid.Parse("1193CCC4-9B48-4875-8526-E1E1CCA27173"),
+                    CatEnumId = (int)CategoriaEnum.Lanches,
+                    Nome = CategoriaEnum.Lanches.GetEnumDescription(),
+                    Descricao = "Peça seu lanche",
+                }
+
+            );
+            db.Subcategorias.AddRange(
+                new Subcategoria()
+                {
+                    CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                    SubCatEnumId = (int)Tecnologia.DevenvolvimetoFrontEnd,
+                    Nome = Tecnologia.DevenvolvimetoFrontEnd.GetEnumDescription(),
+                },
+                new Subcategoria()
+                {
+                    CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                    Id = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
+                    SubCatEnumId = (int)Tecnologia.DevenvolvimetoBackEnd,
+                    Nome = Tecnologia.DevenvolvimetoBackEnd.GetEnumDescription(),
+                },
+                new Subcategoria()
+                {
+                    CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                    SubCatEnumId = (int)Tecnologia.Infra,
+                    Nome = Tecnologia.Infra.GetEnumDescription(),
+                },
+                new Subcategoria()
+                {
+                    CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                    SubCatEnumId = (int)Tecnologia.DevOps,
+                    Nome = Tecnologia.DevOps.GetEnumDescription(),
+                },
+                new Subcategoria()
+                {
+                    SubCatEnumId = (int)ServicosGerais.Varrer,
+                    Nome = ServicosGerais.Varrer.GetEnumDescription()
+                },
+                new Subcategoria()
+                {
+                    SubCatEnumId = (int)ServicosGerais.LavarLouca,
+                    Nome = ServicosGerais.LavarLouca.GetEnumDescription()
+                },
+                new Subcategoria()
+                {
+                    SubCatEnumId = (int)ServicosGerais.Limpeza,
+                    Nome = ServicosGerais.Limpeza.GetEnumDescription()
+                },
+                new Subcategoria()
+                {
+                    SubCatEnumId = (int)Lanches.Doces,
+                    Nome = Lanches.Doces.GetEnumDescription()
+                },
+                new Subcategoria()
+                {
+                    SubCatEnumId = (int)Lanches.Pizza,
+                    Nome = Lanches.Pizza.GetEnumDescription()
+                },
+                new Subcategoria()
+                {
+                    SubCatEnumId = (int)Lanches.Restaurantes,
+                    Nome = Lanches.Restaurantes.GetEnumDescription()
+                }
+                );
+            db.SaveChanges();
+            db.ChangeTracker.Clear();
         }
 
         public void CarregarDadosPessoa()
@@ -171,6 +261,7 @@ namespace AutonomoApp.ConsoleApp
 
             db.Servico.AddRange(new Servico()
             {
+                Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
                 Cliente = new PessoaFisica()
                 {
                     Nome = "Jaum",
@@ -183,13 +274,33 @@ namespace AutonomoApp.ConsoleApp
                 Valor = 8000m,
                 CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
                 SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
-                ServicoCategoria = new List<ServicoCategoria>() { },
+                //ServicoCategoria = new List<ServicoCategoria>() { },
                 //Categoria =  new Categoria(),
 
                 Tags = new List<string>() { "aspnet", "microsoft" },
 
             });
 
+            db.SaveChanges();
+            db.ChangeTracker.Clear();
+        }
+
+        private void RelacionamentosCateSubCat()
+        {
+            AutonomoAppContext db = new();
+
+            db.ServicoCategoria.AddRange(
+                new ServicoCategoria()
+                {
+                    ServicoId = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
+                    CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                });
+            db.ServicoSubCategoria.AddRange(
+                new ServicoSubCategoria()
+                {
+                    ServicoId = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
+                    SubCategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb")
+                });
             db.SaveChanges();
             db.ChangeTracker.Clear();
         }
@@ -214,11 +325,17 @@ namespace AutonomoApp.ConsoleApp
                 .Include(x => x.ServicoCategoria)
                 .ToList();
 
-            List<Categoria> categoriasSubAll = db.Categorias
-                .Include(c => c.Subcategorias)
+            var categoriasSubAll = db.Subcategorias
+                //.Include(c => c.Subcategorias)
                 .ToList();
 
             List<Categoria> categoriasAll = db.Categorias
+                .ToList();
+
+            List<ServicoCategoria> ServicoCategoria = db.ServicoCategoria
+                .ToList();
+
+            List<ServicoSubCategoria> ServicoSubCategoria = db.ServicoSubCategoria
                 .ToList();
             // refatorar nome de variaveis
             Console.ReadKey();
