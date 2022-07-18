@@ -311,8 +311,8 @@ namespace AutonomoApp.ConsoleApp
 
             Servico servicoUsuario = db.Servico
                 .Include(x => x.Cliente)
-                //.Include(x => x.SubCategoria)
-                .Include(x => x.ServicoCategoria)
+                //.Include(x => x.Categoria)
+                //.Include(x => x.Subcategoria)
                 .Where(x => x.Cliente.Documento == "14494943746")
                 //.Select(p => p.Subcategorias.Where( c => c.SubCatEnumId == (int)Tecnologia.DevenvolvimetoBackEnd))
                 .Select(x => x)

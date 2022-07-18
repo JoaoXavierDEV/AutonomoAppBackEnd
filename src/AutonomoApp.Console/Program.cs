@@ -22,7 +22,7 @@ namespace AutonomoApp.ConsoleApp
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("CONSOLE: " + e.Message);
             }
 
         }

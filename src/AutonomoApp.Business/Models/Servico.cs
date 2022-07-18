@@ -17,5 +17,4 @@ public class Servico : EntityBase
     public virtual IEnumerable<ServicoCategoria>? ServicoCategoria { get; set; }  // = new Categoria();
     public virtual Guid SubcategoriaId { get; set; } 
     public virtual IEnumerable<ServicoSubCategoria>? ServicoSubCategoria { get; set; }// = new Subcategoria();
-
 }
