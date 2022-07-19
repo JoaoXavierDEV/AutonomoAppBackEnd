@@ -1,4 +1,6 @@
 ﻿using ASPNET.Api.Controllers;
+using AutonomoApp.Business.Interfaces.IRepository;
+using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,12 +9,13 @@ namespace AutonomoApp.Api.Controllers
     [ApiController]
     public class CategoriaController : MainController
     {
-        //private readonly CategoriaService _categoriaServiceservice;
+        private readonly ICategoriaRepository _categoriaRepository;
 
-        //public CategoriaController(CategoriaService categoriaServiceservice)
-        //{
-        //    _categoriaServiceservice = categoriaServiceservice;
-        //}
+        public CategoriaController(ICategoriaRepository categoriaRepository)
+        {
+            _categoriaRepository = categoriaRepository;
+        }
+
 
         [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
         public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
@@ -37,5 +40,13 @@ namespace AutonomoApp.Api.Controllers
             }
             // var result = _categoriaServiceservice.CreatCat(categoria, subcategoria);
         }
+
+        [HttpGet("ObterTodasCategorias")]
+        public async Task<List<Categoria>> ObterTodasCat()
+        {
+            var tt = await _categoriaRepository.ObterTodos();
+            return tt;
+        }
     }
+
 }

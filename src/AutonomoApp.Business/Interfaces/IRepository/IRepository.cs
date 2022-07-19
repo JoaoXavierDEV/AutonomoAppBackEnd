@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using AutonomoApp.Business.Models;
 
-namespace AutonomoApp.Business.Interfaces;
+namespace AutonomoApp.Business.Interfaces.IRepository;
 
 public interface IRepository<TEntity> : IDisposable where TEntity : EntityBase
 {

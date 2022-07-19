@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutonomoApp.Business\AutonomoApp.Business.csproj" />
+    <ProjectReference Include="..\AutonomoApp.Data\AutonomoApp.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

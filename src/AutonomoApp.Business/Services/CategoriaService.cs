@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
+using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 
 namespace AutonomoApp.Business.Services;
 
-public class CategoriaService
+public class CategoriaService : BaseService
 {
-    public CategoriaService()
-    {
+    private readonly ICategoriaRepository _categoriaRepository;
 
+    public CategoriaService(ICategoriaRepository categoriaRepository)
+    {
+        _categoriaRepository = categoriaRepository;
     }
 
-    public CategoriaBuilder CreatCat(int categoria, int subCategoria)
-    {
-        return new CategoriaBuilder(categoria, subCategoria);
-    }
+     
+
 }
 
 public class CategoriaBuilder

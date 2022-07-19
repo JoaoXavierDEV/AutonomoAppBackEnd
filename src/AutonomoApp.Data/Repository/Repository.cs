@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using AutonomoApp.Business.Interfaces;
+using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -18,41 +18,44 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
     }
     public async Task<IEnumerable<T>> Buscar(Expression<Func<T, bool>> predicate)
     {
-        throw new NotImplementedException();
+        return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
     }
 
     public async Task Adicionar(T entity)
     {
-        throw new NotImplementedException();
+        DbSet.Add(entity);
+        await SaveChanges();
     }
 
     public async Task<T> ObterPorId(Guid id)
     {
-        throw new NotImplementedException();
+        return await DbSet.FindAsync(id);
     }
 
     public async Task<List<T>> ObterTodos()
     {
-        throw new NotImplementedException();
+        return await DbSet.ToListAsync();
     }
 
     public async Task Atualizar(T entity)
     {
-        throw new NotImplementedException();
+        DbSet.Update(entity);
+        await SaveChanges();
     }
 
     public async Task Remover(Guid id)
     {
-        throw new NotImplementedException();
+        DbSet.Remove(new T { Id = id });
+        await SaveChanges();
     }
 
 
     public async Task<int> SaveChanges()
     {
-        throw new NotImplementedException();
+        return await Db.SaveChangesAsync();
     }
     public void Dispose()
     {
-        throw new NotImplementedException();
+        Db?.Dispose();
     }
 }
