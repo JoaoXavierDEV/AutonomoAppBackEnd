@@ -1,4 +1,5 @@
 ﻿using ASPNET.Api.Controllers;
+using AutonomoApp.Api.DTO;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
@@ -10,12 +11,14 @@ namespace AutonomoApp.Api.Controllers
     public class CategoriaController : MainController
     {
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly IServicoRepository _servicoRepository;
 
-        public CategoriaController(ICategoriaRepository categoriaRepository)
+        public CategoriaController(ICategoriaRepository categoriaRepository, IServicoRepository servicoRepository)
         {
             _categoriaRepository = categoriaRepository;
+            _servicoRepository = servicoRepository;
         }
-
+        
 
         [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
         public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
@@ -46,6 +49,18 @@ namespace AutonomoApp.Api.Controllers
         {
             var tt = await _categoriaRepository.ObterTodos();
             return tt;
+        }
+
+        [HttpGet("ObterServicoPorID")]
+        public async Task<ServicoDTO> ObterServico()
+        {
+            var id = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
+            var tt = await _servicoRepository.ObterServicoPorUsuario(id);
+            var dto = new ServicoDTO()
+            {
+                Categoria = 
+            };
+            return dto;
         }
     }
 

@@ -16,6 +16,7 @@ namespace ASPNET.Api.Configuration
             services.AddScoped<AutonomoAppContext>();
             // services.AddScoped<ApplicationDbContext>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IServicoRepository, ServicoRepository>();
             //services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             //services.AddScoped<IProdutoRepository, ProdutoRepository>();
 

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using AutonomoApp.Business.Models;
+﻿using AutonomoApp.Business.Models;
 
-namespace AutonomoApp.Business.DTO;
+namespace AutonomoApp.Api.DTO;
 
 
 public record struct ServicoDTO

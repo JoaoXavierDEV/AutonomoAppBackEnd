@@ -14,7 +14,6 @@
     <Folder Include="Context\" />
     <Folder Include="Mappings\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
   <ItemGroup>
