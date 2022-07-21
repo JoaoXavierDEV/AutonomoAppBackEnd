@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AutonomoApp.Data.Repository;
 
-public class ServicoRepository : Repository<Servico>, IServicoRepository
+public class ServicoCategoriaRepository : Repository<Servico>
 {
-    public ServicoRepository(AutonomoAppContext db) : base(db) { }
+    public ServicoCategoriaRepository(AutonomoAppContext db) : base(db) { }
 
-    public async Task<List<Servico>> ObterTodosServicos()
+    public async Task<List<ServicoCategoria>> ObterTodosServicos()
     {
-        return await Db.Servico
+        return await Db.ServicoCategoria
             // .Include(x => x.ServicosServico)
              .AsNoTracking()
             .ToListAsync();
@@ -22,7 +22,6 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
         return await Db.Servico
             // .Include(x => x.ServicosServico)
             .AsNoTracking()
-            .Include(x => x.Cliente)
             .Where(servico => servico.Id == id)
             .FirstOrDefaultAsync();
     }

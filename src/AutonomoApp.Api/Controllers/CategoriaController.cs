@@ -1,6 +1,7 @@
 ﻿using ASPNET.Api.Controllers;
-using AutonomoApp.Api.DTO;
+using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces.IRepository;
+using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -12,13 +13,14 @@ namespace AutonomoApp.Api.Controllers
     {
         private readonly ICategoriaRepository _categoriaRepository;
         private readonly IServicoRepository _servicoRepository;
+        private readonly IServicoService _servicoService;
 
-        public CategoriaController(ICategoriaRepository categoriaRepository, IServicoRepository servicoRepository)
+        public CategoriaController(ICategoriaRepository categoriaRepository, IServicoRepository servicoRepository, IServicoService servicoService)
         {
             _categoriaRepository = categoriaRepository;
             _servicoRepository = servicoRepository;
+            _servicoService = servicoService;
         }
-        
 
         [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
         public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
@@ -54,12 +56,8 @@ namespace AutonomoApp.Api.Controllers
         [HttpGet("ObterServicoPorID")]
         public async Task<ServicoDTO> ObterServico()
         {
-            var id = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
-            var tt = await _servicoRepository.ObterServicoPorUsuario(id);
-            var dto = new ServicoDTO()
-            {
-                Categoria = 
-            };
+            var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
+            var dto = await _servicoService.ObterServicoDTO(idServico);
             return dto;
         }
     }

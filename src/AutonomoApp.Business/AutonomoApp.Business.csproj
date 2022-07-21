@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\IService\" />
     <Folder Include="Models\Validations\" />
     <Folder Include="DTO\" />
     <Folder Include="Services\" />

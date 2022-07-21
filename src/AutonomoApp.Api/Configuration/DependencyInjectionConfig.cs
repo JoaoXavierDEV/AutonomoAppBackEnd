@@ -1,4 +1,6 @@
 ﻿using AutonomoApp.Business.Interfaces.IRepository;
+using AutonomoApp.Business.Interfaces.IService;
+using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Context;
 using AutonomoApp.Data.Repository;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +19,7 @@ namespace ASPNET.Api.Configuration
             // services.AddScoped<ApplicationDbContext>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IServicoRepository, ServicoRepository>();
+            services.AddScoped<IServicoService, ServicoService>();
             //services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             //services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
