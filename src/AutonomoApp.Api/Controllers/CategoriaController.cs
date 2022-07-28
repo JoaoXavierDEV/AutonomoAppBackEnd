@@ -4,6 +4,7 @@ using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
+using AutonomoApp.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutonomoApp.Api.Controllers
@@ -50,6 +51,7 @@ namespace AutonomoApp.Api.Controllers
         public async Task<List<Categoria>> ObterTodasCat()
         {
             var tt = await _categoriaRepository.ObterTodos();
+
             return tt;
         }
 
@@ -57,7 +59,14 @@ namespace AutonomoApp.Api.Controllers
         public async Task<ServicoDTO> ObterServico()
         {
             var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
+
+            var tt = await _categoriaRepository.ObterTodos();
+            var result = _servicoRepository
+                .Consultar<AutonomoApp.Business.Models.Categoria>().ToList();
+
+
             var dto = await _servicoService.ObterServicoDTO(idServico);
+            
             return dto;
         }
     }

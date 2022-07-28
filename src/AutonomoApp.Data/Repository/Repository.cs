@@ -21,16 +21,19 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
         return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
     }
 
-    public IQueryable<T> Consultar()
+    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
     {
-        return DbSet;
+        return Db.Set<TAbela>();
     }
+
 
     public async Task Adicionar(T entity)
     {
         DbSet.Add(entity);
         await SaveChanges();
     }
+
+
 
     public async Task<T> ObterPorId(Guid id)
     {

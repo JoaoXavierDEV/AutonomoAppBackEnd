@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces.IRepository;
@@ -27,7 +28,13 @@ public class ServicoService : BaseService, IServicoService
         var cat = await _categoriaRepository.ObterPorId(idCat);
         var catdto = new CategoriaDto(cat);
 
-        var tt = _servicoRepository.Consultar();
+        var tt = _servicoRepository.
+            Consultar<AutonomoApp.Business.Models.Categoria>()
+                .Where(x => x.Nome != null)
+                .Select(x => x.Descricao)
+                .FirstOrDefault();
+
+        
 
         var servicoDto = new ServicoDTO()
         {
