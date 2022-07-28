@@ -28,13 +28,20 @@ public class ServicoService : BaseService, IServicoService
         var cat = await _categoriaRepository.ObterPorId(idCat);
         var catdto = new CategoriaDto(cat);
 
+        var subcatID = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb");
+        var subcat = _servicoRepository
+            .Consultar<Subcategoria>()
+            .FirstOrDefault(subcategoria => subcategoria.Id == subcatID);
+
+        var subCatDto = new SubCategoriaDto(subcat);
+
         var tt = _servicoRepository.
             Consultar<AutonomoApp.Business.Models.Categoria>()
                 .Where(x => x.Nome != null)
                 .Select(x => x.Descricao)
                 .FirstOrDefault();
 
-        
+
 
         var servicoDto = new ServicoDTO()
         {
@@ -44,10 +51,7 @@ public class ServicoService : BaseService, IServicoService
             Nome = ser.Nome,
             Valor = ser.Valor,
             Tags = ser.Tags,
-            Subcategoria = new Subcategoria()
-            {
-                Nome = "testes"
-            }
+            Subcategoria = subCatDto
 
         };
         return servicoDto;

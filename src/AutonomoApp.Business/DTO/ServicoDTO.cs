@@ -13,7 +13,7 @@ public record struct ServicoDTO
     public decimal Valor { get; set; }
     public IEnumerable<string> Tags { get; set; }
     public CategoriaDto Categoria { get; set; }
-    public Subcategoria Subcategoria { get; set; }
+    public SubCategoriaDto Subcategoria { get; set; }
 
 }
 

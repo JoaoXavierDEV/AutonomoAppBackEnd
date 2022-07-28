@@ -1,41 +1,29 @@
-﻿using AutonomoApp.Business.Models;
+﻿//using AutonomoApp.Business.Models;
 
-namespace AutonomoApp.Api.DTO;
+//namespace AutonomoApp.Api.DTO;
 
 
-public record struct ServicoDTO
-{
-    public Pessoa Cliente { get; set; }
-    public string Nome { get; set; }
-    public string Descricao { get; set; }
-    public decimal Valor { get; set; }
-    public IEnumerable<string> Tags { get; set; }
+//public record struct ServicoDTO
+//{
+//    public Pessoa Cliente { get; set; }
+//    public string Nome { get; set; }
+//    public string Descricao { get; set; }
+//    public decimal Valor { get; set; }
+//    public IEnumerable<string> Tags { get; set; }
+//    public Categoria? Categoria { get; set; }
+//    public Subcategoria? Subcategoria { get; set; }
 
-    /* EF */
-    public Guid CategoriaId { get; set; }
-    public Guid SubcategoriaId { get; set; }
+//    public ServicoDTO(Pessoa cliente, string nome, string descricao, decimal valor, IEnumerable<string> tags, Guid categoriaId, Guid subcategoriaId, Categoria? categoria, Subcategoria? subcategoria)
+//    {
+//        Cliente = cliente;
+//        Nome = nome;
+//        Descricao = descricao;
+//        Valor = valor;
+//        Tags = tags;
+//        Categoria = categoria;
+//        Subcategoria = subcategoria;
+//    }
 
-    // teste not mapped
-    public Categoria? Categoria { get; set; }
-    public Subcategoria? Subcategoria { get; set; }
 
-    public ServicoDTO(Pessoa cliente, string nome, string descricao, decimal valor, IEnumerable<string> tags, Guid categoriaId, Guid subcategoriaId, Categoria? categoria, Subcategoria? subcategoria)
-    {
-        Cliente = cliente;
-        Nome = nome;
-        Descricao = descricao;
-        Valor = valor;
-        Tags = tags;
-        CategoriaId = categoriaId;
-        SubcategoriaId = subcategoriaId;
-        Categoria = categoria;
-        Subcategoria = subcategoria;
-    }
-
-    private Categoria GetCategoria()
-    {
-        // acessar
-        return new Categoria();
-    }
-}
+//}
 
