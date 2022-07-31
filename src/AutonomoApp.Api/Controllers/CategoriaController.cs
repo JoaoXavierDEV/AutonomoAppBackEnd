@@ -50,9 +50,15 @@ namespace AutonomoApp.Api.Controllers
         [HttpGet("ObterTodasCategorias")]
         public async Task<List<Categoria>> ObterTodasCat()
         {
-            var tt = await _categoriaRepository.ObterTodos();
+            var tt = await _categoriaRepository.ObterTodasCategorias();
 
             return tt;
+        }
+
+        [HttpGet("ObterSubcategorias")]
+        public async Task<List<Subcategoria>> ObterSubcat()
+        {
+            return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
         }
 
         [HttpGet("ObterServicoPorID")]
@@ -69,6 +75,8 @@ namespace AutonomoApp.Api.Controllers
             
             return dto;
         }
+
+        
     }
 
 }

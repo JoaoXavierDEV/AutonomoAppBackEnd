@@ -16,7 +16,7 @@ namespace AutonomoApp.ConsoleApp
         public void BuildEntity()
         {
             ResetarDb();
-            CarregarDadosCategoriasV2();
+            CarregarDadosCategorias();
             //CarregarDadosPessoa();
             CarregarServico();
             RelacionamentosCateSubCat();
@@ -30,7 +30,7 @@ namespace AutonomoApp.ConsoleApp
             db.Database.EnsureCreated();
         }
 
-        /*private void CarregarDadosCategorias()
+        private void CarregarDadosCategorias()
         {
             AutonomoAppContext db = new();
             db.Categorias.AddRange(
@@ -117,7 +117,7 @@ namespace AutonomoApp.ConsoleApp
 
             db.SaveChanges();
             db.ChangeTracker.Clear();
-        }*/
+        }
         private void CarregarDadosCategoriasV2()
         {
             AutonomoAppContext db = new();

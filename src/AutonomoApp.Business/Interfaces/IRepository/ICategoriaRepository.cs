@@ -7,4 +7,5 @@ namespace AutonomoApp.Business.Interfaces.IRepository;
 public interface ICategoriaRepository : IRepository<Categoria>
 {
     Task<List<Categoria>> ObterTodasCategorias();
+    Task<List<Subcategoria>> ObterTodasCategoriasESubcategorias();
 }

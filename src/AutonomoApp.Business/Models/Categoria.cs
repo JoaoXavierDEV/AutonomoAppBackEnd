@@ -15,6 +15,7 @@ public class Categoria : EntityBase
     public virtual int? CatEnumId { get; set; }
     public virtual string? Nome { get; set; }
     public virtual string? Descricao { get; set; }
+    public virtual IEnumerable<Subcategoria> Subcategorias { get; set; }
 
     /* EF */
     public virtual Guid? SubcategoriasId { get; set; }

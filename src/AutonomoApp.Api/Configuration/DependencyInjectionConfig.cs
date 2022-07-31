@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ASPNET.Api.Configuration
+namespace AutonomoApp.Api.Configuration
 {
     public static class DependencyInjectionConfig
 

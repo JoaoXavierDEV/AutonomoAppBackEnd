@@ -12,8 +12,14 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     public async Task<List<Categoria>> ObterTodasCategorias()
     {
         return await Db.Categorias
-            // .Include(x => x.ServicosCategoria)
-             .AsNoTracking()
+            .Include(x => x.Subcategorias)
+            .OrderBy(x=> x.CatEnumId)
+            .ToListAsync();
+    }
+
+    public async Task<List<Subcategoria>> ObterTodasCategoriasESubcategorias()
+    {
+        return await Db.Subcategorias
             .ToListAsync();
     }
 }

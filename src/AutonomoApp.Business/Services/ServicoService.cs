@@ -23,34 +23,29 @@ public class ServicoService : BaseService, IServicoService
     public async Task<ServicoDTO> ObterServicoDTO(Guid id)
     {
         var ser = await _servicoRepository.ObterServicoPorUsuario(id);
+
+        // categoria
         var idCat = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e");
+        var querycat = _servicoRepository
+            .Consultar<Categoria>()
+            .FirstOrDefault(x => x.Id == idCat);
+        var catdto = new CategoriaDto(querycat);
 
-        var cat = await _categoriaRepository.ObterPorId(idCat);
-        var catdto = new CategoriaDto(cat);
-
+        // subcategoria
         var subcatID = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb");
         var subcat = _servicoRepository
             .Consultar<Subcategoria>()
-            .FirstOrDefault(subcategoria => subcategoria.Id == subcatID);
-
+            .FirstOrDefault(x => x.Id == subcatID);
         var subCatDto = new SubCategoriaDto(subcat);
-
-        var tt = _servicoRepository.
-            Consultar<AutonomoApp.Business.Models.Categoria>()
-                .Where(x => x.Nome != null)
-                .Select(x => x.Descricao)
-                .FirstOrDefault();
-
-
-
+        
         var servicoDto = new ServicoDTO()
         {
             Cliente = ser.Cliente,
-            Categoria = catdto,
-            Descricao = ser.Descricao,
             Nome = ser.Nome,
+            Descricao = ser.Descricao,
             Valor = ser.Valor,
             Tags = ser.Tags,
+            Categoria = catdto,
             Subcategoria = subCatDto
 
         };
