@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.Data", "src\Aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.Business", "src\AutonomoApp.Business\AutonomoApp.Business.csproj", "{27CA5327-C770-4B71-8C99-481869943E8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.Api", "src\AutonomoApp.Api\AutonomoApp.Api.csproj", "{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.WebApi", "src\AutonomoApp.Api\AutonomoApp.WebApi.csproj", "{3FDDC6A9-7197-42E2-823E-0FF669F5D2BB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{27CA5327-C770-4B71-8C99-481869943E8B} = {27CA5327-C770-4B71-8C99-481869943E8B}
 		{3F7836D5-AF9F-42E3-8B85-8EACF90FD356} = {3F7836D5-AF9F-42E3-8B85-8EACF90FD356}

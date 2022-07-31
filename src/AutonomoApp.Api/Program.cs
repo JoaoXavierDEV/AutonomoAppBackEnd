@@ -1,4 +1,4 @@
-using AutonomoApp.Api.Configuration;
+using AutonomoApp.WebApi.Configuration;
 using AutonomoApp.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,21 +16,15 @@ builder.Services.AddDbContext<AutonomoAppContext>(options =>
 });
 
 //builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
 
-builder.Services.AddWebApiConfig(builder.Configuration);
+builder.Services.AddWebApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 
-app.UseApiConfig(app.Environment);
-
-//app.UseSwagger();
-//app.UseSwaggerUI();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider>();
-app.UseSwaggerConfig(apiVersionDescriptionProvider);
-
 app.UseApiConfig(app.Environment);
+app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
 app.Run();

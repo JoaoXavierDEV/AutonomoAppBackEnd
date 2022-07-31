@@ -1,0 +1,55 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2');
+/*body {
+    background-color: #121212;
+}*/
+/**:not(.swagger-ui, .swagger-container , .topbar .wrapper .topbar-wrapper .download-url-wrapper .select-label option, a) {
+    font-family: "Open Sans", sans-serif !important;
+    text-decoration-color: #ffffff !important;
+    color: white !important;*/
+    /*font-family: 'Exo 2', sans-serif !important;
+    /*background-color: #121212;*/
+/*}*/
+
+.topbar-wrapper img[alt="Swagger UI"], .topbar-wrapper span {
+    visibility: hidden;
+}
+
+.topbar-wrapper .link:after {
+    content: 'MARSHALL.DEV';
+    color: #fff;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    padding: 15px;
+}
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border-color: #EF1C25;
+}
+
+.swagger-ui .info .title small:last-child {
+    background-color: #EF1C25 !important;
+}
+
+.title {
+    //text-transform: uppercase;
+}
+
+.swagger-ui .opblock.opblock-get {
+    background: rgba(97, 175, 254, .1);
+    border-color: rgba(102, 102, 255, 1)
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: rgba(102, 102, 255, 1)
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary {
+    border-color: rgba(102, 102, 255, 1)
+}
+
+.swagger-ui .opblock.opblock-get .tab-header .tab-item.active h4 span:after {
+    background: rgba(102, 102, 255, 1)
+}
+

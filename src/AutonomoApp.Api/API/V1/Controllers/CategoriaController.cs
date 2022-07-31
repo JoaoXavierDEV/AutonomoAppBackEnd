@@ -1,16 +1,17 @@
-﻿using ASPNET.Api.Controllers;
-using AutonomoApp.Business.DTO;
+﻿using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Repository;
+using AutonomoApp.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutonomoApp.Api.api.V1.Controllers
+namespace AutonomoApp.WebApi.Api.V1.Controllers
 {
-    [ApiVersion("1.0",Deprecated = false)]
+    [ApiVersion("1.5",Deprecated = false)]
     [Route("api/v{version:apiVersion}/categorias")]
+    [Produces("application/json")]
     public class CategoriaController : MainController
     {
         private readonly ICategoriaRepository _categoriaRepository;
@@ -24,7 +25,7 @@ namespace AutonomoApp.Api.api.V1.Controllers
             _servicoService = servicoService;
         }
 
-        [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
+        [HttpPost("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
         public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
         {
             try

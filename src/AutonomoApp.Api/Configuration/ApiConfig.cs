@@ -5,28 +5,34 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
-using AutonomoApp.Api.Configuration;
+using AutonomoApp.WebApi.Configuration;
 using AutonomoApp.Data.Context;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 
-namespace AutonomoApp.Api.Configuration
+namespace AutonomoApp.WebApi.Configuration
 {
     public static class ApiConfig
     {
-        public static IServiceCollection AddWebApiConfig(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddWebApiConfig(this IServiceCollection services)
         {
             services.AddControllers();
+            
             services.AddApiVersioning(op =>
             {
+                op.DefaultApiVersion = new ApiVersion(1,5);
                 op.AssumeDefaultVersionWhenUnspecified = true;
-                op.DefaultApiVersion = new ApiVersion(1, 0);
                 op.ReportApiVersions = true;
             });
+
             services.AddVersionedApiExplorer(op =>
             {
                 op.GroupNameFormat = "'v'VVV";
+                op.DefaultApiVersion = new ApiVersion(1,5);
                 op.SubstituteApiVersionInUrl = true;
+                op.AssumeDefaultVersionWhenUnspecified = true;
             });
+            
 
             services.Configure<ApiBehaviorOptions>(
                 op =>
@@ -69,7 +75,7 @@ namespace AutonomoApp.Api.Configuration
                 app.UseHsts();
             }
             //app.UseMiddleware<ExceptionMiddleware>();
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

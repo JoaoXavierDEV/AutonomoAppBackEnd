@@ -1,59 +1,80 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using System.Reflection;
+using System.Text;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text.Json;
 
-namespace AutonomoApp.Api.Configuration
+namespace AutonomoApp.WebApi.Configuration
 {
     public static class SwaggerConfig
     {
         public static IServiceCollection AddSwaggerConfig(this IServiceCollection services)
         {
+
             services.AddSwaggerGen(c =>
             {
+
+                ////    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                ////    {
+                ////        Description = "Insira o token JWT desta maneira: Bearer {seu token}",
+                ////        Name = "Authorization",
+                ////        Scheme = "Bearer",
+                ////        BearerFormat = "JWT",
+                ////        In = ParameterLocation.Header,
+                ////        Type = SecuritySchemeType.ApiKey
+                ////    });
+
+                ////    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                ////    {
+                ////        {
+                ////            new OpenApiSecurityScheme
+                ////            {
+                ////                Reference = new OpenApiReference
+                ////                {
+                ////                    Type = ReferenceType.SecurityScheme,
+                ////                    Id = "Bearer"
+                ////                }
+                ////            },
+                ////            new string[] {}
+                ////        }
+                //});
+                ////////////////////////////////////////////////
                 c.OperationFilter<SwaggerDefaultValues>();
-
-            //    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            //    {
-            //        Description = "Insira o token JWT desta maneira: Bearer {seu token}",
-            //        Name = "Authorization",
-            //        Scheme = "Bearer",
-            //        BearerFormat = "JWT",
-            //        In = ParameterLocation.Header,
-            //        Type = SecuritySchemeType.ApiKey
-            //    });
-
-            //    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            //    {
-            //        {
-            //            new OpenApiSecurityScheme
-            //            {
-            //                Reference = new OpenApiReference
-            //                {
-            //                    Type = ReferenceType.SecurityScheme,
-            //                    Id = "Bearer"
-            //                }
-            //            },
-            //            new string[] {}
-            //        }
-            //});
+                c.EnableAnnotations();
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
+
+        
 
             return services;
         }
 
         public static IApplicationBuilder UseSwaggerConfig(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
-            // app.UseMiddleware<SwaggerAuthorizedMiddleware>();
+            //app.UseMiddleware<SwaggerAuthorizedMiddleware>();
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
                 {
-                    foreach (var description in provider.ApiVersionDescriptions)
+                    options.DocExpansion(
+                        Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
+
+                    // Present API version in descending order
+                    var versionDescriptions = provider
+                        .ApiVersionDescriptions
+                        .OrderByDescending(desc => desc.ApiVersion)
+                        .ToList();
+
+                    options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
+                    options.InjectStylesheet("/docs/swagger-ui.css");
+                    //options.RoutePrefix = string.Empty;
+                    foreach (var description in versionDescriptions)
                     {
-                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", "Versão: " + description.GroupName.ToUpperInvariant());
                     }
                 });
             return app;
@@ -78,7 +99,7 @@ namespace AutonomoApp.Api.Configuration
         {
             var info = new OpenApiInfo()
             {
-                Title = "AutonomoApp WebAPI RestFul "+ description.ApiVersion.ToString(),
+                Title = "AutonomoApp WebAPI RestFul ",
                 Version = description.ApiVersion.ToString(),
                 Description = "API em .NET para o TCC.",
                 Contact = new OpenApiContact() { Name = "João Fernando Xavier", Email = "joao_jfmx@outlook.com" },
@@ -88,7 +109,9 @@ namespace AutonomoApp.Api.Configuration
 
             if (description.IsDeprecated)
             {
-                info.Description += "<br><br><b>Esta versão está obsoleta!</b>".ToUpper();
+                
+                info.Description += $"<p><b style=&#34;color:red;&#34;>Esta versão está obsoleta!</b></p>";
+                
             }
 
             return info;

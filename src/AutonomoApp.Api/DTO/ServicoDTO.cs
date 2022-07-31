@@ -1,6 +1,6 @@
 ﻿//using AutonomoApp.Business.Models;
 
-//namespace AutonomoApp.Api.DTO;
+//namespace AutonomoApp.WebApi.DTO;
 
 
 //public record struct ServicoDTO

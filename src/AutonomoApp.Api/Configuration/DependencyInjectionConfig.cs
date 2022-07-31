@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace AutonomoApp.Api.Configuration
+namespace AutonomoApp.WebApi.Configuration
 {
     public static class DependencyInjectionConfig
 
@@ -16,16 +16,9 @@ namespace AutonomoApp.Api.Configuration
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
             services.AddScoped<AutonomoAppContext>();
-            // services.AddScoped<ApplicationDbContext>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IServicoRepository, ServicoRepository>();
             services.AddScoped<IServicoService, ServicoService>();
-            //services.AddScoped<IEnderecoRepository, EnderecoRepository>();
-            //services.AddScoped<IProdutoRepository, ProdutoRepository>();
-
-            //services.AddScoped<INotificador, Notificador>();
-            //services.AddScoped<IFornecedorService, FornecedorService>();
-            //services.AddScoped<IProdutoService, ProdutoService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddScoped<IUser, AspNetUser>();

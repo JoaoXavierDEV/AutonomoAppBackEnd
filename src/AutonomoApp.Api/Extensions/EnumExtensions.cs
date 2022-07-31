@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace AutonomoApp.Api.Extensions;
+namespace AutonomoApp.WebApi.Extensions;
 
 public static class EnumExtensions
 {
