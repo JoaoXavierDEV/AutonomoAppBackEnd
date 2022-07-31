@@ -7,7 +7,7 @@ using AutonomoApp.Data.Repository;
 using AutonomoApp.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutonomoApp.WebApi.Api.V1.Controllers
+namespace AutonomoApp.WebApi.Controllers.V1.Controllers
 {
     [ApiVersion("1.5",Deprecated = false)]
     [Route("api/v{version:apiVersion}/categorias")]
