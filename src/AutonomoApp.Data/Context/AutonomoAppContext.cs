@@ -8,6 +8,7 @@ namespace AutonomoApp.Data.Context;
 public class AutonomoAppContext : DbContext
 
 {
+    #region DbSet<>
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Subcategoria> Subcategorias { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
@@ -17,20 +18,33 @@ public class AutonomoAppContext : DbContext
     public DbSet<ServicoSolicitacao> ServicoSolicitacao { get; set; }
     public DbSet<Servico> Servico { get; set; }
     public DbSet<ServicoCategoria> ServicoCategoria { get; set; }
-    public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; }
+    public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; } 
+    #endregion
 
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public AutonomoAppContext(DbContextOptions<AutonomoAppContext> options) : base(options)
     {
-        const string strConnection = "Server=ASUS-ROG\\SQLEXPRESS;Database=CURSOEF;User Id=sa; Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true";
-        optionsBuilder
-            .UseSqlServer(strConnection)
-            .EnableSensitiveDataLogging()
-            
-            //.UseLazyLoadingProxies()
-            .LogTo(Console.WriteLine, LogLevel.Error);
-        //.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted }, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine);
+        ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        ChangeTracker.AutoDetectChangesEnabled = false;
+        //Database.EnsureCreated();
     }
+
+    public AutonomoAppContext()
+    {
+        
+    }
+
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    const string strConnection = "Server=ASUS-ROG\\SQLEXPRESS;Database=CURSOEF;User Id=sa; Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true";
+    //    optionsBuilder
+    //        .UseSqlServer(strConnection)
+    //        .EnableSensitiveDataLogging()
+            
+    //        //.UseLazyLoadingProxies()
+    //        .LogTo(Console.WriteLine, LogLevel.Error);
+    //    //.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted }, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine);
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

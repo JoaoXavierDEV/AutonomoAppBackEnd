@@ -16,17 +16,17 @@ namespace AutonomoApp.Api.Configuration
         public static IServiceCollection AddWebApiConfig(this IServiceCollection services, IConfiguration config)
         {
             services.AddControllers();
-            //services.AddApiVersioning(op =>
-            //{
-            //    op.AssumeDefaultVersionWhenUnspecified = true;
-            //    op.DefaultApiVersion = new ApiVersion(1, 0);
-            //    op.ReportApiVersions = true;
-            //});
-            //services.AddVersionedApiExplorer(op =>
-            //{
-            //    op.GroupNameFormat = "'v'VVV";
-            //    op.SubstituteApiVersionInUrl = true;
-            //});
+            services.AddApiVersioning(op =>
+            {
+                op.AssumeDefaultVersionWhenUnspecified = true;
+                op.DefaultApiVersion = new ApiVersion(1, 0);
+                op.ReportApiVersions = true;
+            });
+            services.AddVersionedApiExplorer(op =>
+            {
+                op.GroupNameFormat = "'v'VVV";
+                op.SubstituteApiVersionInUrl = true;
+            });
 
             services.Configure<ApiBehaviorOptions>(
                 op =>

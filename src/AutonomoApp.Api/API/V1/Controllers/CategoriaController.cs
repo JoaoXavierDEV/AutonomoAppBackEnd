@@ -7,9 +7,10 @@ using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutonomoApp.Api.Controllers
+namespace AutonomoApp.Api.api.V1.Controllers
 {
-    [ApiController]
+    [ApiVersion("1.0",Deprecated = false)]
+    [Route("api/v{version:apiVersion}/categorias")]
     public class CategoriaController : MainController
     {
         private readonly ICategoriaRepository _categoriaRepository;
@@ -28,9 +29,9 @@ namespace AutonomoApp.Api.Controllers
         {
             try
             {
-                ArgumentNullException.ThrowIfNull((categoria ,subcategoria));
-              //  if (categoria == null || subcategoria == null) 
-              //      throw new ArgumentNullException("Todos os campos são obrigatórios");
+                ArgumentNullException.ThrowIfNull((categoria, subcategoria));
+                //  if (categoria == null || subcategoria == null) 
+                //      throw new ArgumentNullException("Todos os campos são obrigatórios");
                 // lembrando que ele deve chamar a service, falta instanciar ela via dependencia
                 var result = new CategoriaBuilder(categoria, subcategoria);
 
@@ -41,7 +42,7 @@ namespace AutonomoApp.Api.Controllers
             }
             catch (Exception e)
             {
-               return NotFound(e.Message);
+                return NotFound(e.Message);
 
             }
             // var result = _categoriaServiceservice.CreatCat(categoria, subcategoria);
@@ -68,15 +69,15 @@ namespace AutonomoApp.Api.Controllers
 
             var tt = await _categoriaRepository.ObterTodos();
             var result = _servicoRepository
-                .Consultar<AutonomoApp.Business.Models.Categoria>().ToList();
+                .Consultar<Categoria>().ToList();
 
 
             var dto = await _servicoService.ObterServicoDTO(idServico);
-            
+
             return dto;
         }
 
-        
+
     }
 
 }

@@ -11,8 +11,8 @@
   "profiles": {
     "Project": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "swagger",
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -21,6 +21,7 @@
     },
     "IIS - DEVELOPMENT": {
       "commandName": "IISExpress",
+      "launchUrl": "swagger",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -28,6 +29,7 @@
     },
     "IIS - PRODUCTION": {
       "commandName": "IISExpress",
+      "launchUrl": "swagger",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
@@ -35,6 +37,7 @@
     },
     "IIS - STAGING": {
       "commandName": "IISExpress",
+      "launchUrl": "swagger",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Staging"
