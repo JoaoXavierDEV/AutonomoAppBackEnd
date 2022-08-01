@@ -88,7 +88,3 @@ public class CategoriaBuilder
                              $" \nSubCategoria: {SubCategoriaNome}");
     }
 }
-
-// TODO: Terminar o Inserir Dados
-// TODO: CategoriaBuilder pode ser o CategoriaDTO
-// TODO: Desenhar o fluxo de dados dessa bagaçaaaaaaaaa

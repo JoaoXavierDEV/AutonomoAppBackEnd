@@ -1,15 +1,17 @@
-﻿using AutonomoApp.Business.DTO;
+﻿using AutoMapper;
+using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Repository;
 using AutonomoApp.WebApi.Controllers;
+using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutonomoApp.WebApi.Controllers.V1.Controllers
 {
-    [ApiVersion("1.5",Deprecated = false)]
+    [ApiVersion("1.0", Deprecated = false)]
     [Route("api/v{version:apiVersion}/categorias")]
     [Produces("application/json")]
     public class CategoriaController : MainController
@@ -17,44 +19,52 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         private readonly ICategoriaRepository _categoriaRepository;
         private readonly IServicoRepository _servicoRepository;
         private readonly IServicoService _servicoService;
+        private readonly IMapper _mapper;
 
-        public CategoriaController(ICategoriaRepository categoriaRepository, IServicoRepository servicoRepository, IServicoService servicoService)
+        public CategoriaController(
+                    ICategoriaRepository categoriaRepository,
+                    IServicoRepository servicoRepository,
+                    IServicoService servicoService,
+                    IMapper mapper)
         {
             _categoriaRepository = categoriaRepository;
             _servicoRepository = servicoRepository;
             _servicoService = servicoService;
+            _mapper = mapper;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <param name="subcategoria"></param>
+        /// <returns></returns>
         [HttpPost("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
         public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
         {
             try
             {
                 ArgumentNullException.ThrowIfNull((categoria, subcategoria));
-                //  if (categoria == null || subcategoria == null) 
-                //      throw new ArgumentNullException("Todos os campos são obrigatórios");
-                // lembrando que ele deve chamar a service, falta instanciar ela via dependencia
                 var result = new CategoriaBuilder(categoria, subcategoria);
-
-
-
                 return Ok(result.ToString());
-
             }
             catch (Exception e)
             {
                 return NotFound(e.Message);
 
             }
-            // var result = _categoriaServiceservice.CreatCat(categoria, subcategoria);
         }
 
+        /// <summary>
+        /// Obtem todas as categorias e suas respectivas subcategorias
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ObterTodasCategorias")]
-        public async Task<List<Categoria>> ObterTodasCat()
+        public async Task<List<CategoriaViewModel>> ObterTodasCategorias()
         {
-            var tt = await _categoriaRepository.ObterTodasCategorias();
+            // var fornecedor = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
+            return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategorias());
 
-            return tt;
         }
 
         [HttpGet("ObterSubcategorias")]

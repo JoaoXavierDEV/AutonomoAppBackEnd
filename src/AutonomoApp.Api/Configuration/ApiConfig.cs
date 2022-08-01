@@ -20,7 +20,7 @@ namespace AutonomoApp.WebApi.Configuration
             
             services.AddApiVersioning(op =>
             {
-                op.DefaultApiVersion = new ApiVersion(1,5);
+                op.DefaultApiVersion = new ApiVersion(1,0);
                 op.AssumeDefaultVersionWhenUnspecified = true;
                 op.ReportApiVersions = true;
             });
@@ -28,7 +28,7 @@ namespace AutonomoApp.WebApi.Configuration
             services.AddVersionedApiExplorer(op =>
             {
                 op.GroupNameFormat = "'v'VVV";
-                op.DefaultApiVersion = new ApiVersion(1,5);
+                op.DefaultApiVersion = new ApiVersion(1,0);
                 op.SubstituteApiVersionInUrl = true;
                 op.AssumeDefaultVersionWhenUnspecified = true;
             });

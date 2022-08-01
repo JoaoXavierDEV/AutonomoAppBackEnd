@@ -15,8 +15,7 @@ builder.Services.AddDbContext<AutonomoAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-//builder.Services.AddEndpointsApiExplorer();
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddWebApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.ResolveDependencies();

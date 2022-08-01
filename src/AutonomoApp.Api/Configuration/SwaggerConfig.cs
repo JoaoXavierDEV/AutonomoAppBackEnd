@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text.Json;
 
+
 namespace AutonomoApp.WebApi.Configuration
 {
     public static class SwaggerConfig
@@ -66,7 +67,7 @@ namespace AutonomoApp.WebApi.Configuration
                     // Present API version in descending order
                     var versionDescriptions = provider
                         .ApiVersionDescriptions
-                        .OrderByDescending(desc => desc.ApiVersion)
+                        .OrderBy(desc => desc.ApiVersion)
                         .ToList();
 
                     options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
