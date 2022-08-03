@@ -11,8 +11,8 @@
   "profiles": {
     "Project": {
       "commandName": "Project",
-      "launchUrl": "swagger",
       "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -21,27 +21,34 @@
     },
     "IIS - DEVELOPMENT": {
       "commandName": "IISExpress",
-      "launchUrl": "swagger",
       "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "IIS - PRODUCTION": {
       "commandName": "IISExpress",
-      "launchUrl": "swagger",
       "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
     "IIS - STAGING": {
       "commandName": "IISExpress",
-      "launchUrl": "swagger",
       "launchBrowser": true,
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Staging"
       }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true
     }
   }
 }

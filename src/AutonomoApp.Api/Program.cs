@@ -22,6 +22,7 @@ builder.Services.ResolveDependencies();
 
 var app = builder.Build();
 
+app.UseGlobalizationConfig();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider>();
 app.UseApiConfig(app.Environment);
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
