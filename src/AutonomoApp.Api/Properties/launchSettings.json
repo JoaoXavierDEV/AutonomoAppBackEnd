@@ -46,6 +46,9 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
+      //"environmentVariables": {
+      //  "ASPNETCORE_ENVIRONMENT": "Production"
+      //},
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "publishAllPorts": true,
       "useSSL": true
