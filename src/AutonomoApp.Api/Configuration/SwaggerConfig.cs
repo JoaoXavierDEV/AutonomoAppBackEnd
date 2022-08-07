@@ -44,7 +44,7 @@ namespace AutonomoApp.WebApi.Configuration
                 //});
                 ////////////////////////////////////////////////
                 c.OperationFilter<SwaggerDefaultValues>();
-                //c.EnableAnnotations();
+                c.EnableAnnotations();
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
