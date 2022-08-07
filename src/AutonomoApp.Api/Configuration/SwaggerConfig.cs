@@ -61,8 +61,6 @@ namespace AutonomoApp.WebApi.Configuration
             app.UseSwaggerUI(
                 options =>
                 {
-                    options.DocExpansion(
-                        Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
 
                     // Present API version in descending order
                     var versionDescriptions = provider

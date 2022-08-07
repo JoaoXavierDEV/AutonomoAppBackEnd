@@ -1,5 +1,6 @@
 using AutonomoApp.WebApi.Configuration;
 using AutonomoApp.Data.Context;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,7 @@ builder.Services.ResolveDependencies();
 var app = builder.Build();
 
 app.UseGlobalizationConfig();
-var apiVersionDescriptionProvider = app.Services.GetRequiredService<Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider>();
+var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 app.UseApiConfig(app.Environment);
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
