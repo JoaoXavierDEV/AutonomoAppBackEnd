@@ -21,10 +21,12 @@ builder.Services.AddWebApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.ResolveDependencies();
 
+
 var app = builder.Build();
 
 app.UseGlobalizationConfig();
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
 app.UseApiConfig(app.Environment);
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
 

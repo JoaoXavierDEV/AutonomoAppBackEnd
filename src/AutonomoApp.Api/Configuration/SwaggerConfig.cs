@@ -44,7 +44,7 @@ namespace AutonomoApp.WebApi.Configuration
                 //});
                 ////////////////////////////////////////////////
                 c.OperationFilter<SwaggerDefaultValues>();
-                c.EnableAnnotations();
+                //c.EnableAnnotations();
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
@@ -69,8 +69,8 @@ namespace AutonomoApp.WebApi.Configuration
                         .ToList();
 
                     options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
-                    options.InjectStylesheet("/docs/swagger-ui.css");
-                    //options.RoutePrefix = string.Empty;
+                    // options.InjectStylesheet("/docs/swagger-ui.css");
+                    // options.RoutePrefix = string.Empty;
                     foreach (var description in versionDescriptions)
                     {
                         options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", "Versão: " + description.GroupName.ToUpperInvariant());
