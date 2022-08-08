@@ -18,7 +18,7 @@ env:
   SWASHBUCKLE_DOTNET_CORE_VERSION: 6.0.x
   API_IMPORT_SPECIFICATION_PATH: src\AutonomoApp.Api/publish/swagger.json
   API_IMPORT_DLL: src\AutonomoApp.Api/publish/AutonomoApp.WebApi.dll
-  API_IMPORT_VERSION: v1,v2.1
+  API_IMPORT_VERSION: v1 v2.1
 jobs:
   build:
     runs-on: windows-latest
