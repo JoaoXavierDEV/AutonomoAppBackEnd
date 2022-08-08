@@ -69,7 +69,7 @@ namespace AutonomoApp.WebApi.Configuration
                         .ToList();
 
                     options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
-                    // options.InjectStylesheet("/docs/swagger-ui.css");
+                    options.InjectStylesheet("/docs/swagger-ui.css");
                     // options.RoutePrefix = string.Empty;
                     foreach (var description in versionDescriptions)
                     {
