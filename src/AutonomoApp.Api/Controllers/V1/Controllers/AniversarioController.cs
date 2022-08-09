@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutonomoApp.WebApi.Controllers.V1.Controllers
 {
-    [ApiVersion("1.0", Deprecated = true)]
+    [ApiVersion("1.0", Deprecated = false)]
     [Route("api/v{version:apiVersion}/aniversario")]
     [Produces("application/json")]
     public class AniversarioController : MainController
