@@ -23,7 +23,6 @@ builder.Services.AddWebApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.ResolveDependencies();
 
-
 var app = builder.Build();
 
 app.UseGlobalizationConfig();
