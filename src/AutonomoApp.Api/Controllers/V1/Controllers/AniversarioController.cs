@@ -12,7 +12,7 @@ public class AniversarioController : MainController
 {
     /// <summary>
     /// Informe o ano de nascimento
-    /// <example>\mExemplo:
+    /// <example><br></br>Exemplo:
     /// Retorna sua <c>idade</c>
     /// </example>
     /// </summary>

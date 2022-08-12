@@ -54,9 +54,9 @@ namespace AutonomoApp.WebApi.Configuration
                     builder =>
                         builder
                             .WithMethods("GET")
-                            .WithOrigins("http://io")
+                            .WithOrigins("https://autonomoappwebapi.azurewebsites.net")
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
-                            //.WithHeaders(HeaderNames.ContentType, "x-custom-header")
+                            .WithHeaders(HeaderNames.ContentType, "x-custom-header")
                             .AllowAnyHeader());
             });
             return services;
