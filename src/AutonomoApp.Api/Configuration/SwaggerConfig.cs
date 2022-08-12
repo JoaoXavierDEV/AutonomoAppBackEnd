@@ -70,7 +70,7 @@ namespace AutonomoApp.WebApi.Configuration
 
                     options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.List);
                     options.InjectStylesheet("/docs/swagger-ui.css");
-                    // options.RoutePrefix = string.Empty;
+                    options.RoutePrefix = string.Empty;
                     foreach (var description in versionDescriptions)
                     {
                         options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", "Versão: " + description.GroupName.ToUpperInvariant());
