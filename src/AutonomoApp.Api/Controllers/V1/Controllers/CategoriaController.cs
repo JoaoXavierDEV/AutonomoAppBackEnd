@@ -8,12 +8,13 @@ using AutonomoApp.Data.Repository;
 using AutonomoApp.WebApi.Controllers;
 using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AutonomoApp.WebApi.Controllers.V1.Controllers
 {
     [ApiVersion("1.0", Deprecated = false)]
     [Route("api/v{version:apiVersion}/categorias")]
-    //[Produces("application/json")]
+    [Produces("application/json")]
     public class CategoriaController : MainController
     {
         private readonly ICategoriaRepository _categoriaRepository;
@@ -34,24 +35,27 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Obter Categoria e SubCategoria (EnumDescription)
         /// </summary>
         /// <param name="categoria"></param>
         /// <param name="subcategoria"></param>
-        /// <returns></returns>
-        [HttpPost("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
-        [Produces("text/plain")]
+        /// <returns>Nomes</returns>
+        [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
+        //[Produces("text/plain")]
+        //[Consumes("text/plain")]
         public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
         {
             try
             {
-                ArgumentNullException.ThrowIfNull((categoria, subcategoria));
+                //ArgumentNullException.ThrowIfNull((categoria, subcategoria));
+                ArgumentNullException.ThrowIfNull(categoria);
+                ArgumentNullException.ThrowIfNull(subcategoria);
                 var result = new CategoriaBuilder(categoria, subcategoria);
-                return Ok(result.ToString());
+                return Ok(Content(result.ToString()));
             }
             catch (Exception e)
             {
-                return NotFound(e.Message);
+                return NotFound(Content(e.Message));
 
             }
         }

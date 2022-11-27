@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using AutonomoApp.WebApi.Configuration;
 using AutonomoApp.Data.Context;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
 
@@ -16,11 +17,18 @@ namespace AutonomoApp.WebApi.Configuration
     {
         public static IServiceCollection AddWebApiConfig(this IServiceCollection services)
         {
-            services.AddControllers();
-            
+            services.AddControllers(options =>
+            {
+                // using Microsoft.AspNetCore.Mvc.Formatters;
+                // options.RespectBrowserAcceptHeader = true;
+                //options.OutputFormatters.RemoveType<StringOutputFormatter>();
+                //options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
+            });
+               // .AddXmlDataContractSerializerFormatters();
+
             services.AddApiVersioning(op =>
             {
-                op.DefaultApiVersion = new ApiVersion(1,0);
+                op.DefaultApiVersion = new ApiVersion(1, 0);
                 op.AssumeDefaultVersionWhenUnspecified = true;
                 op.ReportApiVersions = true;
             });
@@ -28,18 +36,18 @@ namespace AutonomoApp.WebApi.Configuration
             services.AddVersionedApiExplorer(op =>
             {
                 op.GroupNameFormat = "'v'VVV";
-                op.DefaultApiVersion = new ApiVersion(1,0);
+                op.DefaultApiVersion = new ApiVersion(1, 0);
                 op.SubstituteApiVersionInUrl = true;
                 op.AssumeDefaultVersionWhenUnspecified = true;
             });
-            
+
 
             services.Configure<ApiBehaviorOptions>(
                 op =>
                 {
                     op.SuppressModelStateInvalidFilter = true;
                 });
-            
+
             services.AddCors(options =>
             {
                 options.AddPolicy("Development",
@@ -75,7 +83,7 @@ namespace AutonomoApp.WebApi.Configuration
                 app.UseHsts();
             }
             //app.UseMiddleware<ExceptionMiddleware>();
-            
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -8,7 +8,7 @@ namespace AutonomoApp.ConsoleApp.Extensions;
 public static class EnumExtensions
 {
     /// <summary>
-    ///    Pega a descrição do DataAnnotaion ou o Nome do campo
+    /// Pega a descrição do DataAnnotaion ou o Nome do campo
     /// </summary>
     /// <param name="value"></param>
     /// <returns>string</returns>

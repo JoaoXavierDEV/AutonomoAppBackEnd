@@ -12,7 +12,7 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     public async Task<List<Categoria>> ObterTodasCategorias()
     {
         return await Db.Categorias
-            .Include(x => x.Subcategorias)
+            //.Include(x => x.Subcategorias)
             .OrderBy(x=> x.CatEnumId)
             .ToListAsync();
     }

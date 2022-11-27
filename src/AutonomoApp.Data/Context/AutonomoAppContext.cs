@@ -1,7 +1,10 @@
 ﻿using AutonomoApp.Business.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Protocols;
 
 namespace AutonomoApp.Data.Context;
 
@@ -18,33 +21,45 @@ public class AutonomoAppContext : DbContext
     public DbSet<ServicoSolicitacao> ServicoSolicitacao { get; set; }
     public DbSet<Servico> Servico { get; set; }
     public DbSet<ServicoCategoria> ServicoCategoria { get; set; }
-    public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; } 
+    public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; }
     #endregion
+
+    public AutonomoAppContext()
+    {
+
+    }
 
     public AutonomoAppContext(DbContextOptions<AutonomoAppContext> options) : base(options)
     {
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         ChangeTracker.AutoDetectChangesEnabled = false;
-        //Database.EnsureCreated();
+        Database.EnsureCreated();
     }
 
-    public AutonomoAppContext()
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        
+        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            //.AddJsonFile("appsettings.json", true, true)
+            //.AddJsonFile($"appsettings.{environmentName}.json", true, true)
+            .AddEnvironmentVariables()
+            .AddUserSecrets<AutonomoAppContext>()
+            .Build();
+
+        var cnn = config.GetConnectionString($"{environmentName}");
+
+        // const string strConnection = "";
+
+        optionsBuilder
+            .UseSqlServer(cnn)
+            .EnableSensitiveDataLogging()
+            //.UseLazyLoadingProxies()
+            .LogTo(Console.WriteLine, LogLevel.Error);
+            //.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted }, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine);
     }
-
-
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    const string strConnection = "Server=ASUS-ROG\\SQLEXPRESS;Database=CURSOEF;User Id=sa; Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true";
-    //    optionsBuilder
-    //        .UseSqlServer(strConnection)
-    //        .EnableSensitiveDataLogging()
-            
-    //        //.UseLazyLoadingProxies()
-    //        .LogTo(Console.WriteLine, LogLevel.Error);
-    //    //.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted }, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine);
-    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
