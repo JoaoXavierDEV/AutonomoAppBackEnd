@@ -23,14 +23,14 @@ namespace AutonomoApp.ConsoleApp
             //GetServico();
         }
 
-        public void ResetarDb()
+        public static void ResetarDb()
         {
             AutonomoAppContext db = new();
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
         }
 
-        private void CarregarDadosCategorias()
+        public void CarregarDadosCategorias()
         {
             AutonomoAppContext db = new();
             db.Categorias.AddRange(
@@ -118,7 +118,7 @@ namespace AutonomoApp.ConsoleApp
             db.SaveChanges();
             db.ChangeTracker.Clear();
         }
-        private void CarregarDadosCategoriasV2()
+        public void CarregarDadosCategoriasV2()
         {
             AutonomoAppContext db = new();
 
@@ -213,7 +213,7 @@ namespace AutonomoApp.ConsoleApp
             AutonomoAppContext db = new();
             db.PessoaFisica.AddRange(new PessoaFisica()
             {
-                Id = Guid.NewGuid(),
+                //Id = Guid.NewGuid(),
                 Nome = "João Fernando",
                 Documento = "11122233345",
                 Endereco = new Endereco
@@ -223,44 +223,45 @@ namespace AutonomoApp.ConsoleApp
                     Numero = "263",
                     Bairro = "Aq",
                     Estado = "RJ",
-
-
                 },
                 Nascimento = new DateTime(1995, 01, 31),
                 TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica,
-                HistoricoDePedidos = new List<ServicoSolicitacao>()
-                {
-                    new ServicoSolicitacao()
-                        {
-                            DataConclusaoEstimada = new DateTime(2022,12,12),
-                            ServicoSolicitado = new Servico()
-                            {
-                                Nome = "Desenvolver app",
-                                Descricao = "App de psicologia",
-                                Tags = new List<string>() { "aspnet", "microsoft" },
-                                Valor = 8000m,
-                                //Categoria = new List<Categoria>()
-                                //{
-                                //    new Categoria()
-                                //    {
-                                //        Nome = "Testeeee",
-                                //        SubCatEnumId = 99,
-                                //        Descricao = "hueteste",
-                                //        Subcategorias = new List<Subcategoria>()
-                                //        {
-                                //            new Subcategoria()
-                                //            {
-                                //                Nome = "SubTeste",
-                                //                SubCatEnumId = 88,
-                                //                Descricao = "hue sub teste"
-                                //            }
-                                //        }
-                                //    }
-                                //}
+                //HistoricoDePedidos = new List<ServicoSolicitacao>()
+                //{
+                //    new ServicoSolicitacao()
+                //        {
+                //            DataConclusaoEstimada = new DateTime(2022,12,12),
+                //            ServicoSolicitado = new Servico()
+                //            {
+                //                Nome = "Desenvolver app",
+                //                Descricao = "App de psicologia",
+                //                Tags = new List<string>() { "aspnet", "microsoft" },
+                //                Valor = 8000m,
+                //                CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                //                SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
+                                
+                //                //Categoria = new List<Categoria>()
+                //                //{
+                //                //    new Categoria()
+                //                //    {
+                //                //        Nome = "Testeeee",
+                //                //        SubCatEnumId = 99,
+                //                //        Descricao = "hueteste",
+                //                //        Subcategorias = new List<Subcategoria>()
+                //                //        {
+                //                //            new Subcategoria()
+                //                //            {
+                //                //                Nome = "SubTeste",
+                //                //                SubCatEnumId = 88,
+                //                //                Descricao = "hue sub teste"
+                //                //            }
+                //                //        }
+                //                //    }
+                //                //}
 
-                            },
-                    }
-                }
+                //            },
+                   // }
+               // }
 
 
 
@@ -282,7 +283,7 @@ namespace AutonomoApp.ConsoleApp
                 Cliente = new PessoaFisica()
                 {
                     Nome = "Jaum",
-                    Documento = "14494943746",
+                    Documento = "11122233300",
                     Nascimento = new DateTime(1995, 01, 31),
                     TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica
                 },
@@ -302,7 +303,7 @@ namespace AutonomoApp.ConsoleApp
             db.ChangeTracker.Clear();
         }
 
-        private void RelacionamentosCateSubCat()
+        public void RelacionamentosCateSubCat()
         {
             AutonomoAppContext db = new();
 
@@ -321,41 +322,7 @@ namespace AutonomoApp.ConsoleApp
             db.SaveChanges();
             db.ChangeTracker.Clear();
         }
+        
 
-        public void GetServico()
-        {
-            using AutonomoAppContext db = new AutonomoAppContext();
-
-            Servico servicoUsuario = db.Servico
-                .Include(x => x.Cliente)
-                //.Include(x => x.Categoria)
-                //.Include(x => x.Subcategoria)
-                .Where(x => x.Cliente.Documento == "14494943700")
-                //.Select(p => p.Subcategorias.Where( c => c.SubCatEnumId == (int)Tecnologia.DevenvolvimetoBackEnd))
-                .Select(x => x)
-                .AsNoTracking()
-                .First();
-
-            //db.ChangeTracker.Clear();
-            List<Servico> servicoAll = db.Servico
-                .Include(x => x.Cliente)
-                .Include(x => x.ServicoCategoria)
-                .ToList();
-
-            var categoriasSubAll = db.Subcategorias
-                //.Include(c => c.Subcategorias)
-                .ToList();
-
-            List<Categoria> categoriasAll = db.Categorias
-                .ToList();
-
-            List<ServicoCategoria> ServicoCategoria = db.ServicoCategoria
-                .ToList();
-
-            List<ServicoSubCategoria> ServicoSubCategoria = db.ServicoSubCategoria
-                .ToList();
-            // refatorar nome de variaveis
-            Console.ReadKey();
-        }
     }
 }

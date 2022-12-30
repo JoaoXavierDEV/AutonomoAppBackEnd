@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DiagramasDeClasses\ClassDiagram1.cd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DiagramasDeClasses\" />
     <Folder Include="DTO\" />
     <Folder Include="Models\NovaPasta\" />
     <Folder Include="Services\" />

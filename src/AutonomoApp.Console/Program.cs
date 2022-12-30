@@ -15,20 +15,82 @@ namespace AutonomoApp.ConsoleApp;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         try
         {
-            var banco = new InserirDados();
-            Marshall();
-            banco.BuildEntity();
+            bool result = true;
+            do
+            {
+                Marshall();
+                Menu();
+                //Console.WriteLine(" Deseja sair? S - N");
+                //var exit = Console.ReadLine();
+                //result = exit == "N" || exit == "n";
+                Console.Clear();
+            } while (result);
         }
         catch (Exception e)
         {
-            Console.WriteLine("CONSOLE: " + e.Message);
-            Console.ReadKey();
+            //Main();
+            Console.WriteLine("  ######################  CONSOLE:  \n" + e.Message);
+            //Console.ReadKey();
         }
 
+    }
+    private static void Menu()
+    {
+        Console.WriteLine(
+            $"  INSERT \n" +
+            $"  1 - Resetar BD\n" +
+            $"  2 - Carregar Categorias \n" +
+            $"  3 - Carregar RelacionamentosCateSubCat \n" +
+            $"  4 - Carregar CatSub2 \n" +
+            $"  5 - Carregar DadosPessoa \n" +
+            $"  6 - Carregar Servico \n" +
+            $"  GET \n" +
+            $"  10 - Get Servico \n" +
+            $"  11 - Get Categoria e Subcategorias \n" +
+            $"  ===============================================================================================================  \n"
+            );
+
+        var banco = new InserirDados();
+
+        switch (Console.ReadLine())
+        {
+            case "1":
+                InserirDados.ResetarDb();
+                break;
+            case "2":
+                banco.CarregarDadosCategorias();
+                break;
+            case "3":
+                banco.RelacionamentosCateSubCat();
+                break;
+            case "4":
+                banco.CarregarDadosCategoriasV2();
+                break;
+            case "5":
+                banco.CarregarDadosPessoa();
+                break;
+            case "6":
+                banco.CarregarServico();
+                break;
+            case "10":
+
+                ObterDados.GetServico();
+                break;
+
+            case "11":
+                ObterDados.GetCatSub();
+                break;
+
+
+            default:
+                Console.WriteLine("Opção inválida");
+
+                break;
+        };
     }
 
     private static void Marshall()
@@ -49,9 +111,10 @@ public class Program
             $"   # ||    \n" +
             $"   # ============================================================================================================= #   \n"
 
+
             );
     }
-    internal enum Branch
+    private enum Branch
     {
         [Description("DEV")]
         Development = 1,
@@ -62,7 +125,7 @@ public class Program
         [Description("PROJECT")]
         Project
     }
-    internal static string RetornarBranch()
+    private static string RetornarBranch()
     {
         var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         Branch descricao = (Branch)Enum.Parse(typeof(Branch), environmentName);

@@ -8,7 +8,7 @@ namespace AutonomoApp.Business.Models;
 public abstract class Pessoa : EntityBase
 {
     public virtual string Nome { get; set; }
-    public virtual IEnumerable<ServicoSolicitacao> HistoricoDePedidos { get; set; } 
+    public virtual IEnumerable<ServicoSolicitacao>? HistoricoDePedidos { get; set; } = Enumerable.Empty<ServicoSolicitacao>();
     public virtual Endereco Endereco { get; set; }
     public virtual string Documento { get; set; }
     public virtual TipoDocumentoEnum TipoDocumentoEnum { get; set; }

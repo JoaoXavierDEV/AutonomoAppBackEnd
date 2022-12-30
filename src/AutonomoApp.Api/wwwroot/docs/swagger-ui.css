@@ -11,12 +11,13 @@
     /*background-color: #121212;*/
 /*}*/
 
+
 .topbar-wrapper img[alt="Swagger UI"], .topbar-wrapper span {
     visibility: hidden;
 }
 
 .topbar-wrapper .link:after {
-    content: 'MARSHALL.DEV';
+    content: 'AutonomoApp.Api';
     color: #fff;
     visibility: visible;
     display: block;

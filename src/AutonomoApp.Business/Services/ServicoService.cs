@@ -19,7 +19,6 @@ public class ServicoService : BaseService, IServicoService
         _categoriaRepository = categoriaRepository;
     }
 
-
     public async Task<ServicoDTO> ObterServicoDTO(Guid id)
     {
         var ser = await _servicoRepository.ObterServicoPorUsuario(id);
