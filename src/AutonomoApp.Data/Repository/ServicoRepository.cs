@@ -22,7 +22,7 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
         return await Db.Servico
             // .Include(x => x.ServicosServico)
             .AsNoTracking()
-            .Include(x => x.Cliente)
+            .Include(x => x.Prestador)
             .Where(servico => servico.Id == id)
             .FirstOrDefaultAsync();
     }

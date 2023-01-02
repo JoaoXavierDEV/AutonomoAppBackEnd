@@ -221,11 +221,13 @@ namespace AutonomoApp.ConsoleApp
                     Cep = "26220330",
                     Cidade = "Nova iguaçu",
                     Numero = "263",
-                    Bairro = "Aq",
+                    Bairro = "Centro",
                     Estado = "RJ",
+                    Complemento = "Do lado do canto perto da borda",
+                    Logradouro = "Rua X"
                 },
                 Nascimento = new DateTime(1995, 01, 31),
-                TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica,
+                TipoDocumento = TipoDocumentoEnum.PessoaFisica,
                 //HistoricoDePedidos = new List<ServicoSolicitacao>()
                 //{
                 //    new ServicoSolicitacao()
@@ -280,12 +282,13 @@ namespace AutonomoApp.ConsoleApp
             db.Servico.AddRange(new Servico()
             {
                 Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
-                Cliente = new PessoaFisica()
+                Prestador = new PessoaFisica()
                 {
-                    Nome = "Jaum",
-                    Documento = "11122233300",
-                    Nascimento = new DateTime(1995, 01, 31),
-                    TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica
+                    Id = Guid.Parse("2a0ee983-3d5f-4342-821c-7a94f54d5121")
+                    //Nome = "Jaum",
+                    //Documento = "11122233300",
+                    //Nascimento = new DateTime(1995, 01, 31),
+                    //TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica
                 },
                 Nome = "Desenvolver app",
                 Descricao = "App de psicologia",

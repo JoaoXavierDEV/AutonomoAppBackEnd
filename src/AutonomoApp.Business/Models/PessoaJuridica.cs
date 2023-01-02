@@ -8,6 +8,6 @@ public class PessoaJuridica : Pessoa
 
     public PessoaJuridica()
     {
-        TipoDocumentoEnum = TipoDocumentoEnum.PessoaJuridica;
+        TipoDocumento = Enums.TipoDocumentoEnum.PessoaJuridica;
     }
 }

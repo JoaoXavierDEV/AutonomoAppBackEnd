@@ -1,23 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutonomoApp.Business.Extensions;
+﻿using AutonomoApp.Business.Extensions;
 using AutonomoApp.Business.Models.Enums;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutonomoApp.Business.Models;
 
 public abstract class Pessoa : EntityBase
 {
-    public virtual string Nome { get; set; }
-    public virtual IEnumerable<ServicoSolicitacao>? HistoricoDePedidos { get; set; } = Enumerable.Empty<ServicoSolicitacao>();
-    public virtual Endereco Endereco { get; set; }
-    public virtual string Documento { get; set; }
-    public virtual TipoDocumentoEnum TipoDocumentoEnum { get; set; }
+    public virtual string? Nome { get; set; }
+    public virtual IEnumerable<ServicoSolicitado>? HistoricoDePedidos { get; private set; } = Enumerable.Empty<ServicoSolicitado>().AsQueryable();
+    public virtual Endereco? Endereco { get; set; }
+    public virtual string? Documento { get; set; }
+    public virtual TipoDocumentoEnum TipoDocumento { get; set; }
 
 
-    public virtual string GetDocumento() => string.Format($"{TipoDocumentoEnum.GetEnumDescription()} {Documento}");
-    public virtual void AddServicoHistoricoPedidos(ServicoSolicitacao servicoSolicitacao)
+    public virtual string GetDocumento() => string.Format($"{TipoDocumento.GetEnumDescription()} {Documento}");
+    public virtual void AddServicoHistoricoPedidos(ServicoSolicitado ServicoSolicitado)
     {
-        HistoricoDePedidos?.Append(servicoSolicitacao);
+        HistoricoDePedidos ??= Enumerable.Empty<ServicoSolicitado>();
+        HistoricoDePedidos?.Append(ServicoSolicitado);
     }
-    
+
 }

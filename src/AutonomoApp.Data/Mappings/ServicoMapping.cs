@@ -17,8 +17,13 @@ public class ServicoMapping : IEntityTypeConfiguration<Servico>
             .HasConversion(splitStringConverter);
 
 
-        builder.HasOne(p => p.Cliente)
+        builder
+            .HasOne(p => p.Prestador)
+
             .WithMany();
+            // .HasForeignKey(x => x.);
+
+
         //.WithMany(x => x.HistoricoDePedidos);
 
 

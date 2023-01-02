@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutonomoApp.Business.DTO;
@@ -11,12 +12,17 @@ namespace AutonomoApp.Business.Services;
 public class ServicoService : BaseService, IServicoService
 {
     private readonly IServicoRepository _servicoRepository;
-    private readonly ICategoriaRepository _categoriaRepository;
 
-    public ServicoService(IServicoRepository servicoRepository, ICategoriaRepository categoriaRepository)
+    public ServicoService(IServicoRepository servicoRepository)
     {
         _servicoRepository = servicoRepository;
-        _categoriaRepository = categoriaRepository;
+    }
+    public List<Servico> ServicosPrestados(Guid id)
+    {
+        return _servicoRepository.Consultar<Servico>()
+            .Where(z => z.Id == id)
+            .OrderByDescending(x => x.DataPublicada)
+            .ToList();
     }
 
     public async Task<ServicoDTO> ObterServicoDTO(Guid id)
@@ -36,10 +42,10 @@ public class ServicoService : BaseService, IServicoService
             .Consultar<Subcategoria>()
             .FirstOrDefault(x => x.Id == subcatID);
         var subCatDto = new SubCategoriaDto(subcat);
-        
+
         var servicoDto = new ServicoDTO()
         {
-            Cliente = ser.Cliente,
+            Prestador = ser.Prestador,
             Nome = ser.Nome,
             Descricao = ser.Descricao,
             Valor = ser.Valor,

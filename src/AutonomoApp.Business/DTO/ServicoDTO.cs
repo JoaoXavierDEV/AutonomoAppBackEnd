@@ -7,7 +7,7 @@ namespace AutonomoApp.Business.DTO;
 
 public record struct ServicoDTO
 {
-    public Pessoa Cliente { get; set; }
+    public Pessoa Prestador { get; set; }
     public string Nome { get; set; }
     public string Descricao { get; set; }
     public decimal Valor { get; set; }
@@ -15,13 +15,13 @@ public record struct ServicoDTO
     public CategoriaDto Categoria { get; set; }
     public SubCategoriaDto Subcategoria { get; set; }
 
-    public ServicoDTO(Pessoa cliente, 
+    public ServicoDTO(Pessoa prestador, 
         string nome, string descricao, 
         decimal valor, IEnumerable<string> tags,
         CategoriaDto categoria,
         SubCategoriaDto subcategoria)
     {
-        Cliente = cliente;
+        Prestador = prestador;
         Nome = nome;
         Descricao = descricao;
         Valor = valor;

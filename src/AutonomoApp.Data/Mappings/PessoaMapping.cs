@@ -9,6 +9,9 @@ public class PessoaMapping : IEntityTypeConfiguration<Pessoa>
     public void Configure(EntityTypeBuilder<Pessoa> builder)
     {
         builder.HasKey(p => p.Id);
+
+        builder.HasMany(x => x.HistoricoDePedidos);
+
         builder.ToTable("AAPessoa");
     }
 }

@@ -7,13 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\NovaPasta\**" />
+    <EmbeddedResource Remove="Models\NovaPasta\**" />
+    <None Remove="Models\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="DiagramasDeClasses\ClassDiagram1.cd" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DiagramasDeClasses\" />
     <Folder Include="DTO\" />
-    <Folder Include="Models\NovaPasta\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

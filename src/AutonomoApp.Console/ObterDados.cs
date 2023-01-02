@@ -33,20 +33,20 @@ namespace AutonomoApp.ConsoleApp
             using AutonomoAppContext db = new AutonomoAppContext();
 
             //var servicoUsuario = db.Servico
-            //    .Include(x => x.Cliente)
+            //    .Include(x => x.Prestador)
             //    //.Include(x => x.Categoria)
             //    //.Include(x => x.Subcategoria)
-            //    .Where(x => x.Cliente.Documento == "14494943700")
+            //    .Where(x => x.Prestador.Documento == "14494943700")
             //    //.Select(p => p.Subcategorias.Where( c => c.SubCatEnumId == (int)Tecnologia.DevenvolvimetoBackEnd))
             //    .Select(x => x)
             //    .AsNoTracking()
             //    .First();
 
             var servicoUsuario = db.Servico
-                .Include(x => x.Cliente)
+                .Include(x => x.Prestador)
                 .Include(x => x.ServicoCategoria)
                 .Include(x => x.ServicoSubCategoria)
-                //.Where(x => x.Cliente.Documento == "14494943700")
+                //.Where(x => x.Prestador.Documento == "14494943700")
                 //.Select(p => p.Subcategorias.Where( c => c.SubCatEnumId == (int)Tecnologia.DevenvolvimetoBackEnd))
                 .Select(x => x)
                 .AsNoTracking()
@@ -54,7 +54,7 @@ namespace AutonomoApp.ConsoleApp
 
             //db.ChangeTracker.Clear();
             List<Servico> servicoAll = db.Servico
-                .Include(x => x.Cliente)
+                .Include(x => x.Prestador)
                 .Include(x => x.ServicoCategoria)
                 .ToList();
 

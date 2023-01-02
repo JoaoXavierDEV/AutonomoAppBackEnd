@@ -8,7 +8,7 @@ public sealed class PessoaFisica : Pessoa
     public DateTime Nascimento { get; set; }
     public PessoaFisica()
     {
-        TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica;
+        TipoDocumento = Enums.TipoDocumentoEnum.PessoaFisica;
     }
 
     public int GetIdadeNoAno()

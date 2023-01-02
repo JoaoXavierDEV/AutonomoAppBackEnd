@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutonomoApp.Business.Extensions;
-using AutonomoApp.Business.Models.Enums;
-using AutonomoApp.Business.Services;
 
 //#nullable enable
 namespace AutonomoApp.Business.Models;

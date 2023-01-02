@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="Mappings\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

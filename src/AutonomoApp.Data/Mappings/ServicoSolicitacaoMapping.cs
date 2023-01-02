@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AutonomoApp.Data.Mappings;
 
-public class ServicoSolicitacaoMapping : IEntityTypeConfiguration<ServicoSolicitacao>
+public class ServicoSolicitacaoMapping : IEntityTypeConfiguration<ServicoSolicitado>
 {
-    public void Configure(EntityTypeBuilder<ServicoSolicitacao> builder)
+    public void Configure(EntityTypeBuilder<ServicoSolicitado> builder)
     {
         builder.HasKey(p => p.Id);
+        builder.HasOne(p => p.Servico);
         builder.ToTable("AAHistoricoDePedidos");
     }
 }

@@ -11,6 +11,7 @@ namespace AutonomoApp.Data.Context;
 public class AutonomoAppContext : DbContext
 
 {
+
     #region DbSet<>
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Subcategoria> Subcategorias { get; set; }
@@ -18,10 +19,11 @@ public class AutonomoAppContext : DbContext
     public DbSet<Pessoa> Pessoa { get; set; }
     public DbSet<PessoaFisica> PessoaFisica { get; set; }
     public DbSet<PessoaJuridica> PessoaJuridica { get; set; }
-    public DbSet<ServicoSolicitacao> ServicoSolicitacao { get; set; }
+    public DbSet<ServicoSolicitado> ServicoSolicitado { get; set; }
     public DbSet<Servico> Servico { get; set; }
     public DbSet<ServicoCategoria> ServicoCategoria { get; set; }
     public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; }
+
     #endregion
 
     public AutonomoAppContext()

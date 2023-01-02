@@ -20,19 +20,19 @@ public class Program
         try
         {
             bool result = true;
+            Marshall();
             do
             {
-                Marshall();
                 Menu();
                 //Console.WriteLine(" Deseja sair? S - N");
                 //var exit = Console.ReadLine();
                 //result = exit == "N" || exit == "n";
-                Console.Clear();
+                // Console.Clear();
             } while (result);
         }
         catch (Exception e)
         {
-            //Main();
+            Main();
             Console.WriteLine("  ######################  CONSOLE:  \n" + e.Message);
             //Console.ReadKey();
         }
@@ -41,6 +41,7 @@ public class Program
     private static void Menu()
     {
         Console.WriteLine(
+            $"   # - MENU - \n" +
             $"  INSERT \n" +
             $"  1 - Resetar BD\n" +
             $"  2 - Carregar Categorias \n" +
@@ -88,14 +89,16 @@ public class Program
 
             default:
                 Console.WriteLine("Opção inválida");
-
                 break;
         };
+
+        Console.WriteLine("\n\n   # - OK \n\n");
     }
 
     private static void Marshall()
     {
         Console.WriteLine(
+            $"\n" +
             $"   # ============================================================================================================= #   \n" +
             $"   # ||    \n" +
             $"   # ||    ███╗   ███╗   █████╗   ██████╗   ███████╗  ██╗  ██╗   █████╗   ██╗       ██╗      \n" +
