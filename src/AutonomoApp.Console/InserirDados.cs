@@ -325,6 +325,21 @@ namespace AutonomoApp.ConsoleApp
             db.SaveChanges();
             db.ChangeTracker.Clear();
         }
+
+        public static void ServicosTeste()
+        {
+            var ss = new Servico
+            {
+                Valor = 250.00m,
+                Desconto = 8.0m,
+                TemDesconto = true,
+            };
+            var result = ss.PrecoComDesconto();
+            var precodesconto = ss.ValorDescontado();
+            var valooor = ss.Valor;
+            ss.Valor = 300.00m;
+            var valooor2 = ss.Valor;
+        }
         
 
     }

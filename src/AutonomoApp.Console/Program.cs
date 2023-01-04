@@ -23,6 +23,7 @@ public class Program
             Marshall();
             do
             {
+                //InserirDados.ServicosTeste();
                 Menu();
                 //Console.WriteLine(" Deseja sair? S - N");
                 //var exit = Console.ReadLine();
@@ -33,8 +34,11 @@ public class Program
         catch (Exception e)
         {
             Main();
-            Console.WriteLine("  ######################  CONSOLE:  \n" + e.Message);
-            //Console.ReadKey();
+            Console.WriteLine("\n" +
+            $"  ===============================================================================================================  \n"
+            + "   " + e.Message +
+            $"  ===============================================================================================================  \n"
+            );//Console.ReadKey();
         }
 
     }
@@ -86,13 +90,18 @@ public class Program
                 ObterDados.GetCatSub();
                 break;
 
-
+            case "e":
+                return;
             default:
-                Console.WriteLine("Opção inválida");
+                Console.WriteLine("  - Opção inválida");
                 break;
         };
 
-        Console.WriteLine("\n\n   # - OK \n\n");
+        Console.WriteLine("\n" +
+            $"   # ============================================================================================================= #   \n" +
+            $"   # - OK\n" +
+            $"   # ============================================================================================================= #   \n"
+            );
     }
 
     private static void Marshall()
