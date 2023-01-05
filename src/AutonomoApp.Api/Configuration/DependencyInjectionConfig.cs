@@ -3,6 +3,7 @@ using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Context;
 using AutonomoApp.Data.Repository;
+using AutonomoApp.Data.Repository.FakeRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -15,11 +16,25 @@ namespace AutonomoApp.WebApi.Configuration
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddScoped<AutonomoAppContext>();
-            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-            services.AddScoped<IServicoRepository, ServicoRepository>();
-            services.AddScoped<IServicoService, ServicoService>();
+            // TODO: pegar variavel de ambiente: RepositoryFaker
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
+            if(environmentName == "Development") { 
+            
+                services.AddScoped<AutonomoAppContext>();
+                services.AddScoped<ICategoriaRepository, CategoriaFakeRepository>();
+                services.AddScoped<IServicoRepository, ServicoRepository>();
+                services.AddScoped<IServicoService, ServicoService>();
+
+            }
+            if(environmentName == "Production")
+            {
+                services.AddScoped<AutonomoAppContext>();
+                services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+                services.AddScoped<IServicoRepository, ServicoRepository>();
+                services.AddScoped<IServicoService, ServicoService>();
+
+            }
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddScoped<IUser, AspNetUser>();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();

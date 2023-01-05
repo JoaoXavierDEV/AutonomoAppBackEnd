@@ -41,9 +41,10 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         /// <param name="subcategoria"></param>
         /// <returns>Nomes</returns>
         [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
+        
         //[Produces("text/plain")]
         //[Consumes("text/plain")]
-        public ActionResult<string> ObterCategoria(int categoria, int subcategoria)
+        private ActionResult<string> ObterCategoria(int categoria, int subcategoria)
         {
             try
             {
