@@ -31,7 +31,7 @@ public class AniversarioController : MainController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<string> ObterIdade(DateTime nascimento)
+    private ActionResult<string> ObterIdade(DateTime nascimento)
     {
         var result = DateTime.Now.Year - nascimento.Year;
 

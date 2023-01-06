@@ -23,7 +23,7 @@ namespace AutonomoApp.WebApi.Configuration
             
                 services.AddScoped<AutonomoAppContext>();
                 services.AddScoped<ICategoriaRepository, CategoriaFakeRepository>();
-                services.AddScoped<IServicoRepository, ServicoRepository>();
+                services.AddScoped<IServicoRepository, ServicoFakeRepository>();
                 services.AddScoped<IServicoService, ServicoService>();
 
             }

@@ -17,9 +17,9 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
             .ToListAsync();
     }
 
-    public async Task<List<Subcategoria>> ObterTodasCategoriasESubcategorias()
+    public async Task<List<Categoria>> ObterTodasCategoriasESubcategorias()
     {
-        return await Db.Subcategorias
+        return await Db.Categorias
             .ToListAsync();
     }
 }

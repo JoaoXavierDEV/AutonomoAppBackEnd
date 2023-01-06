@@ -74,25 +74,12 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         }
 
         [HttpGet("ObterSubcategorias")]
-        public async Task<List<Subcategoria>> ObterSubcat()
+        public async Task<List<Categoria>> ObterSubcat()
         {
             return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
         }
 
-        [HttpGet("ObterServicoPorID")]
-        public async Task<ServicoDTO> ObterServico()
-        {
-            var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
 
-            var tt = await _categoriaRepository.ObterTodos();
-            var result = _servicoRepository
-                .Consultar<Categoria>().ToList();
-
-
-            var dto = await _servicoService.ObterServicoDTO(idServico);
-
-            return dto;
-        }
 
 
     }

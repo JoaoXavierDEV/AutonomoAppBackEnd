@@ -8,13 +8,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutonomoApp.Business.Extensions;
+using Bogus;
 
 namespace AutonomoApp.Data.Repository.FakeRepository;
 
 public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepository
 {
 
+
+    //public CategoriaFakeRepository( Faker<Categoria> faker) : base(faker)
+    //{
+
+    //}
+
     public Task<List<Categoria>> ObterTodasCategorias()
+    {
+        var result = ObterTodasCategorias();
+        Func<List<Categoria>> RetornaSubcategorias = () =>
+        {
+            return result.Result.Select(x => x).ToList();
+        };
+        var task = new Task<List<Categoria>>(RetornaSubcategorias);
+        task.Start();
+        return task;
+    }
+
+    public Task<List<Categoria>> ObterTodasCategoriasESubcategorias()
     {
         Func<List<Categoria>> RetornaCategorias = () =>
         {
@@ -98,17 +117,17 @@ public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepo
                         },
                     }
                 }
-            }; 
+            };
         };
         var task = new Task<List<Categoria>>(RetornaCategorias);
         task.Start();
-        
-        return task;
-    }
 
-    public Task<List<Subcategoria>> ObterTodasCategoriasESubcategorias()
+        return task;         
+    }
+    public override Task Adicionar(Categoria entity)
     {
-        throw new NotImplementedException();
+
+        return base.Adicionar(entity);
     }
 
 }
