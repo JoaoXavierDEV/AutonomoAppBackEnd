@@ -24,21 +24,21 @@ public class ServicosController : MainController
         _mapper = mapper;
     }
 
-    [HttpGet("ObterServicoPorID")]
-    public async Task<ServicoDTO> ObterServico()
+    [HttpGet("ObterTodosServicos")]
+    public async Task<List<Servico>> ObterTodosServicos()
     {
         var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
 
         var tt = await _servicoRepository.ObterTodos();
 
-        //var dto = await _servicoService.ObterServicoDTO(idServico);
+        // dto2 = await _servicoService.ObterServicoDTO(idServico);
 
         var dto = new ServicoDTO
         {
             
         };
 
-        return dto;
+        return tt;
     }
 }
 

@@ -31,7 +31,7 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
         throw new NotImplementedException();
     }
 
-    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
+    public virtual IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
     {
         throw new NotImplementedException();
     }
