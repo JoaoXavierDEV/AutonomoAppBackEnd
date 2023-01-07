@@ -6,6 +6,7 @@ namespace AutonomoApp.Business.Models;
 
 public class Servico : EntityBase
 {
+    // TODO: resolver pessoa PESSOA
     public virtual Pessoa Prestador { get; set; }
     public virtual string Nome { get; set; }
     public virtual string Descricao { get; set; }

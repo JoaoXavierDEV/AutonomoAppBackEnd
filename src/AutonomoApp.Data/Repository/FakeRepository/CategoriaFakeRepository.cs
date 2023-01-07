@@ -126,7 +126,6 @@ public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepo
     }
     public override Task Adicionar(Categoria entity)
     {
-
         return base.Adicionar(entity);
     }
 

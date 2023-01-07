@@ -68,6 +68,9 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         [HttpGet("ObterTodasCategorias")]
         public async Task<List<CategoriaViewModel>> ObterTodasCategorias()
         {
+            var tt = _categoriaRepository.Consultar().ToList();
+
+            var tt2 = _categoriaRepository.Consultar<Servico>().ToList();
             // var fornecedor = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
             return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategorias());
 

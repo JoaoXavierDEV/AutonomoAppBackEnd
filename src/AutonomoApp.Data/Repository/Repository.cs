@@ -66,4 +66,11 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
     {
         Db?.Dispose();
     }
+
+    public virtual IQueryable<T> Consultar()
+    {
+        //throw new NotImplementedException();
+        return Consultar<T>();
+        //return Db.Set<T>();
+    }
 }

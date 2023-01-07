@@ -11,8 +11,25 @@ namespace AutonomoApp.Data.Repository.FakeRepository;
 public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, new()
 {
     protected Faker<T> _faker = new Faker<T>("pt_BR");
-    protected Task<T> _task;
+    
     protected RepositoryFake() { }
+
+    #region CONSULTAR<T>
+    public virtual IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
+    {
+        //throw new NotImplementedException();        
+        // var tt = TAbela.Equals(new Categoria());
+        return new List<TAbela>().AsQueryable();
+    }
+
+    public virtual IQueryable<T> Consultar()
+    {
+        // throw new NotImplementedException();
+        return Consultar<T>();
+    }
+    #endregion
+
+    #region Métodos
     public virtual Task Adicionar(T entity)
     {
 
@@ -31,14 +48,12 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
         throw new NotImplementedException();
     }
 
-    public virtual IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
-    {
-        throw new NotImplementedException();
-    }
+
 
     public void Dispose()
     {
         //throw new NotImplementedException();
+        return;
     }
 
     public Task<T> ObterPorId(Guid id)
@@ -50,7 +65,7 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
     {
 
 
-         throw new NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public Task Remover(Guid id)
@@ -61,6 +76,7 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
     public Task<int> SaveChanges()
     {
         throw new NotImplementedException();
-    }
+    } 
+    #endregion
 }
 

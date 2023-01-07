@@ -11,6 +11,7 @@ public interface IRepository<TEntity> : IDisposable where TEntity : EntityBase
 {
     Task Adicionar(TEntity entity);
     IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase;
+    IQueryable<TEntity> Consultar();
     Task<TEntity> ObterPorId(Guid id);
     Task<List<TEntity>> ObterTodos();
     Task Atualizar(TEntity entity);
