@@ -90,7 +90,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                 .RuleFor(x => x.TipoDocumento, y => y.Random.Enum<TipoDocumentoEnum>());
 
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 lista.Add(
                 _faker

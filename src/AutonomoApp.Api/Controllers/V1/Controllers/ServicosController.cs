@@ -26,7 +26,9 @@ public class ServicosController : MainController
     }
 
     [HttpGet("ObterTodosServicos")]
-    public async Task<List<Servico>> ObterTodosServicos()
+    public async Task<List<Servico>> ObterTodosServicos(
+        // [FromServices] ICategoriaRepository catResolve // 
+        )
     {
         var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
 
@@ -41,7 +43,8 @@ public class ServicosController : MainController
         var yy = _servicoRepository.Consultar().Where(x => x.Desconto < 50m).ToList();
         var datanice = _servicoRepository
             .Consultar<PessoaFisica>()
-            .Where(x => x.Nascimento < new DateTime(1995,01,31)).ToList();
+            .Where(x => x.Nascimento < new DateTime(1995,01,31))
+            .ToList();
 
         var cat = new CategoriaFakeRepository();
         var ter = cat.Consultar<Servico>();

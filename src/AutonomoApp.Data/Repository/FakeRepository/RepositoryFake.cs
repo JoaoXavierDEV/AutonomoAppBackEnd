@@ -75,7 +75,9 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
 
     public Task<int> SaveChanges()
     {
-        throw new NotImplementedException();
+        //return Task.CompletedTask;
+        return (Task<int>)Task<int>.CompletedTask;
+        // throw new NotImplementedException();
     } 
     #endregion
 }

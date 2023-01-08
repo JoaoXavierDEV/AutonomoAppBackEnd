@@ -1,6 +1,7 @@
 ﻿using AutonomoApp.Business.Extensions;
 using AutonomoApp.Business.Models.Enums;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace AutonomoApp.Business.Models;
@@ -8,17 +9,26 @@ namespace AutonomoApp.Business.Models;
 public abstract class Pessoa : EntityBase
 {
     public virtual string? Nome { get; set; }
-    public virtual IEnumerable<ServicoSolicitado>? HistoricoDePedidos { get; private set; } = Enumerable.Empty<ServicoSolicitado>().AsQueryable();
+    public virtual IEnumerable<ServicoSolicitado> HistoricoDePedidos { get; private set; } = Enumerable.Empty<ServicoSolicitado>();
     public virtual Endereco? Endereco { get; set; }
     public virtual string? Documento { get; set; }
     public virtual TipoDocumentoEnum TipoDocumento { get; set; }
+
+    //public virtual bool PrestaServicos { get; } = false;
 
 
     public virtual string GetDocumento() => string.Format($"{TipoDocumento.GetEnumDescription()} {Documento}");
     public virtual void AddServicoHistoricoPedidos(ServicoSolicitado ServicoSolicitado)
     {
         HistoricoDePedidos ??= Enumerable.Empty<ServicoSolicitado>();
-        HistoricoDePedidos?.Append(ServicoSolicitado);
+        HistoricoDePedidos = HistoricoDePedidos.Append(ServicoSolicitado);
+    }
+    public virtual bool PrestaServicos() => HistoricoDePedidos.Any(x => x.Servico.AnuncioAtivo);
+
+
+    protected Pessoa()
+    {
+        HistoricoDePedidos = Enumerable.Empty<ServicoSolicitado>();
     }
 
 }

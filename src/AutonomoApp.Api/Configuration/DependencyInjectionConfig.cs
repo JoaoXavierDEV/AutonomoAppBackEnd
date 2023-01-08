@@ -26,6 +26,9 @@ namespace AutonomoApp.WebApi.Configuration
                 services.AddScoped<IServicoRepository, ServicoFakeRepository>();
                 services.AddScoped<IServicoService, ServicoService>();
 
+                services.AddScoped<IPessoaFisicaRepository, PessoaFisicaFakeRepository>();
+                services.AddScoped<IPessoaJuridicaRepository, PessoaJuridicaFakeRepository>();
+
             }
             if(environmentName == "Production")
             {
