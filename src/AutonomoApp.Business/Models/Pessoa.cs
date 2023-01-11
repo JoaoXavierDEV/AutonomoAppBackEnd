@@ -16,6 +16,8 @@ public abstract class Pessoa : EntityBase
 
     //public virtual bool PrestaServicos { get; } = false;
 
+    public Conta Conta { get; set; }
+
 
     public virtual string GetDocumento() => string.Format($"{TipoDocumento.GetEnumDescription()} {Documento}");
     public virtual void AddServicoHistoricoPedidos(ServicoSolicitado ServicoSolicitado)

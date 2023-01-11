@@ -105,15 +105,6 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                     );
             }
 
-
-
-            var listaTeste = new List<string>();
-            for (int i = 0; i < 500; i++)
-            {
-                var xz = clienteFake2.Name.FirstName();
-                if (xz.StartsWith("J")) listaTeste.Add(xz);
-            }
-
             return lista.AsQueryable();
         }
     }

@@ -31,7 +31,7 @@ public class PessoaJuridicaFakeRepository : RepositoryFake<PessoaJuridica>, IPes
 
             var lista = new List<PessoaJuridica>();
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 100; i++)
                 lista.Add(_faker
                   .RuleFor(x => x.Nome, y => y.Name.FullName())
                   .RuleFor(x => x.Documento, y => y.Company.Cnpj())

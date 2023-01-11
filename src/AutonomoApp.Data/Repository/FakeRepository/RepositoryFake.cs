@@ -11,21 +11,36 @@ namespace AutonomoApp.Data.Repository.FakeRepository;
 public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, new()
 {
     protected Faker<T> _faker = new Faker<T>("pt_BR");
-    
+
     protected RepositoryFake() { }
 
     #region CONSULTAR<T>
-    public virtual IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
+    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
     {
-        //throw new NotImplementedException();        
-        // var tt = TAbela.Equals(new Categoria());
-        return new List<TAbela>().AsQueryable();
+        var db = new DataBaseFake();
+        if (typeof(T) == typeof(PessoaFisica))
+        {
+
+        }
+        var result = db.DbPessoaFisica();
+        return (IQueryable<TAbela>)result.AsQueryable();
     }
 
     public virtual IQueryable<T> Consultar()
     {
         // throw new NotImplementedException();
         return Consultar<T>();
+    }
+    public async virtual Task<List<T>> ObterTodos()
+    {
+        Func<List<T>> dados = () =>
+        {
+            var result = Consultar<T>().ToList();
+            return result;
+        };
+        var task = new Task<List<T>>(dados);
+        task.Start();
+        return task.Result.ToList<T>();
     }
     #endregion
 
@@ -48,8 +63,6 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
         throw new NotImplementedException();
     }
 
-
-
     public void Dispose()
     {
         //throw new NotImplementedException();
@@ -61,13 +74,6 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
         throw new NotImplementedException();
     }
 
-    public virtual Task<List<T>> ObterTodos()
-    {
-
-
-        throw new NotImplementedException();
-    }
-
     public Task Remover(Guid id)
     {
         throw new NotImplementedException();
@@ -75,10 +81,8 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
 
     public Task<int> SaveChanges()
     {
-        //return Task.CompletedTask;
-        return (Task<int>)Task<int>.CompletedTask;
-        // throw new NotImplementedException();
-    } 
+        throw new NotImplementedException();
+    }
     #endregion
 }
 

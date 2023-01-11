@@ -9,5 +9,6 @@ namespace AutonomoApp.Business.Interfaces.IRepository;
 
 public interface IPessoaFisicaRepository : IRepository<PessoaFisica>
 {
+    List<PessoaFisica> BuscarPorNome(string nome);
     
 }

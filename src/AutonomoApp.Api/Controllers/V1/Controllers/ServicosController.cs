@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutonomoApp.WebApi.Controllers.V1.Controllers;
 
 [ApiVersion("1.0", Deprecated = false)]
-[Route("api/v{version:apiVersion}/categorias")]
+[Route("api/v{version:apiVersion}/Servicos")]
 [Produces("application/json")]
 public class ServicosController : MainController
 {

@@ -20,11 +20,24 @@ public class PessoaController : MainController
         _pessoaFisicaRepository = pessoaFisicaRepository;
         _pessoaJuridicaRepository = pessoaJuridicaRepository;
     }
+
     // TODO: arrumar as controller 
     // TODO: Random já foi resolvdo
-    [HttpGet("e")]
+    [HttpGet("ListaPessoasJuridica")]
     public Task<List<PessoaJuridica>> ObterListaPessoaJuridica(){
         return _pessoaJuridicaRepository.ObterTodos();
+    }
+
+    [HttpGet("ListaPessoasFisica")]
+    public async Task<List<PessoaFisica>> ObterListaPessoaFisica(){
+        var tt = _pessoaFisicaRepository.Consultar<PessoaFisica>().ToList();
+        var result = await _pessoaFisicaRepository.ObterTodos();
+        return await _pessoaFisicaRepository.ObterTodos();
+    }
+    
+    [HttpPost("BuscarPessoasFisicaPorNome")]
+    public List<PessoaFisica> BuscarPessoasFisicaPorNome(string nome){
+        return _pessoaFisicaRepository.BuscarPorNome(nome);
     }
 
 }
