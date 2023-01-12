@@ -17,13 +17,16 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
     #region CONSULTAR<T>
     public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
     {
-        var db = new DataBaseFake();
-        if (typeof(T) == typeof(PessoaFisica))
-        {
+        if (typeof(TAbela) == typeof(PessoaFisica))
+            return (IQueryable<TAbela>)DataBaseFake.GetPessoaFisica().AsQueryable();
 
-        }
-        var result = db.DbPessoaFisica();
-        return (IQueryable<TAbela>)result.AsQueryable();
+        if (typeof(TAbela) == typeof(PessoaJuridica))
+            return (IQueryable<TAbela>)DataBaseFake.GetPessoaJuridica().AsQueryable();
+
+        if (typeof(TAbela) == typeof(Categoria))
+            return (IQueryable<TAbela>)DataBaseFake.GetCategorias().AsQueryable();
+
+        throw new NotImplementedException("Tabela Fake não configurada");
     }
 
     public virtual IQueryable<T> Consultar()

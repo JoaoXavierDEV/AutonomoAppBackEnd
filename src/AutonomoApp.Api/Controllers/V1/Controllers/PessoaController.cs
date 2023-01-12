@@ -31,6 +31,8 @@ public class PessoaController : MainController
     [HttpGet("ListaPessoasFisica")]
     public async Task<List<PessoaFisica>> ObterListaPessoaFisica(){
         var tt = _pessoaFisicaRepository.Consultar<PessoaFisica>().ToList();
+        var tt2 = _pessoaFisicaRepository.Consultar<PessoaJuridica>().ToList(); // dando erro juridica n existe
+        var cat = _pessoaFisicaRepository.Consultar<Categoria>().ToList(); // dando erro juridica n existe
         var result = await _pessoaFisicaRepository.ObterTodos();
         return await _pessoaFisicaRepository.ObterTodos();
     }
