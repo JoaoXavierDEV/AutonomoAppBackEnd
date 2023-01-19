@@ -13,7 +13,7 @@ public class Conta : EntityBase
     public bool PremiumAtivo { get; set; }
     public IEnumerable<Beneficio> Benefícios { get; set; } = Enumerable.Empty<Beneficio>();
     public bool PlanoVitalicio { get; set; }
-    public bool renovacaoAutomatica { get; set; }
+    public bool RenovacaoAutomatica { get; set; }
     public DateTime DataInicio { get; set; }
     public DateTime DataFim { get; set; }
 

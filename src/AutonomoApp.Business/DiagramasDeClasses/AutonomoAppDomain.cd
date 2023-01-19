@@ -1,31 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AutonomoApp.Business.Models.Pessoa">
-    <Position X="3.25" Y="3.25" Width="2" />
+    <Position X="6.25" Y="7.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>IACAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAACEAEAA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAABAACAAgAASEAkAA=</HashCode>
       <FileName>Models\Pessoa.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Endereco" />
+      <Property Name="Conta" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="HistoricoDePedidos" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.PessoaFisica" Collapsed="true">
-    <Position X="4.5" Y="6.25" Width="1.5" />
+    <Position X="7.5" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Models\PessoaFisica.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.PessoaJuridica" Collapsed="true">
-    <Position X="2.25" Y="6.25" Width="1.5" />
+    <Position X="5.25" Y="11" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Models\PessoaJuridica.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.ServicoSolicitado">
-    <Position X="4.75" Y="0.5" Width="2" />
+    <Position X="12.75" Y="7.75" Width="2" />
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
@@ -37,15 +41,15 @@
       <Property Name="Servico" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="AutonomoApp.Business.Models.Endereco" Collapsed="true">
-    <Position X="0.5" Y="4" Width="1.5" />
+  <Class Name="AutonomoApp.Business.Models.Endereco">
+    <Position X="10.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAACIEAAAAAACAAAAAAAAAAAAAAAABAAg=</HashCode>
       <FileName>Models\Endereco.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Categoria">
-    <Position X="9.75" Y="6" Width="2.25" />
+    <Position X="5.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAABAAAAAgAAAAAAAAAAAAAAAAAAAAEAACA=</HashCode>
       <FileName>Models\Categoria.cs</FileName>
@@ -55,14 +59,14 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Subcategoria">
-    <Position X="12.75" Y="2.75" Width="2.25" />
+    <Position X="2.75" Y="3.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAABAAAAAAAAAAgAAAAAAAAAAAAgAAEAAEA=</HashCode>
       <FileName>Models\Subcategoria.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.ServicoCategoria">
-    <Position X="7" Y="7.25" Width="1.5" />
+    <Position X="13" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Models\ServicoCategoria.cs</FileName>
@@ -73,7 +77,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.ServicoSubCategoria">
-    <Position X="10" Y="3.25" Width="1.75" />
+    <Position X="6" Y="3.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAACAAAAAAAAAAQAAQAAAAAAAAAAAA=</HashCode>
       <FileName>Models\ServicoCategoria.cs</FileName>
@@ -84,9 +88,9 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Servico">
-    <Position X="6.25" Y="3.25" Width="2.25" />
+    <Position X="9.25" Y="2.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAEAAABAAAFAAAAAAAAIAgEAABAAEAAAAAAAgEAAEA=</HashCode>
+      <HashCode>AAAECAABAEAFAABAEAAAIAgEAABAQEAAAAQAAgUAAEA=</HashCode>
       <FileName>Models\Servico.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -96,6 +100,23 @@
       <Property Name="ServicoCategoria" />
       <Property Name="ServicoSubCategoria" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AutonomoApp.Business.Models.Conta">
+    <Position X="3.25" Y="7.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAIAAAAIAAQAAAAAAAAAhAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\Conta.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Benefícios" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AutonomoApp.Business.Models.Beneficio">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQABAAAAAAAAAAAAAAAAAAAAEAAAAAEAAAA=</HashCode>
+      <FileName>Models\Conta.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

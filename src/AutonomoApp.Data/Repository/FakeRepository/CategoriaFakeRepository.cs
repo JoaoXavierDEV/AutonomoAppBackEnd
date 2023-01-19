@@ -14,19 +14,18 @@ namespace AutonomoApp.Data.Repository.FakeRepository;
 
 public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepository
 {
-
-
-    //public CategoriaFakeRepository( Faker<Categoria> faker) : base(faker)
-    //{
-
-    //}
-
     public Task<List<Categoria>> ObterTodasCategorias()
     {
-        var result = ObterTodasCategorias();
+        var result = ObterTodasCategoriasESubcategorias();
         Func<List<Categoria>> RetornaSubcategorias = () =>
         {
-            return result.Result.Select(x => x).ToList();
+            return result.Result.Select(x => new Categoria
+            {
+                Descricao= x.Descricao,
+                Nome= x.Nome,
+                CatEnumId= x.CatEnumId,
+                Id= x.Id,
+            }).ToList();
         };
         var task = new Task<List<Categoria>>(RetornaSubcategorias);
         task.Start();

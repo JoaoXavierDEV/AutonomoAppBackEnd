@@ -25,6 +25,11 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
 
         if (typeof(TAbela) == typeof(Categoria))
             return (IQueryable<TAbela>)DataBaseFake.GetCategorias().AsQueryable();
+        
+        if (typeof(TAbela) == typeof(Servico))
+            return (IQueryable<TAbela>)DataBaseFake.GetServicos().AsQueryable();
+
+
 
         throw new NotImplementedException("Tabela Fake não configurada");
     }

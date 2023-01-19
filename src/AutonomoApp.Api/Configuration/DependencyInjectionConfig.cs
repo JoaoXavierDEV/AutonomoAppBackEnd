@@ -22,13 +22,15 @@ namespace AutonomoApp.WebApi.Configuration
             if(environmentName == "Development") { 
             
                 services.AddScoped<AutonomoAppContext>();
+                // REPOSITORY
                 services.AddScoped<ICategoriaRepository, CategoriaFakeRepository>();
                 services.AddScoped<IServicoRepository, ServicoFakeRepository>();
-                services.AddScoped<IServicoService, ServicoService>();
 
                 services.AddScoped<IPessoaFisicaRepository, PessoaFisicaFakeRepository>();
                 services.AddScoped<IPessoaJuridicaRepository, PessoaJuridicaFakeRepository>();
 
+                // SERVICES
+                services.AddScoped<IServicoService, ServicoService>(); 
             }
             if(environmentName == "Production")
             {

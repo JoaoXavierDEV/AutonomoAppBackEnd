@@ -13,6 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace AutonomoApp.WebApi.Controllers.V1.Controllers
 {
     [ApiVersion("1.0", Deprecated = false)]
+    [ApiVersion("1.1", Deprecated = false)]
     [Route("api/v{version:apiVersion}/categorias")]
     [Produces("application/json")]
     public class CategoriaController : MainController
@@ -68,9 +69,9 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         [HttpGet("ObterTodasCategorias")]
         public async Task<List<CategoriaViewModel>> ObterTodasCategorias()
         {
-            var tt = _categoriaRepository.Consultar().ToList();
+            var tt = _categoriaRepository.Consultar<PessoaFisica>().FirstOrDefault(x => x.Documento == "11122233345");
 
-            var tt2 = _categoriaRepository.Consultar<Servico>().ToList();
+            var tt2 = _categoriaRepository.Consultar<Servico>().FirstOrDefault(x => x.Descricao == "App de psicologia");
             // var fornecedor = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
             return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategorias());
 
