@@ -66,21 +66,18 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         /// Obtem todas as categorias e suas respectivas subcategorias
         /// </summary>
         /// <returns></returns>
-        [HttpGet("ObterTodasCategorias")]
+        [HttpGet("ObterCategorias")]
         public async Task<List<CategoriaViewModel>> ObterTodasCategorias()
         {
-            var tt = _categoriaRepository.Consultar<PessoaFisica>().FirstOrDefault(x => x.Documento == "11122233345");
-
-            var tt2 = _categoriaRepository.Consultar<Servico>().FirstOrDefault(x => x.Descricao == "App de psicologia");
-            // var fornecedor = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
+            //adicionar ActionResult
             return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategorias());
 
         }
 
-        [HttpGet("ObterSubcategorias")]
-        public async Task<List<Categoria>> ObterSubcat()
+        [HttpGet("ObterTodasCategoriasESubCategorias")]
+        public async Task<List<Categoria>> ObterTodasCategoriasESubCategorias()
         {
-            return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
+            return await _categoriaRepository.ObterTodos();
         }
 
 

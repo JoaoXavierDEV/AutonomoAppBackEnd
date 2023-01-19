@@ -11,7 +11,7 @@ namespace AutonomoApp.WebApi.ViewModels
         public string Nome { get; set; }
         //[Display(Name = "Descricao Categoriaa",Description = "hue teste")]
         public string Descricao { get; set; }
-        public List<SubCategoriaViewModel> Subcategoria { get; set; }
+        //public List<SubCategoriaViewModel> Subcategoria { get; set; }
 
     }
 

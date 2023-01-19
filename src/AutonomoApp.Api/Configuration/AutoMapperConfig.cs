@@ -17,10 +17,10 @@ public class AutoMapperConfig : Profile
             .ForMember(x => x.Descricao,
                 y => y.MapFrom(
                     src => src.Descricao))
-            .ForMember(x => x.Subcategoria,
-                y => y.MapFrom(
-                    src => src.Subcategorias)
-            ).ReverseMap();
+            //.ForMember(x => x.Subcategoria,
+            //    y => y.MapFrom(
+            //        src => src.Subcategorias))
+            .ReverseMap();
 
         CreateMap<Subcategoria, SubCategoriaViewModel>()
             .ForMember(x => x.Nome, y => y.MapFrom(
