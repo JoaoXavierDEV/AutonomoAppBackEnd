@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using AutonomoApp.Business.Extensions;
 using AutonomoApp.Business.Interfaces.IRepository;
+using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 
@@ -78,13 +80,23 @@ public class CategoriaBuilder
                     StringComparison.Ordinal)
                 );
     }
+    public Dictionary<string, string> GetDictionary()
+    {
+        return new Dictionary<string, string>
+        {
+            {"IdCategoria:",  Categoria.ToString()},
+            {"IdSubCategoria",  SubCategoria.ToString()},
+            {"Categoria" , CategoriaNome.GetEnumDescription()},
+            {"SubCategoria" ,SubCategoriaNome.GetEnumDescription()}
+        };
+    }
 
     public override string ToString()
     {
         // object[] args = { Categoria.ToString(), SubCategoria.ToString(), CategoriaNome,SubCategoriaNome };
         return String.Format($"IdCategoria:  {Categoria} " +
                              $"\nIdSubCategoria:  {SubCategoria} " +
-                             $"\nCategoria: {CategoriaNome}" +
-                             $" \nSubCategoria: {SubCategoriaNome}");
+                             $"\nCategoria: {CategoriaNome.GetEnumDescription()}" +
+                             $" \nSubCategoria: {SubCategoriaNome.GetEnumDescription()}");
     }
 }

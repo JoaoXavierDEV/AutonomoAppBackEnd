@@ -36,49 +36,68 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         }
 
         /// <summary>
-        /// Obter Categoria e SubCategoria (EnumDescription)
-        /// </summary>
-        /// <param name="categoria"></param>
-        /// <param name="subcategoria"></param>
-        /// <returns>Nomes</returns>
-        [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
-        
-        //[Produces("text/plain")]
-        //[Consumes("text/plain")]
-        private ActionResult<string> ObterCategoria(int categoria, int subcategoria)
-        {
-            try
-            {
-                //ArgumentNullException.ThrowIfNull((categoria, subcategoria));
-                ArgumentNullException.ThrowIfNull(categoria);
-                ArgumentNullException.ThrowIfNull(subcategoria);
-                var result = new CategoriaBuilder(categoria, subcategoria);
-                return Ok(Content(result.ToString()));
-            }
-            catch (Exception e)
-            {
-                return NotFound(Content(e.Message));
-
-            }
-        }
-
-        /// <summary>
         /// Obtem todas as categorias e suas respectivas subcategorias
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterCategorias")]
         public async Task<List<CategoriaViewModel>> ObterTodasCategorias()
         {
-            //adicionar ActionResult
             return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategorias());
-
         }
+
+        [HttpPost("AdicionarCategoria")]
+        public async Task<ActionResult<CategoriaViewModel>> Adicionar(CategoriaViewModel categoriaViewModel)
+        {
+            if (!ModelState.IsValid) 
+                return BadRequest(new { erro = true, data = categoriaViewModel, NumeroErros = ModelState.ErrorCount,
+                    Erros = string.Join(" || ", ModelState.Values.SelectMany(x => x.Errors).Select(y => y.ErrorMessage))});
+            await _categoriaRepository.Adicionar(_mapper.Map<Categoria>(categoriaViewModel));
+            return Ok(categoriaViewModel);            
+        }
+
+        [HttpDelete("DeletarCategoria/{id:guid}")]
+        public async Task<ActionResult<CategoriaViewModel>> Deletar(Guid id)
+        {
+            var categoria = await ObterCategoria(id);
+            if (categoria == null) return NotFound(new { erru = true , dado = id});
+            await _categoriaRepository.Remover(id);
+            return Ok(new { erru = true, dado = id });
+        }
+
+        private async Task<Categoria> ObterCategoria(Guid id)
+        {
+            return await _categoriaRepository.ObterPorId(id);
+        }
+
 
         [HttpGet("ObterTodasCategoriasESubCategorias")]
         public async Task<List<Categoria>> ObterTodasCategoriasESubCategorias()
         {
             return await _categoriaRepository.ObterTodos();
         }
+
+        /// <summary>
+        /// Obter Categoria e SubCategoria (EnumDescription)
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <param name="subcategoria"></param>
+        /// <returns>String</returns>
+        [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
+        [Produces("application/json")]
+        private ActionResult ObterCategoria(int categoria, int subcategoria)
+        {
+            try
+            {
+                var result = new CategoriaBuilder(categoria, subcategoria);
+                return Ok(result.GetDictionary());
+            }
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+
 
 
 

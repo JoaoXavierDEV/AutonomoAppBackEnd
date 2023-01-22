@@ -34,9 +34,11 @@ namespace AutonomoApp.WebApi.Configuration
             }
             if(environmentName == "Production")
             {
+                // REPOSITORY
                 services.AddScoped<AutonomoAppContext>();
                 services.AddScoped<ICategoriaRepository, CategoriaRepository>();
                 services.AddScoped<IServicoRepository, ServicoRepository>();
+                // SERVICES
                 services.AddScoped<IServicoService, ServicoService>();
 
             }
