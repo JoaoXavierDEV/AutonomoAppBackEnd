@@ -20,6 +20,15 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     public async Task<List<Categoria>> ObterTodasCategoriasESubcategorias()
     {
         return await Db.Categorias
+            .Include(x => x.Subcategorias)
             .ToListAsync();
     }
+
+    #region SubCategorias
+    public async Task AdicionarSubcategoria(Subcategoria subcategoria)
+    {
+        Db.Subcategorias.Add(subcategoria);
+        await SaveChanges();
+    }
+    #endregion
 }

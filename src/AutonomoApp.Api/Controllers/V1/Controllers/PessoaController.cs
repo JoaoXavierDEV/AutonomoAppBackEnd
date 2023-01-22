@@ -1,4 +1,5 @@
-﻿using AutonomoApp.Business.Interfaces.IRepository;
+﻿using AutonomoApp.Business.Interfaces;
+using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,8 +15,9 @@ public class PessoaController : MainController
 
     public PessoaController(
             IPessoaFisicaRepository pessoaFisicaRepository,
-            IPessoaJuridicaRepository pessoaJuridicaRepository
-        )
+            IPessoaJuridicaRepository pessoaJuridicaRepository,
+            INotificador notificador, IUser user
+        ) : base (notificador, user)
     {
         _pessoaFisicaRepository = pessoaFisicaRepository;
         _pessoaJuridicaRepository = pessoaJuridicaRepository;

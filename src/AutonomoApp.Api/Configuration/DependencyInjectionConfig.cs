@@ -1,9 +1,12 @@
-﻿using AutonomoApp.Business.Interfaces.IRepository;
+﻿using AutonomoApp.Business.Interfaces;
+using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
+using AutonomoApp.Business.Notificacoes;
 using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Context;
 using AutonomoApp.Data.Repository;
 using AutonomoApp.Data.Repository.FakeRepository;
+using AutonomoApp.WebApi.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -42,8 +45,10 @@ namespace AutonomoApp.WebApi.Configuration
                 services.AddScoped<IServicoService, ServicoService>();
 
             }
+            services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<INotificador, Notificador>();
+            services.AddScoped<IUser, AspNetUser>();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             return services;

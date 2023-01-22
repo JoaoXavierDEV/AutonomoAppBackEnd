@@ -1,4 +1,5 @@
-﻿using AutonomoApp.WebApi.Controllers;
+﻿using AutonomoApp.Business.Interfaces;
+using AutonomoApp.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutonomoApp.WebApi.Controllers.V2.Controllers
@@ -8,6 +9,10 @@ namespace AutonomoApp.WebApi.Controllers.V2.Controllers
     [Produces("application/json")]
     public class AniversarioController : MainController
     {
+        public AniversarioController(INotificador notificador, IUser appUser) : base(notificador, appUser)
+        {
+        }
+
         /// <summary>
         /// Função pra retornar a idade do usuario
         /// </summary>

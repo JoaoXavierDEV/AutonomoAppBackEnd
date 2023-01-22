@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutonomoApp.Business.DTO;
+using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
@@ -19,19 +20,16 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
     public class CategoriaController : MainController
     {
         private readonly ICategoriaRepository _categoriaRepository;
-        private readonly IServicoRepository _servicoRepository;
-        private readonly IServicoService _servicoService;
+        private readonly ICategoriaService _categoriaService;
         private readonly IMapper _mapper;
 
         public CategoriaController(
                     ICategoriaRepository categoriaRepository,
-                    IServicoRepository servicoRepository,
-                    IServicoService servicoService,
-                    IMapper mapper)
+                    ICategoriaService categoriaService,
+                    IMapper mapper, INotificador notificador, IUser user) : base(notificador, user)
         {
             _categoriaRepository = categoriaRepository;
-            _servicoRepository = servicoRepository;
-            _servicoService = servicoService;
+            _categoriaService = categoriaService;
             _mapper = mapper;
         }
 
@@ -48,20 +46,65 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         [HttpPost("AdicionarCategoria")]
         public async Task<ActionResult<CategoriaViewModel>> Adicionar(CategoriaViewModel categoriaViewModel)
         {
-            if (!ModelState.IsValid) 
-                return BadRequest(new { erro = true, data = categoriaViewModel, NumeroErros = ModelState.ErrorCount,
-                    Erros = string.Join(" || ", ModelState.Values.SelectMany(x => x.Errors).Select(y => y.ErrorMessage))});
-            await _categoriaRepository.Adicionar(_mapper.Map<Categoria>(categoriaViewModel));
-            return Ok(categoriaViewModel);            
+            // validação da model
+            if (!ModelState.IsValid)
+                return BadRequest(new
+                {
+                    erro = true,
+                    data = categoriaViewModel,
+                    NumeroErros = ModelState.ErrorCount,
+                    Erros = string.Join(" || ", ModelState.Values.SelectMany(x => x.Errors).Select(y => y.ErrorMessage))
+                });
+
+            try
+            {
+                await _categoriaService.AdicionarCategoria(_mapper.Map<Categoria>(categoriaViewModel));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
+            }
+            return CustomResponse(categoriaViewModel);
+        }
+        [HttpPost("AdicionarSubCategoria")]
+        public async Task<ActionResult<SubCategoriaViewModel>> AdicionarSubcategoria(SubCategoriaViewModel subCategoriaViewModel)
+        {
+            // validação da model
+            if (!ModelState.IsValid)
+                return BadRequest(new
+                {
+                    erro = true,
+                    data = subCategoriaViewModel,
+                    NumeroErros = ModelState.ErrorCount,
+                    Erros = string.Join(" || ", ModelState.Values.SelectMany(x => x.Errors).Select(y => y.ErrorMessage))
+                });
+
+            try
+            {
+                await _categoriaService.AdicionarSubcategoria(_mapper.Map<Subcategoria>(subCategoriaViewModel));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
+            }
+            return CustomResponse(subCategoriaViewModel);
         }
 
         [HttpDelete("DeletarCategoria/{id:guid}")]
         public async Task<ActionResult<CategoriaViewModel>> Deletar(Guid id)
         {
-            var categoria = await ObterCategoria(id);
-            if (categoria == null) return NotFound(new { erru = true , dado = id});
-            await _categoriaRepository.Remover(id);
-            return Ok(new { erru = true, dado = id });
+            try
+            {
+                var categoria = await ObterCategoria(id);
+                if (categoria == null) return NotFound(new { erru = true, dado = "Não encontrado: " + id });
+                await _categoriaRepository.Remover(id);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
+            }
+            return Ok(new { erru = false, dado = id });
         }
 
         private async Task<Categoria> ObterCategoria(Guid id)
@@ -73,7 +116,7 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         [HttpGet("ObterTodasCategoriasESubCategorias")]
         public async Task<List<Categoria>> ObterTodasCategoriasESubCategorias()
         {
-            return await _categoriaRepository.ObterTodos();
+            return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
         }
 
         /// <summary>

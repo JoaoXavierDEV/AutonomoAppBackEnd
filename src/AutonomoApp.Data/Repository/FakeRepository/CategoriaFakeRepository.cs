@@ -37,4 +37,13 @@ public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepo
         return base.Adicionar(entity);
     }
 
+    public Task<List<Categoria>> ObterTodasCategoriasESubcategorias()
+    {
+        return ObterTodasCategorias();
+    }
+
+    public Task AdicionarSubcategoria(Subcategoria subcategoria)
+    {
+        throw new NotImplementedException();
+    }
 }

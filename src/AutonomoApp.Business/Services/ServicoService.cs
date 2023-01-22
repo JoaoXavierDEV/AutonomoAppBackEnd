@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutonomoApp.Business.DTO;
+using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
@@ -13,7 +14,8 @@ public class ServicoService : BaseService, IServicoService
 {
     private readonly IServicoRepository _servicoRepository;
 
-    public ServicoService(IServicoRepository servicoRepository)
+    public ServicoService(IServicoRepository servicoRepository,
+        INotificador notificador) : base(notificador)
     {
         _servicoRepository = servicoRepository;
     }

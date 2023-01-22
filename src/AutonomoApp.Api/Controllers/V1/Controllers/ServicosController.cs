@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutonomoApp.Business.DTO;
+using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
@@ -18,7 +19,10 @@ public class ServicosController : MainController
     private readonly IServicoService _servicoService;
     private readonly IMapper _mapper;
 
-    public ServicosController(IServicoRepository servicoRepository, IServicoService servicoService, IMapper mapper)
+    public ServicosController(IServicoRepository servicoRepository,
+        IServicoService servicoService, IMapper mapper,
+         INotificador notificador, IUser user
+        ) : base(notificador, user)
     {
         _servicoRepository = servicoRepository;
         _servicoService = servicoService;

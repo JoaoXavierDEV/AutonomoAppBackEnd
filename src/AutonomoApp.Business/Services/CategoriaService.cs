@@ -4,24 +4,61 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using AutonomoApp.Business.Extensions;
+using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
+using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
+using AutonomoApp.Business.Models.Validations;
+using AutonomoApp.Business.Notificacoes;
 
 namespace AutonomoApp.Business.Services;
 
-public class CategoriaService : BaseService
+public class CategoriaService : BaseService, ICategoriaService
 {
     private readonly ICategoriaRepository _categoriaRepository;
 
-    public CategoriaService(ICategoriaRepository categoriaRepository)
+
+    public CategoriaService(ICategoriaRepository categoriaRepository,
+        INotificador notificador) : base(notificador)
     {
         _categoriaRepository = categoriaRepository;
     }
 
-     
+
+    public async Task AdicionarCategoria(Categoria categoria)
+    {
+        // if (categoria.Nome.Length < 5) throw new ArgumentNullException("Exce");
+
+        if (!ExecutarValidacao(new CategoriaValidation(), categoria))  return;
+        
+        await _categoriaRepository.Adicionar(categoria);
+    }
+    
+    public async Task AdicionarSubcategoria(Subcategoria subCategoria)
+    {
+        // if (categoria.Nome.Length < 5) throw new ArgumentNullException("Exce");
+
+        if (!ExecutarValidacao(new SubCategoriaValidation(), subCategoria))  return;
+        
+        await _categoriaRepository.AdicionarSubcategoria(subCategoria);
+    }
+
+    public async Task Remover(Guid id)
+    {
+        await _categoriaRepository.Remover(id);
+    }
+
+
+    public void Dispose()
+    {
+        _categoriaRepository?.Dispose();
+    }
+
+
 
 }
 
