@@ -11,30 +11,33 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
     {
         builder.HasKey(p => p.Id);
 
-        //builder.Property(p => p.Id)
-        //    .ValueGeneratedOnAdd()
-        //    .HasColumnName("Id");
-
         builder
             .Property(p => p.Nome)
             .HasColumnName("Nome")
             .HasColumnType("varchar(20)");
 
-        //builder
-        //    .HasMany(p => p.Servicos)
-        //    .WithOne()
-        //  //  .WithOne(x => x.Categoria)
-        //    .HasForeignKey(x => x.CategoriaId)
-        //    .OnDelete(DeleteBehavior.NoAction);
+        builder
+            .Property(p => p.Descricao)
+            .IsRequired(false)
+            .HasColumnType("varchar(150)");
 
-        //builder
-        //    .HasMany(p => p.Subcategorias)
-        //.WithOne(x => x.Categoria)
-        //.HasForeignKey(x => x.CategoriaId);
+        builder
+            .HasMany(p => p.Subcategorias)
+            .WithOne(x => x.Categoria)
+            .HasForeignKey("FKCategoria"); // TODO aqui define a shadow
 
-        //builder.Property(p => p.CategoriaId)
-        //    .HasColumnName("CategoriaId");
+        builder
+            .Property(p => p.CategoriaEnum)
+            .HasColumnName("EnumId");
 
+
+        builder
+            .HasMany(p => p.ServicosCategoria)
+              //. WithOne()
+              .WithOne(x => x.Categoria)
+            //.HasForeignKey(x => x.CategoriaId)
+                .HasConstraintName("FKCategoriaaaa");
+            //.OnDelete(DeleteBehavior.NoAction);
 
         //builder
         //    .Property(p => p.CategoriaEnum)
@@ -42,10 +45,6 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
         //    .HasConversion<string>();
 
 
-        builder
-            .Property(p => p.Descricao)
-            .IsRequired(false)
-            .HasColumnType("varchar(150)");
 
         builder.ToTable("AACategorias");
     }

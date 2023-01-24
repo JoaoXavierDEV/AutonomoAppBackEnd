@@ -20,14 +20,15 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
             .HasColumnType("varchar(150)");
 
 
+        builder
+            .HasOne(x => x.Categoria)
+            .WithMany(x => x.Subcategorias)
+            //.HasForeignKey(x => x.CategoriaId)
+            .HasConstraintName("FKCategoria")
+            ;
 
-        //builder
-        //    .hasone(x => x.categoria)
-        //    .withmany(x => x.subcategorias)
-        //    .hasforeignkey(x => x.categoriaid)
-        //    ;
 
-
+        builder.Property(x => x.SubCatEnumId).HasColumnName("NMEnum");
 
         builder.ToTable("AASubCategorias");
     }

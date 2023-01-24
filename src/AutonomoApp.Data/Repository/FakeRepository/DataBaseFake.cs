@@ -179,7 +179,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                 new Categoria()
             {
                 Id = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                CatEnumId = (int)CategoriaEnum.Tecnologia,
+                CategoriaEnum = (int)CategoriaEnum.Tecnologia,
                 Nome = CategoriaEnum.Tecnologia.GetEnumDescription(),
                 Descricao = "Serviços de TI",
                 Subcategorias = new List<Subcategoria> {
@@ -208,7 +208,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
             },
                 new Categoria()
             {
-                CatEnumId = (int)CategoriaEnum.ServicosGerais,
+                CategoriaEnum = (int)CategoriaEnum.ServicosGerais,
                 Nome = CategoriaEnum.ServicosGerais.GetEnumDescription(),
                 Descricao = "Serviços de Limpezae afins",
                 Subcategorias = new List<Subcategoria>()
@@ -232,7 +232,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
             },
                 new Categoria()
                 {
-                    CatEnumId = (int)CategoriaEnum.Lanches,
+                    CategoriaEnum = (int)CategoriaEnum.Lanches,
                     Nome = CategoriaEnum.Lanches.GetEnumDescription(),
                     Descricao = "Peça seu lanche",
                     Subcategorias = new List<Subcategoria>()

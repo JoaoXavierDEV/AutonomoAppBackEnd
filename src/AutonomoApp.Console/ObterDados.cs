@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.EF;
 
 namespace AutonomoApp.ConsoleApp
 {
@@ -24,6 +25,13 @@ namespace AutonomoApp.ConsoleApp
             var result = Consultar<AutonomoApp.Business.Models.Categoria>()
                 .Include(x => x.Subcategorias)
                 .ToList();
+            // entry.Property("LastUpdated").CurrentValue = DateTime.UtcNow;
+            //var tt = db.Subcategorias.Where(x => EF.Property<Guid>(x, "FKSUBCategoria") == Guid.Parse("{a06433e9-9104-4f5f-a08f-c789055754b9}")).ToList();
+
+            var t2t = db.Beneficios.Where(x => EF.Property<Guid>(x, "ContaId") == Guid.Parse("{a06433e9-9104-4f5f-a08f-c789055754b9}")).ToList();
+
+            var t23t = db.ServicoCategoria.Where(x => EF.Property<Guid>(x, "CategoriaId") == Guid.Empty).ToList();
+            var t2d3t = db.ServicoCategoria.Where(x => EF.Property<Guid>(x, "FKCategoriaAas") == Guid.Empty).ToList();
 
             Console.WriteLine(result.ToString());
         }

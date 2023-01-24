@@ -1,6 +1,7 @@
 ﻿using AutonomoApp.Business.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace AutonomoApp.Business.Models;
 
@@ -31,8 +32,12 @@ public class Servico : EntityBase
     public decimal Desconto { get; set; }
 
     /* EF */
+    /// <summary>
+    /// FKCategoria
+    /// </summary>
     public virtual Guid CategoriaId { get; set; }
     public virtual IEnumerable<ServicoCategoria>? ServicoCategoria { get; set; }  // = new Categoria();
+    [Description("FKServico")]
     public virtual Guid SubcategoriaId { get; set; }
     public virtual IEnumerable<ServicoSubCategoria>? ServicoSubCategoria { get; set; }// = new Subcategoria();
 

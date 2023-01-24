@@ -13,7 +13,7 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     {
         return await Db.Categorias
             //.Include(x => x.Subcategorias)
-            .OrderBy(x=> x.CatEnumId)
+            .OrderBy(x=> x.CategoriaEnum)
             .ToListAsync();
     }
 

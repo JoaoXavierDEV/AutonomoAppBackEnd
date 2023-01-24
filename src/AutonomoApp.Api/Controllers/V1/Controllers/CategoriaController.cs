@@ -17,6 +17,7 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
     [ApiVersion("1.1", Deprecated = false)]
     [Route("api/v{version:apiVersion}/categorias")]
     [Produces("application/json")]
+    
     public class CategoriaController : MainController
     {
         private readonly ICategoriaRepository _categoriaRepository;
@@ -127,7 +128,8 @@ namespace AutonomoApp.WebApi.Controllers.V1.Controllers
         /// <returns>String</returns>
         [HttpGet("categoria/{categoria:int}/subcategoria/{subcategoria:int}")]
         [Produces("application/json")]
-        private ActionResult ObterCategoria(int categoria, int subcategoria)
+        [NonAction]
+        public ActionResult ObterCategoria(int categoria, int subcategoria)
         {
             try
             {

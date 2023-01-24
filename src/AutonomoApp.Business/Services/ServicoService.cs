@@ -7,6 +7,7 @@ using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutonomoApp.Business.Services;
 
@@ -41,7 +42,7 @@ public class ServicoService : BaseService, IServicoService
         // subcategoria
         var subcatID = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb");
         var subcat = _servicoRepository
-            .Consultar<Subcategoria>()
+            .Consultar<Subcategoria>()            
             .FirstOrDefault(x => x.Id == subcatID);
         var subCatDto = new SubCategoriaDto(subcat);
 
@@ -57,5 +58,24 @@ public class ServicoService : BaseService, IServicoService
 
         };
         return servicoDto;
+    }
+
+    // TODO: vincular categoria no Servico via Shadow property
+    public async void VincularCategoriaAoServico(Servico servico, Guid categoriaId)
+    {
+        ArgumentNullException.ThrowIfNull(servico, "servico invalido");
+        ArgumentNullException.ThrowIfNull(categoriaId, "guid invalido");
+
+        //var queryShadow = _servicoRepository.Consultar().Where(x => EF.Property<Guid>(x, "FKCategoriaAas") == Guid.Empty).ToList();
+
+        var query = _servicoRepository.Consultar<Categoria>().Count(x => x.Id == categoriaId);
+
+        if (query == 0) throw new NullReferenceException("A query não retornou itens.");
+        
+
+        servico.CategoriaId = categoriaId;
+
+        await _servicoRepository.Atualizar(servico);
+
     }
 }

@@ -30,28 +30,23 @@ public class ServicosController : MainController
     }
 
     [HttpGet("ObterTodosServicos")]
-    public async Task<List<Servico>> ObterTodosServicos(
-        // [FromServices] ICategoriaRepository catResolve // 
-        )
+    public async Task<List<Servico>> ObterTodosServicos()
     {
         var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
 
+        var idCategoria = Guid.Parse("ea220006-51b2-4993-8a6b-ba2b04d8be7e");
+
+        var servico = new Servico()
+        {
+            Id = idServico,
+        };
+
+        _servicoService.VincularCategoriaAoServico(servico, idServico);
+
         var tt = await _servicoRepository.ObterTodos();
 
-        // dto2 = await _servicoService.ObterServicoDTO(idServico);
-        var consultar = _servicoRepository
-            .Consultar<Categoria>()
-            .Where(x => x.CatEnumId == 1)
-            .FirstOrDefault();
+        var dto2 = await _servicoService.ObterServicoDTO(idServico);
 
-        var yy = _servicoRepository.Consultar().Where(x => x.Desconto < 50m).ToList();
-        var datanice = _servicoRepository
-            .Consultar<PessoaFisica>()
-            .Where(x => x.Nascimento < new DateTime(1995,01,31))
-            .ToList();
-
-        var cat = new CategoriaFakeRepository();
-        var ter = cat.Consultar<Servico>();
 
         var dto = new ServicoDTO
         {
@@ -59,6 +54,11 @@ public class ServicosController : MainController
         };
 
         return tt;
+    }
+    [HttpGet("AtualizarServico")]
+    public void AtualizarServico(Servico servico, Guid categoriaID)
+    {
+        _servicoService.VincularCategoriaAoServico(servico,categoriaID);
     }
 }
 

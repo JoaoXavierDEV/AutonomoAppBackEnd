@@ -23,7 +23,7 @@ public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepo
             {
                 Descricao= x.Descricao,
                 Nome= x.Nome,
-                CatEnumId= x.CatEnumId,
+                CategoriaEnum= x.CategoriaEnum,
                 Id= x.Id,
             }).ToList();
         };

@@ -21,9 +21,9 @@ public class AutoMapperConfig : Profile
         CreateMap<Subcategoria, SubCategoriaViewModel>()
             .ForMember(x => x.Nome, y => y.MapFrom(x => x.Nome))
             .ForMember(x => x.Descricao, y => y.MapFrom(x => x.Descricao))
-            .ForMember(x => x.IdCategoria , y => y.MapFrom(x => x.CategoriaId)
+            //.ForMember(x => x.IdCategoria , y => y.MapFrom(x => x.CategoriaId))
             
-            ).ReverseMap();
+            .ReverseMap();
 
     }
 }

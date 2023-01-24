@@ -8,17 +8,19 @@ public class ServicoSubCategoriaMapping : IEntityTypeConfiguration<ServicoSubCat
 {
     public void Configure(EntityTypeBuilder<ServicoSubCategoria> builder)
     {
-        builder.HasKey(x => new { x.ServicoId, x.SubCategoriaId });
+        builder.HasKey(x => x.Id);
 
         builder
             .HasOne(bc => bc.Servico)
             .WithMany(c => c.ServicoSubCategoria)
             .HasForeignKey(bc => bc.ServicoId);
-        
+            //.HasConstraintName("FKServicoIDDD");
+
         builder
             .HasOne(bc => bc.Subcategoria)
             .WithMany(c => c.ServicoSubCategoria)
             .HasForeignKey(bc => bc.SubCategoriaId);
+            //.HasConstraintName("FKCategoriaIDDD");
 
         builder.ToTable("AAServicoSubCategoria");
     }

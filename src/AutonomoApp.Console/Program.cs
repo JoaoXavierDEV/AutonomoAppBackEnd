@@ -31,14 +31,19 @@ public class Program
                 // Console.Clear();
             } while (result);
         }
-        catch (Exception e)
+        catch (InvalidOperationException e)
         {
             Main();
             Console.WriteLine("\n" +
             $"  ===============================================================================================================  \n"
-            + "   " + e.Message +
+            + "   " + e.InnerException.Message ?? e.Message +
             $"  ===============================================================================================================  \n"
             );//Console.ReadKey();
+        }
+        catch (Exception e)
+        {
+
+            Console.WriteLine(e.InnerException.Message ?? e.Message);
         }
 
     }

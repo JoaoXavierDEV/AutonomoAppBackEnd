@@ -10,7 +10,7 @@ public record struct CategoriaDto
 
     public CategoriaDto(Categoria categoria)
     {
-        CatEnumId = categoria.CatEnumId ?? 0;
+        CatEnumId = categoria.CategoriaEnum ?? 0;
         Nome = categoria.Nome;
         Descricao = categoria.Descricao;
     }
