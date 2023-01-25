@@ -61,21 +61,22 @@ public class ServicoService : BaseService, IServicoService
     }
 
     // TODO: vincular categoria no Servico via Shadow property
-    public async void VincularCategoriaAoServico(Servico servico, Guid categoriaId)
+    public void VincularCategoriaAoServico(Servico servico, Guid categoriaId)
     {
         ArgumentNullException.ThrowIfNull(servico, "servico invalido");
         ArgumentNullException.ThrowIfNull(categoriaId, "guid invalido");
 
-        //var queryShadow = _servicoRepository.Consultar().Where(x => EF.Property<Guid>(x, "FKCategoriaAas") == Guid.Empty).ToList();
+        //var queryShadow = _servicoRepository
+        //  .Consultar().Where(x => EF.Property<Guid>(x, "FKCategoriaAas") == Guid.Empty).ToList();
 
         var query = _servicoRepository.Consultar<Categoria>().Count(x => x.Id == categoriaId);
 
-        if (query == 0) throw new NullReferenceException("A query não retornou itens.");
+        if (query == 0) 
+            throw new NullReferenceException("A query não retornou itens.");
+
+         _servicoRepository.VincularCategoria(servico, categoriaId);
+
         
-
-        servico.CategoriaId = categoriaId;
-
-        await _servicoRepository.Atualizar(servico);
 
     }
 }

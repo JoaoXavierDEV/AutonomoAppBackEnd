@@ -1,5 +1,6 @@
 ﻿using AutonomoApp.Business.Models;
 using AutonomoApp.Data.Context;
+using Castle.Core.Internal;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,7 @@ namespace AutonomoApp.ConsoleApp
 
             var t2t = db.Beneficios.Where(x => EF.Property<Guid>(x, "ContaId") == Guid.Parse("{a06433e9-9104-4f5f-a08f-c789055754b9}")).ToList();
 
-            var t23t = db.ServicoCategoria.Where(x => EF.Property<Guid>(x, "CategoriaId") == Guid.Empty).ToList();
-            var t2d3t = db.ServicoCategoria.Where(x => EF.Property<Guid>(x, "FKCategoriaAas") == Guid.Empty).ToList();
+           
 
             Console.WriteLine(result.ToString());
         }
@@ -49,21 +49,32 @@ namespace AutonomoApp.ConsoleApp
             //    .Select(x => x)
             //    .AsNoTracking()
             //    .First();
+            string tags = ",," ;
+            tags=tags.Replace(" ", "");
+
+            var result = tags.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var result2 = tags.Split(',', StringSplitOptions.TrimEntries);
+            var result3 = tags.Split(',', StringSplitOptions.None);
+
+            var re = tags.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != "" && x != null).ToList();
 
             var servicoUsuario = db.Servico
                 .Include(x => x.Prestador)
-                .Include(x => x.ServicoCategoria)
-                .Include(x => x.ServicoSubCategoria)
+                .Include(x => x.Categoria)
+                //.Include(x => x.ServicoSubCategoria)
                 //.Where(x => x.Prestador.Documento == "14494943700")
                 //.Select(p => p.Subcategorias.Where( c => c.SubCatEnumId == (int)Tecnologia.DevenvolvimetoBackEnd))
                 .Select(x => x)
                 .AsNoTracking()
                 .First();
+            string tt = "gfg";
 
-            //db.ChangeTracker.Clear();
-            List<Servico> servicoAll = db.Servico
+            tt.IsNullOrEmpty();
+
+                //db.ChangeTracker.Clear();
+                List<Servico> servicoAll = db.Servico
                 .Include(x => x.Prestador)
-                .Include(x => x.ServicoCategoria)
+              //  .Include(x => x.ServicoCategoria)
                 .ToList();
 
             var categoriasSubAll = db.Subcategorias
@@ -73,11 +84,7 @@ namespace AutonomoApp.ConsoleApp
             List<Categoria> categoriasAll = db.Categorias
                 .ToList();
 
-            List<ServicoCategoria> ServicoCategoria = db.ServicoCategoria
-                .ToList();
 
-            List<ServicoSubCategoria> ServicoSubCategoria = db.ServicoSubCategoria
-                .ToList();
             // refatorar nome de variaveis
             //Console.ReadKey();
         }

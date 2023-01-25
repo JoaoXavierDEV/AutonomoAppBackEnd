@@ -107,5 +107,10 @@ namespace AutonomoApp.Data.Repository.FakeRepository
 
             return lista.AsQueryable();
         }
+
+        public void VincularCategoria(Servico servico, Guid categoriaId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

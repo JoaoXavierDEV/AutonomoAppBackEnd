@@ -26,4 +26,11 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
             .Where(servico => servico.Id == id)
             .FirstOrDefaultAsync();
     }
+
+    public async void VincularCategoria(Servico servico, Guid categoriaId)
+    {
+        
+        Db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
+        await Atualizar(servico);
+    }
 }

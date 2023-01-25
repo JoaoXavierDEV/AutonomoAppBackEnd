@@ -22,21 +22,22 @@ namespace AutonomoApp.WebApi.Configuration
             // TODO: pegar variavel de ambiente: RepositoryFaker
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            if(environmentName == "Development") { 
-            
-                services.AddScoped<AutonomoAppContext>();
-                // REPOSITORY
-                services.AddScoped<ICategoriaRepository, CategoriaFakeRepository>();
-                services.AddScoped<IServicoRepository, ServicoFakeRepository>();
+            //if(environmentName == "Development") {
+            //    // Development
+            //    services.AddScoped<AutonomoAppContext>();
+            //    // REPOSITORY
+            //    services.AddScoped<ICategoriaRepository, CategoriaFakeRepository>();
+            //    services.AddScoped<IServicoRepository, ServicoFakeRepository>();
 
-                services.AddScoped<IPessoaFisicaRepository, PessoaFisicaFakeRepository>();
-                services.AddScoped<IPessoaJuridicaRepository, PessoaJuridicaFakeRepository>();
+            //    services.AddScoped<IPessoaFisicaRepository, PessoaFisicaFakeRepository>();
+            //    services.AddScoped<IPessoaJuridicaRepository, PessoaJuridicaFakeRepository>();
 
-                // SERVICES
-                services.AddScoped<IServicoService, ServicoService>(); 
-            }
-            if(environmentName == "Production")
+            //    // SERVICES
+            //    services.AddScoped<IServicoService, ServicoService>(); 
+            //}
+            if(environmentName == "Development")
             {
+                // Production
                 // REPOSITORY
                 services.AddScoped<AutonomoAppContext>();
                 services.AddScoped<ICategoriaRepository, CategoriaRepository>();

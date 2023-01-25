@@ -12,6 +12,8 @@ public class PessoaMapping : IEntityTypeConfiguration<Pessoa>
 
         builder.HasMany(x => x.HistoricoDePedidos);
 
+        builder.HasOne(x => x.Conta);
+
         builder.ToTable("AAPessoa");
     }
 }

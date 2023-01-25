@@ -41,7 +41,7 @@ public class ServicosController : MainController
             Id = idServico,
         };
 
-        _servicoService.VincularCategoriaAoServico(servico, idServico);
+        _servicoService.VincularCategoriaAoServico(servico, idCategoria);
 
         var tt = await _servicoRepository.ObterTodos();
 
@@ -59,6 +59,15 @@ public class ServicosController : MainController
     public void AtualizarServico(Servico servico, Guid categoriaID)
     {
         _servicoService.VincularCategoriaAoServico(servico,categoriaID);
+    }
+
+    [HttpPost("CadastrarServico")]
+    public async Task<Servico> CadastrarServico()
+    {
+        // if (!ModelState.IsValid) throw new Exception();
+
+        await _servicoRepository.Adicionar(new Servico());
+        return new Servico();
     }
 }
 

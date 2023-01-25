@@ -9,4 +9,5 @@ public interface IServicoRepository : IRepository<Servico>
 {
     Task<List<Servico>> ObterTodosServicos();
     Task<Servico> ObterServicoPorUsuario(Guid id);
+    void VincularCategoria(Servico servico, Guid categoriaId);
 }

@@ -24,7 +24,7 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
             .HasOne(x => x.Categoria)
             .WithMany(x => x.Subcategorias)
             //.HasForeignKey(x => x.CategoriaId)
-            .HasConstraintName("FKCategoria")
+            /////.HasConstraintName("FKCategoria")
             ;
 
 

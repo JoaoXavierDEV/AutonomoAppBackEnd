@@ -7,7 +7,6 @@ namespace AutonomoApp.Business.Models;
 
 public class Servico : EntityBase
 {
-    // TODO: resolver pessoa PESSOA
     public virtual Pessoa Prestador { get; set; }
     public virtual string Nome { get; set; }
     public virtual string Descricao { get; set; }
@@ -32,15 +31,8 @@ public class Servico : EntityBase
     public decimal Desconto { get; set; }
 
     /* EF */
-    /// <summary>
-    /// FKCategoria
-    /// </summary>
-    public virtual Guid CategoriaId { get; set; }
-    public virtual IEnumerable<ServicoCategoria>? ServicoCategoria { get; set; }  // = new Categoria();
-    [Description("FKServico")]
-    public virtual Guid SubcategoriaId { get; set; }
-    public virtual IEnumerable<ServicoSubCategoria>? ServicoSubCategoria { get; set; }// = new Subcategoria();
-
+    public virtual Categoria Categoria { get; set; }
+    public virtual IEnumerable<Subcategoria>? Subcategorias { get; set; }
     public Servico()
     {
         DataPublicada = DateTime.Now;

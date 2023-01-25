@@ -89,8 +89,8 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                                 Descricao = "App de psicologia",
                                 Tags = new List<string>() { "aspnet", "microsoft" },
                                 Valor = 8000m,
-                                CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                                SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
+                              //  CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                                //SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
 
                                 //Categoria = new List<Categoria>()
                                 //{
@@ -286,8 +286,8 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                 Nome = "Desenvolver app",
                 Descricao = "App de psicologia",
                 Valor = 8000m,
-                CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
+              //  CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                //SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
                 //ServicoCategoria = new List<ServicoCategoria>() { },
                 //Categoria =  new Categoria(),
 

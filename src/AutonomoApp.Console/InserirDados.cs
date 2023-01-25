@@ -279,49 +279,34 @@ namespace AutonomoApp.ConsoleApp
         {
             AutonomoAppContext db = new();
 
-            db.Servico.AddRange(new Servico()
+            var servico = new Servico()
             {
                 Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
                 Prestador = new PessoaFisica()
                 {
-                    Id = Guid.Parse("2a0ee983-3d5f-4342-821c-7a94f54d5121")
-                    //Nome = "Jaum",
-                    //Documento = "11122233300",
-                    //Nascimento = new DateTime(1995, 01, 31),
-                    //TipoDocumentoEnum = TipoDocumentoEnum.PessoaFisica
+                    Id = Guid.Parse("2a0ee983-3d5f-4342-821c-7a94f54d5121"),
+                    Nome = "Jaum",
+                    Documento = "11122233300",
+                    Nascimento = new DateTime(1995, 01, 31),
+
                 },
                 Nome = "Desenvolver app",
                 Descricao = "App de psicologia",
                 Valor = 8000m,
-                CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
+                // CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
+                //SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
                 //ServicoCategoria = new List<ServicoCategoria>() { },
                 //Categoria =  new Categoria(),
 
-                Tags = new List<string>() { "aspnet", "microsoft" },
+                Tags = new List<string>() { "aspnet", "microsoft", "", " ","", " " },
 
-            });
+            };
 
-            db.SaveChanges();
-            db.ChangeTracker.Clear();
-        }
+            db.Servico.AddRange(servico);
 
-        public void RelacionamentosCateSubCat()
-        {
-            AutonomoAppContext db = new();
+            var categoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e");
+            db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
 
-            db.ServicoCategoria.AddRange(
-                new ServicoCategoria()
-                {
-                    ServicoId = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
-                    CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                });
-            db.ServicoSubCategoria.AddRange(
-                new ServicoSubCategoria()
-                {
-                    ServicoId = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
-                    SubCategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb")
-                });
             db.SaveChanges();
             db.ChangeTracker.Clear();
         }

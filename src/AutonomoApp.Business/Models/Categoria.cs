@@ -12,15 +12,4 @@ public class Categoria : EntityBase
     public virtual IEnumerable<Subcategoria>? Subcategorias { get; set; }
     public virtual IEnumerable<ServicoCategoria>? ServicosCategoria { get; set; }// = new List<Servico>();
 
-    public void Test()
-    {
-        ServicosCategoria= new List<ServicoCategoria>() 
-        { 
-            new ServicoCategoria()
-            {
-                Categoria = new Categoria() {},
-                
-            }
-        };
-    }
 }

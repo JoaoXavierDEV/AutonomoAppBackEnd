@@ -33,17 +33,17 @@ public class Program
         }
         catch (InvalidOperationException e)
         {
-            Main();
             Console.WriteLine("\n" +
             $"  ===============================================================================================================  \n"
-            + "   " + e.InnerException.Message ?? e.Message +
+            + "   " + e.Message +
             $"  ===============================================================================================================  \n"
             );//Console.ReadKey();
+            Main();
         }
         catch (Exception e)
         {
 
-            Console.WriteLine(e.InnerException.Message ?? e.Message);
+            Console.WriteLine(e.Message);
         }
 
     }
@@ -75,7 +75,7 @@ public class Program
                 banco.CarregarDadosCategorias();
                 break;
             case "3":
-                banco.RelacionamentosCateSubCat();
+                
                 break;
             case "4":
                 banco.CarregarDadosCategoriasV2();
