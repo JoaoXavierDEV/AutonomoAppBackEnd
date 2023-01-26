@@ -7,7 +7,8 @@ namespace AutonomoApp.Business.Models;
 
 public class Servico : EntityBase
 {
-    public virtual Pessoa Prestador { get; set; }
+    public virtual Pessoa ClientePrestador { get; set; }
+    public virtual Pessoa ClienteSolicitante { get; set; }
     public virtual string Nome { get; set; }
     public virtual string Descricao { get; set; }
 
@@ -32,7 +33,7 @@ public class Servico : EntityBase
 
     /* EF */
     public virtual Categoria Categoria { get; set; }
-    public virtual IEnumerable<Subcategoria>? Subcategorias { get; set; }
+    public virtual Subcategoria Subcategoria { get; set; }
     public Servico()
     {
         DataPublicada = DateTime.Now;

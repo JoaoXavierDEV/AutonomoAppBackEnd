@@ -26,12 +26,27 @@ namespace AutonomoApp.Data.Mappings
             builder.Property(p => p.Tags)
                 .HasConversion(splitStringConverter);
 
+            // TODO: mudar nome da propriedade
             builder
-                .HasOne(p => p.Prestador)
-                .WithMany();
+                .HasOne(p => p.ClientePrestador)
+                .WithMany()
+                .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
+
+            builder
+                .HasOne(p => p.ClienteSolicitante)
+                .WithMany()
+                .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
+                
+            ///.HasConstraintName("ClientId");
+
 
             builder
                 .HasOne(p => p.Categoria)
+                .WithMany()
+                .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
+
+            builder
+                .HasOne(x => x.Subcategoria)
                 .WithMany()
                 .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
 

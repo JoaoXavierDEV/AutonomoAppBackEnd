@@ -276,7 +276,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
             lista.Add(new Servico
             {
                 Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
-                Prestador = new PessoaFisica()
+                ClientePrestador = new PessoaFisica()
                 {
                     Id = Guid.Parse("2a0ee983-3d5f-4342-821c-7a94f54d5121"),
                     Nome = "Jaum",

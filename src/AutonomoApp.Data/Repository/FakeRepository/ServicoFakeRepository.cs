@@ -50,7 +50,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                     lista.Add(
                     _faker
                         .RuleFor(x => x.DataPublicada, y => y.Date.Past())
-                        .RuleFor(x => x.Prestador, clienteFake)
+                        .RuleFor(x => x.ClientePrestador, clienteFake)
                         .RuleFor(x => x.Nome, y => y.Name.JobType())
                         .RuleFor(x => x.Descricao, y => y.Name.JobDescriptor())
                         .RuleFor(x => x.Valor, y => y.Finance.Amount(100, 1000, 2))
@@ -95,7 +95,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                 lista.Add(
                 _faker
                     .RuleFor(x => x.DataPublicada, y => y.Date.Past())
-                    .RuleFor(x => x.Prestador, clienteFake)
+                    .RuleFor(x => x.ClientePrestador, clienteFake)
                     .RuleFor(x => x.Nome, y => y.Name.JobType())
                     .RuleFor(x => x.Descricao, y => y.Name.JobDescriptor())
                     .RuleFor(x => x.Valor, y => y.Finance.Amount(100, 1000, 2))

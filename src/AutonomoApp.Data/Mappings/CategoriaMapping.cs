@@ -23,15 +23,8 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
 
         builder
             .HasMany(p => p.Subcategorias)
-            .WithOne(x => x.Categoria);
-         //   .HasForeignKey("FKCategoria"); // TODO aqui define a shadow
-
-        //builder
-        //    .HasMany(p => p.ServicosCategoria)
-        //      .WithOne(x => x.Categoria);
-        //    //.HasForeignKey(x => x.CategoriaId)
-        //     //   .HasConstraintName("FKCategoriaaaa");
-        //    //.OnDelete(DeleteBehavior.NoAction);
+            .WithOne()
+            .OnDelete(DeleteBehavior.NoAction);
 
         builder
             .Property(p => p.CategoriaEnum)

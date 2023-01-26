@@ -59,7 +59,7 @@ namespace AutonomoApp.ConsoleApp
             var re = tags.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != "" && x != null).ToList();
 
             var servicoUsuario = db.Servico
-                .Include(x => x.Prestador)
+                .Include(x => x.ClientePrestador)
                 .Include(x => x.Categoria)
                 //.Include(x => x.ServicoSubCategoria)
                 //.Where(x => x.Prestador.Documento == "14494943700")
@@ -73,7 +73,7 @@ namespace AutonomoApp.ConsoleApp
 
                 //db.ChangeTracker.Clear();
                 List<Servico> servicoAll = db.Servico
-                .Include(x => x.Prestador)
+                .Include(x => x.ClientePrestador)
               //  .Include(x => x.ServicoCategoria)
                 .ToList();
 
