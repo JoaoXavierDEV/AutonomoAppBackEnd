@@ -77,7 +77,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                     Logradouro = "Rua X"
                 },
                 Nascimento = new DateTime(1995, 01, 31),
-                TipoDocumento = TipoDocumentoEnum.PessoaFisica,
+                //TipoDocumento = TipoDocumentoEnum.PessoaFisica,
                 HistoricoDePedidos = new List<ServicoSolicitado>()
                 {
                     new ServicoSolicitado()

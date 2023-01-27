@@ -26,14 +26,11 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
         return Db.Set<TAbela>();
     }
 
-
     public async Task Adicionar(T entity)
     {
         DbSet.Add(entity);
         await SaveChanges();
     }
-
-
 
     public async Task<T> ObterPorId(Guid id)
     {
@@ -69,8 +66,6 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
 
     public virtual IQueryable<T> Consultar()
     {
-        //throw new NotImplementedException();
         return Consultar<T>();
-        //return Db.Set<T>();
     }
 }

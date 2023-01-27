@@ -19,6 +19,7 @@ builder.Services.AddDbContext<AutonomoAppContext>(options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddIdentityConfig(builder.Configuration);
 builder.Services.AddWebApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.ResolveDependencies();

@@ -12,7 +12,7 @@ public abstract class Pessoa : EntityBase
     public virtual IEnumerable<ServicoSolicitado> HistoricoDePedidos { get; set; } = Enumerable.Empty<ServicoSolicitado>();
     public virtual Endereco? Endereco { get; set; }
     public virtual string? Documento { get; set; }
-    public virtual TipoDocumentoEnum TipoDocumento { get; }
+    public virtual TipoDocumentoEnum TipoDocumento { get; protected set;}
     public Conta Conta { get; set; }
     public virtual string GetDocumento() => string.Format($"{TipoDocumento.GetEnumDescription()} {Documento}");
     public virtual void AddServicoHistoricoPedidos(ServicoSolicitado ServicoSolicitado)

@@ -9,9 +9,7 @@ using Microsoft.IdentityModel.Protocols;
 namespace AutonomoApp.Data.Context;
 
 public class AutonomoAppContext : DbContext
-
 {
-
     #region DbSet<>
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Subcategoria> Subcategorias { get; set; }
@@ -39,29 +37,29 @@ public class AutonomoAppContext : DbContext
     }
 
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-        var config = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            //.AddJsonFile("appsettings.json", true, true)
-            //.AddJsonFile($"appsettings.{environmentName}.json", true, true)
-            .AddEnvironmentVariables()
-            .AddUserSecrets<AutonomoAppContext>()
-            .Build();
+    //    var config = new ConfigurationBuilder()
+    //        .SetBasePath(Directory.GetCurrentDirectory())
+    //        //.AddJsonFile("appsettings.json", true, true)
+    //        //.AddJsonFile($"appsettings.{environmentName}.json", true, true)
+    //        .AddEnvironmentVariables()
+    //        .AddUserSecrets<AutonomoAppContext>()
+    //        .Build();
 
-        var cnn = config.GetConnectionString($"{environmentName}");
+    //    var cnn = config.GetConnectionString($"{environmentName}");
 
-        // const string strConnection = "";
+    //    // const string strConnection = "";
 
-        optionsBuilder
-            .UseSqlServer(cnn)
-            .EnableSensitiveDataLogging()
-            //.UseLazyLoadingProxies()
-            .LogTo(Console.WriteLine, LogLevel.Error);
-            //.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted }, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine);
-    }
+    //    optionsBuilder
+    //        .UseSqlServer(cnn)
+    //        .EnableSensitiveDataLogging()
+    //        //.UseLazyLoadingProxies()
+    //        .LogTo(Console.WriteLine, LogLevel.Error);
+    //        //.LogTo(Console.WriteLine, new[] { RelationalEventId.CommandExecuted }, LogLevel.Information, DbContextLoggerOptions.LocalTime | DbContextLoggerOptions.SingleLine);
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
