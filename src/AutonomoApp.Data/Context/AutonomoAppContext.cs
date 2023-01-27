@@ -21,8 +21,6 @@ public class AutonomoAppContext : DbContext
     public DbSet<PessoaJuridica> PessoaJuridica { get; set; }
     public DbSet<ServicoSolicitado> ServicoSolicitado { get; set; }
     public DbSet<Servico> Servico { get; set; }
-    // public DbSet<ServicoCategoria> ServicoCategoria { get; set; }
-    // public DbSet<ServicoSubCategoria> ServicoSubCategoria { get; set; }
     public DbSet<Conta> Conta { get; set; }
     public DbSet<Beneficio> Beneficios { get; set; }
 

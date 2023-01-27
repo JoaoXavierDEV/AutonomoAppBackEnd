@@ -39,7 +39,10 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
         // throw new NotImplementedException();
         return Consultar<T>();
     }
+
+#pragma warning disable CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
     public async virtual Task<List<T>> ObterTodos()
+#pragma warning restore CS1998 // O método assíncrono não possui operadores 'await' e será executado de forma síncrona
     {
         Func<List<T>> dados = () =>
         {

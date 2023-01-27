@@ -11,8 +11,6 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
         //builder.Ignore(p => p.SubCategoriaEnum);
         builder.HasKey(p => p.Id);
 
-        //builder.Property(p => p.Id).ValueGeneratedOnAdd();
-        
         builder.Property(p => p.Nome);
         builder
             .Property(p => p.Descricao)
@@ -30,7 +28,7 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
         // TODO concertar e testar / inserir subcategorias
         // TODO para de querer investar
 
-        builder.Property(x => x.SubCatEnumId).HasColumnName("EnumId");
+        builder.Property(x => x.SubCategoriaEnum).HasColumnName("EnumId");
 
         builder.ToTable("AASubCategorias");
     }

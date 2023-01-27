@@ -10,6 +10,7 @@ public class ServicoSolicitacaoMapping : IEntityTypeConfiguration<ServicoSolicit
     {
         builder.HasKey(p => p.Id);
         builder.HasOne(p => p.Servico);
+        builder.HasOne(p => p.ClienteSolicitante);
         builder.ToTable("AAHistoricoDePedidos");
     }
 }

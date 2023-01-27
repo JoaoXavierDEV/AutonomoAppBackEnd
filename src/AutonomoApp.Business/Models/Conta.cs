@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutonomoApp.Business.Models.Enums;
 
-namespace AutonomoApp.Business.Models;
+namespace AutonomoApp.Business.Models; 
 
 public class Conta : EntityBase
 {
@@ -29,26 +29,5 @@ public class Conta : EntityBase
 
         Benefícios = Benefícios.Append(InicialBeneficio);
     }
-}
-
-
-public class Beneficio : EntityBase
-{
-    public string Nome { get; set; }
-    public string Descricao { get; set; }
-    public string Codigo { get; set; }
-    public TipoDeBeneficio TipoDeBeneficio { get; set; }
-}
-
-public enum TipoDeBeneficio
-{
-    [Description("Avaliação de 30 dias")]
-    Avaliacao = 1,
-    [Description("Exibir 3x no Topo por dia")]
-    ExibirTopo3,
-    [Description("Exibir 5x no Topo por dia")]
-    ExibirTopo5,
-    [Description("Exibir 10x no Topo por dia")]
-    ExibirTopo10,
 }
 

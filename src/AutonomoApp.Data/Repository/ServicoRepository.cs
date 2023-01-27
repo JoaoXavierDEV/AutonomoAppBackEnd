@@ -12,15 +12,13 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
     public async Task<List<Servico>> ObterTodosServicos()
     {
         return await Db.Servico
-            // .Include(x => x.ServicosServico)
              .AsNoTracking()
             .ToListAsync();
     }
-    
+
     public async Task<Servico> ObterServicoPorUsuario(Guid id)
     {
         return await Db.Servico
-            // .Include(x => x.ServicosServico)
             .AsNoTracking()
             .Include(x => x.ClientePrestador)
             .Where(servico => servico.Id == id)
@@ -29,7 +27,6 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
 
     public async void VincularCategoria(Servico servico, Guid categoriaId)
     {
-        
         Db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
         await Atualizar(servico);
     }

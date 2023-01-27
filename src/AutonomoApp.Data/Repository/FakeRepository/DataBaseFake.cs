@@ -179,77 +179,77 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                 new Categoria()
             {
                 Id = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                CategoriaEnum = (int)CategoriaEnum.Tecnologia,
+                CategoriaEnum = CategoriaEnum.Tecnologia,
                 Nome = CategoriaEnum.Tecnologia.GetEnumDescription(),
                 Descricao = "Serviços de TI",
                 Subcategorias = new List<Subcategoria> {
                     new Subcategoria()
                     {
-                        SubCatEnumId = (int)Tecnologia.DevenvolvimetoFrontEnd,
+                        SubCategoriaEnum = (int)Tecnologia.DevenvolvimetoFrontEnd,
                         Nome = Tecnologia.DevenvolvimetoFrontEnd.GetEnumDescription(),
                     },
                     new Subcategoria()
                     {
                         Id = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
-                        SubCatEnumId = (int)Tecnologia.DevenvolvimetoBackEnd,
+                        SubCategoriaEnum = (int)Tecnologia.DevenvolvimetoBackEnd,
                         Nome = Tecnologia.DevenvolvimetoBackEnd.GetEnumDescription(),
                     },
                     new Subcategoria()
                     {
-                        SubCatEnumId = (int)Tecnologia.Infra,
+                        SubCategoriaEnum = (int)Tecnologia.Infra,
                         Nome = Tecnologia.Infra.GetEnumDescription(),
                     },
                     new Subcategoria()
                     {
-                        SubCatEnumId = (int)Tecnologia.DevOps,
+                        SubCategoriaEnum = (int)Tecnologia.DevOps,
                         Nome = Tecnologia.DevOps.GetEnumDescription(),
                     }
                 }
             },
                 new Categoria()
             {
-                CategoriaEnum = (int)CategoriaEnum.ServicosGerais,
+                CategoriaEnum = CategoriaEnum.ServicosGerais,
                 Nome = CategoriaEnum.ServicosGerais.GetEnumDescription(),
                 Descricao = "Serviços de Limpezae afins",
                 Subcategorias = new List<Subcategoria>()
                 {
                     new Subcategoria()
                     {
-                        SubCatEnumId = (int)ServicosGerais.Varrer,
+                        SubCategoriaEnum = (int)ServicosGerais.Varrer,
                         Nome = ServicosGerais.Varrer.GetEnumDescription()
                     },
                     new Subcategoria()
                     {
-                        SubCatEnumId = (int)ServicosGerais.LavarLouca,
+                        SubCategoriaEnum = (int)ServicosGerais.LavarLouca,
                         Nome = ServicosGerais.LavarLouca.GetEnumDescription()
                     },
                     new Subcategoria()
                     {
-                        SubCatEnumId = (int)ServicosGerais.Limpeza,
+                        SubCategoriaEnum = (int)ServicosGerais.Limpeza,
                         Nome = ServicosGerais.Limpeza.GetEnumDescription()
                     },
                 }
             },
                 new Categoria()
                 {
-                    CategoriaEnum = (int)CategoriaEnum.Lanches,
+                    CategoriaEnum = CategoriaEnum.Lanches,
                     Nome = CategoriaEnum.Lanches.GetEnumDescription(),
                     Descricao = "Peça seu lanche",
                     Subcategorias = new List<Subcategoria>()
                     {
                         new Subcategoria()
                         {
-                            SubCatEnumId = (int)Lanches.Doces,
+                            SubCategoriaEnum = (int)Lanches.Doces,
                             Nome = Lanches.Doces.GetEnumDescription()
                         },
                         new Subcategoria()
                         {
-                            SubCatEnumId = (int)Lanches.Pizza,
+                            SubCategoriaEnum = (int)Lanches.Pizza,
                             Nome = Lanches.Pizza.GetEnumDescription()
                         },
                         new Subcategoria()
                         {
-                            SubCatEnumId = (int)Lanches.Restaurantes,
+                            SubCategoriaEnum = (int)Lanches.Restaurantes,
                             Nome = Lanches.Restaurantes.GetEnumDescription()
                         },
                     }

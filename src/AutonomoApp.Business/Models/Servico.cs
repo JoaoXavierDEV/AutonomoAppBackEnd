@@ -8,7 +8,6 @@ namespace AutonomoApp.Business.Models;
 public class Servico : EntityBase
 {
     public virtual Pessoa ClientePrestador { get; set; }
-    public virtual Pessoa ClienteSolicitante { get; set; }
     public virtual string Nome { get; set; }
     public virtual string Descricao { get; set; }
 
@@ -30,8 +29,6 @@ public class Servico : EntityBase
     public bool PermiteParcelamento { get; set; }
     public bool TemDesconto { get; set; }
     public decimal Desconto { get; set; }
-
-    /* EF */
     public virtual Categoria Categoria { get; set; }
     public virtual Subcategoria Subcategoria { get; set; }
     public Servico()

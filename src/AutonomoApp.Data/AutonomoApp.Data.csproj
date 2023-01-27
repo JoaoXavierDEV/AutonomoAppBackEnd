@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mappings\ServicoSubCategoriaMapping.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AutonomoApp.Business\AutonomoApp.Business.csproj" />
   </ItemGroup>
 

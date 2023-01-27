@@ -31,11 +31,6 @@ namespace AutonomoApp.Data.Mappings
                 .HasOne(p => p.ClientePrestador)
                 .WithMany()
                 .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
-
-            builder
-                .HasOne(p => p.ClienteSolicitante)
-                .WithMany()
-                .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
                 
             ///.HasConstraintName("ClientId");
 

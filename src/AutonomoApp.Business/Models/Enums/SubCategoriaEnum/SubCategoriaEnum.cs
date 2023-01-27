@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+
 namespace AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 
 public enum Tecnologia

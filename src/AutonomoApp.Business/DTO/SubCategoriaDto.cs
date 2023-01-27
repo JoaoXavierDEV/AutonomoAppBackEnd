@@ -10,7 +10,7 @@ public record struct SubCategoriaDto
 
     public SubCategoriaDto(Subcategoria subcategoria)
     {
-        SubCatEnumId = subcategoria.SubCatEnumId ?? 0;
+        SubCatEnumId = (int)subcategoria.SubCategoriaEnum;
         Nome = subcategoria.Nome;
         Descricao = subcategoria.Descricao;
     }
