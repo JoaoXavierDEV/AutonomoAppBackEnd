@@ -60,14 +60,10 @@ public class ServicoService : BaseService, IServicoService
         return servicoDto;
     }
 
-    // TODO: vincular categoria no Servico via Shadow property
     public void VincularCategoriaAoServico(Servico servico, Guid categoriaId)
     {
         ArgumentNullException.ThrowIfNull(servico, "servico invalido");
         ArgumentNullException.ThrowIfNull(categoriaId, "guid invalido");
-
-        //var queryShadow = _servicoRepository
-        //  .Consultar().Where(x => EF.Property<Guid>(x, "FKCategoriaAas") == Guid.Empty).ToList();
 
         var query = _servicoRepository.Consultar<Categoria>().Count(x => x.Id == categoriaId);
 
