@@ -33,6 +33,7 @@ public class AutonomoAppContext : DbContext
     {
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         ChangeTracker.AutoDetectChangesEnabled = false;
+        //Database.EnsureDeleted();
         //Database.EnsureCreated();
     }
 

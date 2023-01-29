@@ -9,7 +9,7 @@ using AutonomoApp.WebApi.Configuration;
 using AutonomoApp.Data.Context;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
-
+using AutonomoApp.WebApi.Extensions;
 
 namespace AutonomoApp.WebApi.Configuration
 {
