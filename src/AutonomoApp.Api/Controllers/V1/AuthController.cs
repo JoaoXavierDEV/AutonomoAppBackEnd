@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace AutonomoApp.WebApi.Controllers.V1.Controllers
+namespace AutonomoApp.WebApi.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}")]

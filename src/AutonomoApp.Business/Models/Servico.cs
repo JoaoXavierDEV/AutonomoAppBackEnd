@@ -22,7 +22,7 @@ public class Servico : EntityBase
         set { _valor = value; }
     }
 
-    public virtual IEnumerable<string> Tags { get; set; }
+    public virtual IEnumerable<string> Tags { get; set; } = Enumerable.Empty<string>();
     public DateTime DataPublicada { get; set; }
     public TipoDeServico TipoDeServico { get; set; }
     public bool AnuncioAtivo { get; set; }

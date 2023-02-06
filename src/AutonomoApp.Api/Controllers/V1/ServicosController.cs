@@ -8,7 +8,7 @@ using AutonomoApp.Data.Repository;
 using AutonomoApp.Data.Repository.FakeRepository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutonomoApp.WebApi.Controllers.V1.Controllers;
+namespace AutonomoApp.WebApi.Controllers.V1;
 
 [ApiVersion("1.0", Deprecated = false)]
 [Route("api/v{version:apiVersion}/Servicos")]
@@ -50,7 +50,7 @@ public class ServicosController : MainController
 
         var dto = new ServicoDTO
         {
-            
+
         };
 
         return tt;
@@ -58,7 +58,7 @@ public class ServicosController : MainController
     [HttpGet("AtualizarServico")]
     public void AtualizarServico(Servico servico, Guid categoriaID)
     {
-        _servicoService.VincularCategoriaAoServico(servico,categoriaID);
+        _servicoService.VincularCategoriaAoServico(servico, categoriaID);
     }
 
     [HttpPost("CadastrarServico")]

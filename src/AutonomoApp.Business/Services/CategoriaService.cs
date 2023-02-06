@@ -29,7 +29,7 @@ public class CategoriaService : BaseService, ICategoriaService
     }
 
 
-    public async Task AdicionarCategoria(Categoria categoria)
+    public async Task Adicionar(Categoria categoria)
     {
         // if (categoria.Nome.Length < 5) throw new ArgumentNullException("Exce");
 
@@ -37,15 +37,27 @@ public class CategoriaService : BaseService, ICategoriaService
         
         await _categoriaRepository.Adicionar(categoria);
     }
-    
-    public async Task AdicionarSubcategoria(Subcategoria subCategoria)
+    public async Task Atualizar(Categoria categoria)
     {
-        // if (categoria.Nome.Length < 5) throw new ArgumentNullException("Exce");
+        if (!ExecutarValidacao(new CategoriaValidation(), categoria))  return;
 
-        if (!ExecutarValidacao(new SubCategoriaValidation(), subCategoria))  return;
+        if (_categoriaRepository.ObterPorId(categoria.Id).Result != null)
+        {
+            Notificar("Já existe uma Categoria com o mesmo ID");
+            return;
+        }
         
-        await _categoriaRepository.AdicionarSubcategoria(subCategoria);
+        if (_categoriaRepository.Consultar().Count(x => x.Nome == categoria.Nome) > 0)
+        {
+            Notificar("Já existe uma Categoria com o mesmo nome");
+            return;
+        }
+        
+        await _categoriaRepository.Adicionar(categoria);
     }
+
+    
+
 
     public async Task Remover(Guid id)
     {
@@ -57,8 +69,6 @@ public class CategoriaService : BaseService, ICategoriaService
     {
         _categoriaRepository?.Dispose();
     }
-
-
 
 }
 

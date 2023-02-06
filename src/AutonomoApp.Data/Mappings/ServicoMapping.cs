@@ -11,30 +11,31 @@ using System.Linq;
 
 namespace AutonomoApp.Data.Mappings
 {
-
-
-
     public class ServicoMapping : IEntityTypeConfiguration<Servico>
     {
         public void Configure(EntityTypeBuilder<Servico> builder)
         {
 
-            var splitStringConverter = new ValueConverter<IEnumerable<string>, string>(
+            var splitStringConverter1 = new ValueConverter<IEnumerable<string>, string>(
                   v => string.Join(",", v.Where(x => !string.IsNullOrWhiteSpace(x)).ToList()),
                   v => v.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != "").ToList());
 
-            builder.Property(p => p.Tags)
-                .HasConversion(splitStringConverter);
+            var splitStringConverter = new ValueConverter<IEnumerable<string>, string>(
+                v => string.Join(",", v),
+                v => v.Split(",", StringSplitOptions.RemoveEmptyEntries));
+            
+            var splitStringConverter3 = new ValueConverter<IEnumerable<string>, string>(
+                v => string.Join(",", v),
+                v => v.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList());
 
-            // TODO: mudar nome da propriedade
+            builder.Property(p => p.Tags)
+                .HasConversion(splitStringConverter3) ;
+
             builder
                 .HasOne(p => p.ClientePrestador)
                 .WithMany()
                 .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
                 
-            ///.HasConstraintName("ClientId");
-
-
             builder
                 .HasOne(p => p.Categoria)
                 .WithMany()
@@ -44,16 +45,6 @@ namespace AutonomoApp.Data.Mappings
                 .HasOne(x => x.Subcategoria)
                 .WithMany()
                 .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
-
-            //builder
-            //    .HasOne(p => p.SubCategoria)
-            //    .WithMany(x => x.Servicos)
-            //    .HasForeignKey(e => e.SubcategoriaId)
-            //    .OnDelete(DeleteBehavior.NoAction);
-
-
-
-
 
             builder.ToTable("AAServicos");
         }

@@ -24,11 +24,4 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
             .ToListAsync();
     }
 
-    #region SubCategorias
-    public async Task AdicionarSubcategoria(Subcategoria subcategoria)
-    {
-        Db.Subcategorias.Add(subcategoria);
-        await SaveChanges();
-    }
-    #endregion
 }

@@ -27,8 +27,23 @@ namespace AutonomoApp.ConsoleApp
         {
             AutonomoAppContext db = new();
             db.Database.EnsureDeleted();
+            //db.Database.EnsureCreated();
+        }
+        public static void ResetarAutonomoApp()
+        {
+            AutonomoAppContext db = new();
+            //db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
         }
+        public static void ResetarIdentity()
+        {
+            ApplicationDbContext db = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
+            //db.Database.EnsureDeleted();
+            db.Database.Migrate();
+            db.Database.GetAppliedMigrations();
+            // TODO arrumar um jeito de criar migrations e aplicar
+        }
+        
 
         public void CarregarDadosCategorias()
         {

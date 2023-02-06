@@ -8,5 +8,4 @@ public interface ICategoriaRepository : IRepository<Categoria>
 {
     Task<List<Categoria>> ObterTodasCategorias();
     Task<List<Categoria>> ObterTodasCategoriasESubcategorias();
-    Task AdicionarSubcategoria(Subcategoria subcategoria);
 }

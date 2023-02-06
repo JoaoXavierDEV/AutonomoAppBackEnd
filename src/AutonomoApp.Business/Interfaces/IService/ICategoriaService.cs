@@ -5,6 +5,6 @@ namespace AutonomoApp.Business.Interfaces.IService;
 
 public interface ICategoriaService
 {
-    Task AdicionarCategoria(Categoria categoria);
-    Task AdicionarSubcategoria(Subcategoria subCategoria);
+    Task Adicionar(Categoria categoria);
+    Task Atualizar(Categoria categoria);
 }

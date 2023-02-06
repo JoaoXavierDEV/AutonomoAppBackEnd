@@ -1,8 +1,7 @@
 ﻿using AutonomoApp.Business.Interfaces;
-using AutonomoApp.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutonomoApp.WebApi.Controllers.V2.Controllers
+namespace AutonomoApp.WebApi.Controllers.V2
 {
     [ApiVersion("2.1", Deprecated = false)]
     [Route("api/v{version:apiVersion}/aniversario")]

@@ -31,7 +31,7 @@ public class Program
                 // Console.Clear();
             } while (result);
         }
-        catch (InvalidOperationException e)
+        catch (InvalidOperationException e) // when(e.InnerException != null) 
         {
             Console.WriteLine("\n" +
             $"  ===============================================================================================================  \n"
@@ -52,10 +52,10 @@ public class Program
         Console.WriteLine(
             $"   # - MENU - \n" +
             $"  INSERT \n" +
-            $"  1 - Resetar BD\n" +
-            $"  2 - Carregar Categorias \n" +
-            $"  3 - Carregar RelacionamentosCateSubCat \n" +
-            $"  4 - Carregar CatSub2 \n" +
+            $"  1 - Resetar Banco de dados\n" +
+            $"  2 - Resetar AutonomoApp \n" +
+            $"  3 - Resetar Identity \n" +
+            $"  4 - Carregar Categorias \n" +
             $"  5 - Carregar DadosPessoa \n" +
             $"  6 - Carregar Servico \n" +
             $"  GET \n" +
@@ -72,13 +72,13 @@ public class Program
                 InserirDados.ResetarDb();
                 break;
             case "2":
-                banco.CarregarDadosCategorias();
+                InserirDados.ResetarAutonomoApp();
                 break;
             case "3":
-                
+                InserirDados.ResetarIdentity();
                 break;
             case "4":
-                banco.CarregarDadosCategoriasV2();
+                banco.CarregarDadosCategorias();
                 break;
             case "5":
                 banco.CarregarDadosPessoa();

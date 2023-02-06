@@ -19,8 +19,7 @@ namespace AutonomoApp.WebApi.Configuration
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            // TODO: pegar variavel de ambiente: RepositoryFaker
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            // var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
             //if(environmentName == "Development") {
             //    // Development
@@ -35,18 +34,17 @@ namespace AutonomoApp.WebApi.Configuration
             //    // SERVICES
             //    services.AddScoped<IServicoService, ServicoService>(); 
             //}
-            if(environmentName == "Development")
-            {
-                // Production
-                // REPOSITORY
-                services.AddScoped<AutonomoAppContext>();
-                services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-                services.AddScoped<IServicoRepository, ServicoRepository>();
-                // SERVICES
-                services.AddScoped<IServicoService, ServicoService>();
 
-            }
+            // REPOSITORY
+            services.AddScoped<AutonomoAppContext>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<ISubCategoriaRepository, SubCategoriaRepository>();
+            services.AddScoped<IServicoRepository, ServicoRepository>();
+            // SERVICES
+            services.AddScoped<IServicoService, ServicoService>();
             services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<ISubCategoriaService, SubCategoriaService>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<INotificador, Notificador>();
             services.AddScoped<IUser, AspNetUser>();

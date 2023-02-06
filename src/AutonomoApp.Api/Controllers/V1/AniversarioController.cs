@@ -1,8 +1,7 @@
 ﻿using AutonomoApp.Business.Interfaces;
-using AutonomoApp.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AutonomoApp.WebApi.Controllers.V1.Controllers;
+namespace AutonomoApp.WebApi.Controllers.V1;
 
 /// <summary>Class <c>AniversarioController</c> modelo de documentação.</summary>
 /// <remarks>Apenas testes classe</remarks>
