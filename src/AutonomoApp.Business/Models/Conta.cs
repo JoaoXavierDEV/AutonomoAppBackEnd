@@ -11,6 +11,7 @@ public class Conta : EntityBase
 {
     public bool UsuarioVerificado { get; set; }
     public bool PremiumAtivo { get; set; }
+    // TODO Benefícios devem ser fixos, fazer da forma como a categoria se junta com o Serviço
     public IEnumerable<Beneficio> Benefícios { get; set; } = Enumerable.Empty<Beneficio>();
     public bool PlanoVitalicio { get; set; }
     public bool RenovacaoAutomatica { get; set; }
@@ -19,7 +20,7 @@ public class Conta : EntityBase
 
     public Conta()
     {
-        Beneficio InicialBeneficio = new Beneficio
+        Beneficio InicialBeneficio = new()
         {
             Nome = "Avaliação de 30 dias",
             Codigo = "trial",

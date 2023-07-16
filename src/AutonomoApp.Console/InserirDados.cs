@@ -27,7 +27,7 @@ namespace AutonomoApp.ConsoleApp
         {
             AutonomoAppContext db = new();
             db.Database.EnsureDeleted();
-            //db.Database.EnsureCreated();
+            db.Database.EnsureCreated();
         }
         public static void ResetarAutonomoApp()
         {
@@ -37,13 +37,14 @@ namespace AutonomoApp.ConsoleApp
         }
         public static void ResetarIdentity()
         {
-            ApplicationDbContext db = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
+            //ApplicationDbContext db = new ApplicationDbContext(new DbContextOptions<ApplicationDbContext>());
             //db.Database.EnsureDeleted();
-            db.Database.Migrate();
-            db.Database.GetAppliedMigrations();
+            //db.Database.Migrate();
+            //db.Database.GetAppliedMigrations();
             // TODO arrumar um jeito de criar migrations e aplicar
+            // arquivo comentado
         }
-        
+
 
         public void CarregarDadosCategorias()
         {
@@ -241,6 +242,24 @@ namespace AutonomoApp.ConsoleApp
                     Complemento = "Do lado do canto perto da borda",
                     Logradouro = "Rua X"
                 },
+                Conta = new Conta
+                {
+                    DataInicio = DateTime.Now.AddMonths(-6),
+                    PlanoVitalicio = true,
+                    PremiumAtivo = true,
+                    UsuarioVerificado = true,
+                    RenovacaoAutomatica = false,
+                    Benefícios = new List<Beneficio>
+                    {
+                        new Beneficio
+                        {
+                            Codigo = "HUETESTE",
+                            TipoDeBeneficio = TipoDeBeneficio.ExibirTopo10,
+                            Nome = "Topo 10x dia",
+                            Descricao = "Exibir conteudo 10x no top por dia"
+                        }
+                    }
+                },
                 Nascimento = new DateTime(1995, 01, 31),
                 //TipoDocumento = TipoDocumentoEnum.PessoaFisica,
                 //HistoricoDePedidos = new List<ServicoSolicitacao>()
@@ -256,7 +275,7 @@ namespace AutonomoApp.ConsoleApp
                 //                Valor = 8000m,
                 //                CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
                 //                SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
-                                
+
                 //                //Categoria = new List<Categoria>()
                 //                //{
                 //                //    new Categoria()
@@ -277,8 +296,8 @@ namespace AutonomoApp.ConsoleApp
                 //                //}
 
                 //            },
-                   // }
-               // }
+                // }
+                // }
 
 
 
@@ -313,7 +332,7 @@ namespace AutonomoApp.ConsoleApp
                 //ServicoCategoria = new List<ServicoCategoria>() { },
                 //Categoria =  new Categoria(),
 
-                Tags = new List<string>() { "aspnet", "microsoft", "", " ","", " " },
+                Tags = new List<string>() { "aspnet", "microsoft", "", " ", "", " " },
 
             };
 
@@ -340,7 +359,7 @@ namespace AutonomoApp.ConsoleApp
             ss.Valor = 300.00m;
             var valooor2 = ss.Valor;
         }
-        
+
 
     }
 }

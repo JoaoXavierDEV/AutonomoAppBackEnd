@@ -1,108 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="AutonomoApp.Business.Models.Pessoa">
-    <Position X="6.25" Y="7.5" Width="2" />
+    <Position X="12.25" Y="4.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAABAACAAgAASEAkAA=</HashCode>
       <FileName>Models\Pessoa.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Endereco" />
+      <Property Name="TipoDocumento" />
       <Property Name="Conta" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="HistoricoDePedidos" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="AutonomoApp.Business.Models.PessoaFisica" Collapsed="true">
-    <Position X="7.5" Y="11" Width="1.5" />
+  <Class Name="AutonomoApp.Business.Models.PessoaFisica">
+    <Position X="13.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Models\PessoaFisica.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AutonomoApp.Business.Models.PessoaJuridica" Collapsed="true">
-    <Position X="5.25" Y="11" Width="1.5" />
+  <Class Name="AutonomoApp.Business.Models.PessoaJuridica">
+    <Position X="11.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
       <FileName>Models\PessoaJuridica.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.ServicoSolicitado">
-    <Position X="12.75" Y="7.75" Width="2" />
-    <Compartments>
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
+    <Position X="9.5" Y="4.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAEAAAAAAQAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAAAAAAAgAAAEAAAAAAQAAAACAAAAAAAAAA=</HashCode>
       <FileName>Models\ServicoSolicitado.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Servico" />
+      <Property Name="ClienteSolicitante" />
     </ShowAsAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Endereco">
-    <Position X="10.25" Y="9.75" Width="1.5" />
+    <Position X="15.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAAAACIEAAAAAACAAAAAAAAAAAAAAAABAAg=</HashCode>
       <FileName>Models\Endereco.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Categoria">
-    <Position X="5.75" Y="0.5" Width="2.25" />
+    <Position X="3.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAAAAAAAAABAAAAAgAAAAAAAAAAAAAAAAAAAAEAACA=</HashCode>
+      <HashCode>ABAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Models\Categoria.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CategoriaEnum" />
+    </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Subcategorias" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Subcategoria">
-    <Position X="2.75" Y="3.5" Width="2.25" />
+    <Position X="0.5" Y="4.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAABAAAAAAAAAAgAAAAAAAAAAAAgAAEAAEA=</HashCode>
+      <HashCode>AAAAAAAAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Models\Subcategoria.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AutonomoApp.Business.Models.ServicoCategoria">
-    <Position X="13" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAgAAAAAAAAAAAQAAAAAAAAAAAAAEA=</HashCode>
-      <FileName>Models\ServicoCategoria.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Servico" />
-      <Property Name="Categoria" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="AutonomoApp.Business.Models.ServicoSubCategoria">
-    <Position X="6" Y="3.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAAAACAAAAAAAAAAQAAQAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\ServicoCategoria.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Servico" />
-      <Property Name="Subcategoria" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="AutonomoApp.Business.Models.Servico">
-    <Position X="9.25" Y="2.5" Width="2.25" />
+    <Position X="6.5" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAECAABAEAFAABAEAAAIAgEAABAQEAAAAQAAgUAAEA=</HashCode>
+      <HashCode>AAABCAABAEABAABgGAAAIAAEAAAAQEAAAAQAAgUAAAA=</HashCode>
       <FileName>Models\Servico.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Prestador" />
+      <Property Name="Categoria" />
     </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="ServicoCategoria" />
-      <Property Name="ServicoSubCategoria" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Conta">
-    <Position X="3.25" Y="7.75" Width="2" />
+    <Position X="12" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAIAAAAIAAQAAAAAAAAAhAAAACAAAAAAAA=</HashCode>
       <FileName>Models\Conta.cs</FileName>
@@ -112,11 +88,35 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Beneficio">
-    <Position X="0.5" Y="8" Width="1.5" />
+    <Position X="9.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQABAAAAAAAAAAAAAAAAAAAAEAAAAAEAAAA=</HashCode>
-      <FileName>Models\Conta.cs</FileName>
+      <FileName>Models\Beneficio.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TipoDeBeneficio" />
+    </ShowAsAssociation>
   </Class>
+  <Enum Name="AutonomoApp.Business.Models.Enums.TipoDocumentoEnum">
+    <Position X="15.5" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAIAAAA=</HashCode>
+      <FileName>Models\Enums\PessoaTipoDocumentoEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AutonomoApp.Business.Models.Enums.CategoriaEnum" Collapsed="true">
+    <Position X="3.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAQAAAAAAAEAAAAAAAIAEAAAAgAAgAAAAA=</HashCode>
+      <FileName>Models\Enums\CategoriaEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AutonomoApp.Business.Models.Enums.TipoDeBeneficio" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAACAAAAAgAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Enums\TipoDeBeneficio.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

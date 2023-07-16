@@ -18,8 +18,11 @@ namespace AutonomoApp.WebApi.Configuration
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString(environmentName)));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole>()
+            services
+                .AddDefaultIdentity<UsuarioIdentity>()
+                //.AddUserStore<UsuarioIdentity>()
+                //.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddDefaultTokenProviders();

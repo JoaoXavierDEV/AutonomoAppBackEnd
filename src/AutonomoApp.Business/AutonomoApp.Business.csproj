@@ -18,7 +18,8 @@
 
   <ItemGroup>
     <Folder Include="DiagramasDeClasses\" />
-    <Folder Include="DTO\" />
+    <Folder Include="DTO\Response\" />
+    <Folder Include="DTO\Request\" />
   </ItemGroup>
 
   <ItemGroup>

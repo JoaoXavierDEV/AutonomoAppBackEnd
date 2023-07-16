@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutonomoApp.Data.Migrations
 {
     [DbContext(typeof(AutonomoAppContext))]
-    [Migration("20230206010421_Inicio")]
-    partial class Inicio
+    [Migration("20230716175012_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -33,30 +33,30 @@ public class CategoriaService : BaseService, ICategoriaService
     {
         // if (categoria.Nome.Length < 5) throw new ArgumentNullException("Exce");
 
-        if (!ExecutarValidacao(new CategoriaValidation(), categoria))  return;
-        
+        if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return;
+
         await _categoriaRepository.Adicionar(categoria);
     }
     public async Task Atualizar(Categoria categoria)
     {
-        if (!ExecutarValidacao(new CategoriaValidation(), categoria))  return;
+        if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return;
 
         if (_categoriaRepository.ObterPorId(categoria.Id).Result != null)
         {
             Notificar("Já existe uma Categoria com o mesmo ID");
             return;
         }
-        
+
         if (_categoriaRepository.Consultar().Count(x => x.Nome == categoria.Nome) > 0)
         {
             Notificar("Já existe uma Categoria com o mesmo nome");
             return;
         }
-        
+
         await _categoriaRepository.Adicionar(categoria);
     }
 
-    
+
 
 
     public async Task Remover(Guid id)
