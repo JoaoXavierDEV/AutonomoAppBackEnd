@@ -1,5 +1,6 @@
 ﻿using System.Text;
-using AutonomoApp.WebApi.Data;
+using AutonomoApp.Data.Context;
+using AutonomoApp.Data.Mappings.Identity;
 using AutonomoApp.WebApi.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -15,15 +16,16 @@ namespace AutonomoApp.WebApi.Configuration
         {
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<AutonomoAppContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString(environmentName)));
 
             services
                 .AddDefaultIdentity<UsuarioIdentity>()
                 //.AddUserStore<UsuarioIdentity>()
                 //.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole<Guid>>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddRoles<UsuarioIdentityRole>()
+                // .AddRoles<UsuarioIdentityRole>() // testar
+                .AddEntityFrameworkStores<AutonomoAppContext>()
                 .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddDefaultTokenProviders();
 

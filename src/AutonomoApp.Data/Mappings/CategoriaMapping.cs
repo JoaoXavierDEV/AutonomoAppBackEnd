@@ -39,6 +39,6 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
 
 
 
-        builder.ToTable("AACategorias");
+        //builder.ToTable("AACategorias");
     }
 }

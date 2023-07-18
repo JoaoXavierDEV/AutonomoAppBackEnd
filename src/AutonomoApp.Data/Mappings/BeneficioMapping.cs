@@ -22,7 +22,7 @@ namespace AutonomoApp.Data.Mappings
                 .Property(x => x.TipoDeBeneficio)
                 .HasConversion<string>();
 
-            builder.ToTable("AABeneficio");
+            //builder.ToTable("AABeneficio");
         }
     }
 }

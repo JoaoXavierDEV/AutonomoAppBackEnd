@@ -38,7 +38,7 @@ namespace AutonomoApp.Data.Mappings
                 .IsRequired(false)
                 .HasColumnType("varchar(50)");
 
-            builder.ToTable("AAEnderecos");
+            //builder.ToTable("AAEnderecos");
         }
     }
 }

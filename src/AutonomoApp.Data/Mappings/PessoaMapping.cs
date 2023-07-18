@@ -14,20 +14,20 @@ public class PessoaMapping : IEntityTypeConfiguration<Pessoa>
 
         builder.HasOne(x => x.Conta);
 
-        builder.ToTable("AAPessoa");
+        //builder.ToTable("AAPessoa");
     }
 }
 public class PessoaFisicaMapping : IEntityTypeConfiguration<PessoaFisica>
 {
     public void Configure(EntityTypeBuilder<PessoaFisica> builder)
     {
-        builder.ToTable("AAPessoaFisica");
+        //builder.ToTable("AAPessoaFisica");
     }
 }
 public class PessoaJuridicaMapping : IEntityTypeConfiguration<PessoaJuridica>
 {
     public void Configure(EntityTypeBuilder<PessoaJuridica> builder)
     {
-        builder.ToTable("AAPessoaJuridica");
+        //builder.ToTable("AAPessoaJuridica");
     }
 }

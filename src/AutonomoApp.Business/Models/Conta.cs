@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,17 +10,22 @@ namespace AutonomoApp.Business.Models;
 
 public class Conta : EntityBase
 {
-    public bool UsuarioVerificado { get; set; }
-    public bool PremiumAtivo { get; set; }
+    public bool UsuarioVerificado { get; set; } = false;
+    public bool PremiumAtivo { get; set; } = false;
     // TODO Benefícios devem ser fixos, fazer da forma como a categoria se junta com o Serviço
-    public IEnumerable<Beneficio> Benefícios { get; set; } = Enumerable.Empty<Beneficio>();
-    public bool PlanoVitalicio { get; set; }
-    public bool RenovacaoAutomatica { get; set; }
-    public DateTime DataInicio { get; set; }
-    public DateTime DataFim { get; set; }
+    public ICollection<Beneficio> Benefícios { get; set; } = new Collection<Beneficio>();
+    public bool PlanoVitalicio { get; set; } = false;
+    public bool RenovacaoAutomatica { get; set; } = false;
+    public DateTime DataInicio { get; set; } = DateTime.UtcNow;
+    public DateTime? DataFim { get; set; } 
 
     public Conta()
     {
+        UsuarioVerificado = false;
+        PremiumAtivo = false;
+        PlanoVitalicio = false;
+        RenovacaoAutomatica = false;
+        DataInicio = DateTime.UtcNow;
         Beneficio InicialBeneficio = new()
         {
             Nome = "Avaliação de 30 dias",
@@ -28,7 +34,7 @@ public class Conta : EntityBase
             TipoDeBeneficio = TipoDeBeneficio.Avaliacao,
         };
 
-        Benefícios = Benefícios.Append(InicialBeneficio);
+        Benefícios.Add(InicialBeneficio);
     }
 }
 

@@ -1,4 +1,6 @@
 ﻿using AutonomoApp.Business.Models;
+using AutonomoApp.Data.Mappings.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +10,8 @@ using Microsoft.IdentityModel.Protocols;
 
 namespace AutonomoApp.Data.Context;
 
-public class AutonomoAppContext : DbContext
+//public class AutonomoAppContext : DbContext
+public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdentityRole,Guid>
 {
     #region DbSet<>
     public DbSet<Categoria> Categorias { get; set; }
@@ -24,6 +27,10 @@ public class AutonomoAppContext : DbContext
 
     #endregion
 
+    // Usuario Identity
+    public DbSet<UsuarioIdentity> UsuarioIdentity { get; set; }
+    
+
     public AutonomoAppContext()
     {
 
@@ -36,7 +43,6 @@ public class AutonomoAppContext : DbContext
         //Database.EnsureDeleted();
         //Database.EnsureCreated();
     }
-
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

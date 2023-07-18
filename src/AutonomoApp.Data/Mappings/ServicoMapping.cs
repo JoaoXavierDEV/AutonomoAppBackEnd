@@ -46,7 +46,7 @@ namespace AutonomoApp.Data.Mappings
                 .WithMany()
                 .OnDelete(deleteBehavior: DeleteBehavior.ClientCascade);
 
-            builder.ToTable("AAServicos");
+            // builder.ToTable("AAServicos");
         }
     }
 
