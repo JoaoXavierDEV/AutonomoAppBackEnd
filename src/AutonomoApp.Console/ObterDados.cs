@@ -31,7 +31,7 @@ namespace AutonomoApp.ConsoleApp
 
             var t2t = db.Beneficios.Where(x => EF.Property<Guid>(x, "ContaId") == Guid.Parse("{a06433e9-9104-4f5f-a08f-c789055754b9}")).ToList();
 
-           
+
 
             Console.WriteLine(result.ToString());
         }
@@ -49,19 +49,24 @@ namespace AutonomoApp.ConsoleApp
             //    .Select(x => x)
             //    .AsNoTracking()
             //    .First();
-            string tags = ",," ;
-            tags=tags.Replace(" ", "");
+            
+            var Tags = new List<string>() { "aspnet", "microsoft", "petshop", " ", "", " " };
+            var TagsResuklt = string.Join(",", Tags.Where(x => !string.IsNullOrWhiteSpace(x)).ToList());
+
+
+            // teste de remover tags
+            string tags = "aspnet,microsoft,petshop, ,, ";
+            tags = tags.Replace(" ", "");
+
 
             var result = tags.Split(',', StringSplitOptions.RemoveEmptyEntries);
-            var result2 = tags.Split(',', StringSplitOptions.TrimEntries);
-            var result3 = tags.Split(',', StringSplitOptions.None);
 
-            var re = tags.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != "" && x != null).ToList();
+            var re = tags.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != ""/* && x != null */).ToList();
 
             var servicoUsuario = db.Servico
                 .Include(x => x.ClientePrestador)
                 .Include(x => x.Categoria)
-                //.Include(x => x.ServicoSubCategoria)
+                .Include(x => x.Subcategoria)
                 //.Where(x => x.Prestador.Documento == "14494943700")
                 //.Select(p => p.Subcategorias.Where( c => c.SubCatEnumId == (int)Tecnologia.DevenvolvimetoBackEnd))
                 .Select(x => x)
@@ -71,11 +76,11 @@ namespace AutonomoApp.ConsoleApp
 
             tt.IsNullOrEmpty();
 
-                //db.ChangeTracker.Clear();
-                List<Servico> servicoAll = db.Servico
-                .Include(x => x.ClientePrestador)
-              //  .Include(x => x.ServicoCategoria)
-                .ToList();
+            //db.ChangeTracker.Clear();
+            List<Servico> servicoAll = db.Servico
+            .Include(x => x.ClientePrestador)
+            //  .Include(x => x.ServicoCategoria)
+            .ToList();
 
             var categoriasSubAll = db.Subcategorias
                 //.Include(c => c.Subcategorias)

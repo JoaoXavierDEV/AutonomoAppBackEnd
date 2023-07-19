@@ -9,6 +9,12 @@ public sealed class PessoaFisica : Pessoa
     public PessoaFisica()
     {
         TipoDocumento = Enums.TipoDocumentoEnum.PessoaFisica;
+        Conta = new Conta()
+        {
+            PlanoVitalicio = true,
+            PremiumAtivo = true,
+            UsuarioVerificado = true,
+        };
     }
 
     public int GetIdadeNoAno()

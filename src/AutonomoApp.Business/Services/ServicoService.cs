@@ -48,7 +48,7 @@ public class ServicoService : BaseService, IServicoService
 
         var servicoDto = new ServicoDTO()
         {
-            Prestador = ser.ClientePrestador,
+            //Prestador = ser.ClientePrestador,
             Nome = ser.Nome,
             Descricao = ser.Descricao,
             Valor = ser.Valor,

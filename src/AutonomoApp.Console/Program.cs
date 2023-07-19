@@ -37,12 +37,12 @@ public class Program
             $"  ===============================================================================================================  \n"
             + "   " + e.Message +
             $"  ===============================================================================================================  \n"
-            );//Console.ReadKey();
+            );
+            //Console.ReadKey();
             Main();
         }
         catch (Exception e)
         {
-
             Console.WriteLine(e.Message);
         }
 
@@ -53,10 +53,10 @@ public class Program
             $"   # - MENU - \n" +
             $"  INSERT \n" +
             $"  1 - Resetar Banco de dados\n" +
-            $"  2 - Resetar AutonomoApp \n" +
-            $"  3 - Resetar Identity \n" +
+            $"  2 - Resetar e Carregar \n" +
+            $"  3 - Carregar Usuario Identity \n" +
             $"  4 - Carregar Categorias \n" +
-            $"  5 - Carregar DadosPessoa \n" +
+            $"  5 - Carregar Servico \n" +
             $"  6 - Carregar Servico \n" +
             $"  GET \n" +
             $"  10 - Get Servico \n" +
@@ -72,16 +72,16 @@ public class Program
                 InserirDados.ResetarDb();
                 break;
             case "2":
-                InserirDados.ResetarAutonomoApp();
+                banco.BuildEntity();
                 break;
             case "3":
-                InserirDados.ResetarIdentity();
+                banco.CarregarUsuarioIdentity();
                 break;
             case "4":
                 banco.CarregarDadosCategorias();
                 break;
             case "5":
-                banco.CarregarDadosPessoa();
+                banco.CarregarServico();
                 break;
             case "6":
                 banco.CarregarServico();

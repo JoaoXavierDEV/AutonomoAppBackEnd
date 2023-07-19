@@ -65,8 +65,6 @@ namespace AutonomoApp.WebApi.Controllers
                 }
             };
 
-            // TODO provavelmente o migration tem algum nome como CONTA e não AAConta
-
             var result = await _userManager.CreateAsync(user, registerUser.Password);
             if (result.Succeeded)
             {

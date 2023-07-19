@@ -29,6 +29,7 @@ public abstract class Pessoa : EntityBase
     protected Pessoa()
     {
         HistoricoDePedidos = Enumerable.Empty<ServicoSolicitado>();
+        Conta = new Conta();
     }
 
 }

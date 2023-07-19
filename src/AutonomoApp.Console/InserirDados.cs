@@ -3,6 +3,7 @@ using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 using AutonomoApp.Data.Context;
+using AutonomoApp.Data.Mappings.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,22 @@ namespace AutonomoApp.ConsoleApp
 {
     public class InserirDados
     {
+        public Endereco Endereco { get; set; } = new Endereco
+        {
+            Bairro = "Califórnia",
+            Cep = "26220330",
+            Cidade = "Nova Iguaçu",
+            Complemento = "Ali bem perto",
+            Numero = "263",
+            Logradouro = "Rua perto do outro lado na volta antes do retorno",
+            Estado = "Rio de Janeiro",
+        };
+
         public void BuildEntity()
         {
             ResetarDb();
             CarregarDadosCategorias();
+            CarregarUsuarioIdentity();
             //CarregarDadosPessoa();
             //CarregarServico();
             //RelacionamentosCateSubCat();
@@ -32,7 +45,7 @@ namespace AutonomoApp.ConsoleApp
         public static void ResetarAutonomoApp()
         {
             AutonomoAppContext db = new();
-            //db.Database.EnsureDeleted();
+            db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
         }
         public static void ResetarIdentity()
@@ -42,7 +55,6 @@ namespace AutonomoApp.ConsoleApp
             //db.Database.Migrate();
             //db.Database.GetAppliedMigrations();
             // TODO arrumar um jeito de criar migrations e aplicar
-            // arquivo comentado
         }
 
 
@@ -224,86 +236,25 @@ namespace AutonomoApp.ConsoleApp
             db.ChangeTracker.Clear();*/
         }
 
-        public void CarregarDadosPessoa()
+        public void CarregarUsuarioIdentity()
         {
             AutonomoAppContext db = new();
-            db.PessoaFisica.AddRange(new PessoaFisica()
+
+            var user = new UsuarioIdentity
             {
-                //Id = Guid.NewGuid(),
-                Nome = "João Fernando",
-                Documento = "11122233345",
-                Endereco = new Endereco
+                UserName = "joaojfmx",
+                Email = "joao_jfmx@outlook.com",
+                EmailConfirmed = true,
+                Pessoa =
+                new Business.Models.PessoaFisica
                 {
-                    Cep = "26220330",
-                    Cidade = "Nova iguaçu",
-                    Numero = "263",
-                    Bairro = "Centro",
-                    Estado = "RJ",
-                    Complemento = "Do lado do canto perto da borda",
-                    Logradouro = "Rua X"
+                    Nome = "João Fernando Moura Xavier",
+                    Endereco = Endereco,
+                    Nascimento = new DateTime(1995, 01, 31),
+                    Documento = "24485264820",
                 },
-                Conta = new Conta
-                {
-                    DataInicio = DateTime.Now.AddMonths(-6),
-                    PlanoVitalicio = true,
-                    PremiumAtivo = true,
-                    UsuarioVerificado = true,
-                    RenovacaoAutomatica = false,
-                    Benefícios = new List<Beneficio>
-                    {
-                        new Beneficio
-                        {
-                            Codigo = "HUETESTE",
-                            TipoDeBeneficio = TipoDeBeneficio.ExibirTopo10,
-                            Nome = "Topo 10x dia",
-                            Descricao = "Exibir conteudo 10x no top por dia"
-                        }
-                    }
-                },
-                Nascimento = new DateTime(1995, 01, 31),
-                //TipoDocumento = TipoDocumentoEnum.PessoaFisica,
-                //HistoricoDePedidos = new List<ServicoSolicitacao>()
-                //{
-                //    new ServicoSolicitacao()
-                //        {
-                //            DataConclusaoEstimada = new DateTime(2022,12,12),
-                //            ServicoSolicitado = new Servico()
-                //            {
-                //                Nome = "Desenvolver app",
-                //                Descricao = "App de psicologia",
-                //                Tags = new List<string>() { "aspnet", "microsoft" },
-                //                Valor = 8000m,
-                //                CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                //                SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
-
-                //                //Categoria = new List<Categoria>()
-                //                //{
-                //                //    new Categoria()
-                //                //    {
-                //                //        Nome = "Testeeee",
-                //                //        SubCatEnumId = 99,
-                //                //        Descricao = "hueteste",
-                //                //        Subcategorias = new List<Subcategoria>()
-                //                //        {
-                //                //            new Subcategoria()
-                //                //            {
-                //                //                Nome = "SubTeste",
-                //                //                SubCatEnumId = 88,
-                //                //                Descricao = "hue sub teste"
-                //                //            }
-                //                //        }
-                //                //    }
-                //                //}
-
-                //            },
-                // }
-                // }
-
-
-
-
-            });
-
+            };
+            db.UsuarioIdentity.Add(user);
             db.SaveChanges();
             db.ChangeTracker.Clear();
 
@@ -316,30 +267,24 @@ namespace AutonomoApp.ConsoleApp
             var servico = new Servico()
             {
                 Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
-                ClientePrestador = new PessoaFisica()
-                {
-                    Id = Guid.Parse("2a0ee983-3d5f-4342-821c-7a94f54d5121"),
-                    Nome = "Jaum",
-                    Documento = "11122233300",
-                    Nascimento = new DateTime(1995, 01, 31),
-
-                },
-                Nome = "Desenvolver app",
-                Descricao = "App de psicologia",
-                Valor = 8000m,
-                // CategoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e"),
-                //SubcategoriaId = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb"),
-                //ServicoCategoria = new List<ServicoCategoria>() { },
-                //Categoria =  new Categoria(),
-
-                Tags = new List<string>() { "aspnet", "microsoft", "", " ", "", " " },
-
+                Nome = "App de PetShop",
+                Descricao = "Desenvolver aplicativo para Android em Flutter",
+                Valor = 8500.99m,
+                Tags = new List<string>() { "aspnet", "microsoft", "petshop", " ", "", " " },
             };
 
             db.Servico.AddRange(servico);
 
             var categoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e");
             db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
+            
+            var pessoaId = Guid.Parse("A9B756EB-81C9-48DE-977D-0A4D3DA2817B");
+            db.Entry(servico).Property("ClientePrestadorId").CurrentValue = pessoaId;
+
+            var subCategoriaId = Guid.Parse("9D1FFC68-1595-4D6A-A62C-3D82F1A0BBFB");
+            db.Entry(servico).Property("SubcategoriaId").CurrentValue = subCategoriaId;
+
+
 
             db.SaveChanges();
             db.ChangeTracker.Clear();

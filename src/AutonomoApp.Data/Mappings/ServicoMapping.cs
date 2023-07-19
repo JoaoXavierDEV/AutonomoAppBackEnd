@@ -18,7 +18,7 @@ namespace AutonomoApp.Data.Mappings
 
             var splitStringConverter1 = new ValueConverter<IEnumerable<string>, string>(
                   v => string.Join(",", v.Where(x => !string.IsNullOrWhiteSpace(x)).ToList()),
-                  v => v.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != "").ToList());
+                  v => v.Replace(" ", string.Empty).Split(',', StringSplitOptions.RemoveEmptyEntries).Where(x => x != "" && x != null).ToList());
 
             var splitStringConverter = new ValueConverter<IEnumerable<string>, string>(
                 v => string.Join(",", v),

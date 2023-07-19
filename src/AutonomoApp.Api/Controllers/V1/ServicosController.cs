@@ -62,12 +62,24 @@ public class ServicosController : MainController
     }
 
     [HttpPost("CadastrarServico")]
-    public async Task<Servico> CadastrarServico()
+    public async Task<Servico> CadastrarServico(ServicoDTO servico)
     {
-        // if (!ModelState.IsValid) throw new Exception();
+        try
+        {
+            // TODO o historico que está dando erro, criar viewmodels
+            var tt = servico.Tags.ToList().RemoveAll(x => x == "" && x == null && x == " ");
 
-        await _servicoRepository.Adicionar(new Servico());
-        return new Servico();
+
+            // if (!ModelState.IsValid) throw new Exception();
+
+            //await _servicoRepository.Adicionar(new Servico());
+            return new Servico();
+        }
+        catch (Exception ex)
+        {
+            
+            throw;
+        }
     }
 }
 

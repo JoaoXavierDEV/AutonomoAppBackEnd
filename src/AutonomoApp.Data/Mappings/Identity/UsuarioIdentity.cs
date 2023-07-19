@@ -12,6 +12,7 @@ namespace AutonomoApp.Data.Mappings.Identity
 
         public UsuarioIdentity()
         {
+            
         }
     }
     public class UsuarioIdentityRole : IdentityRole<Guid>
