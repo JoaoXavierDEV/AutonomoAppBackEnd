@@ -10,7 +10,8 @@ namespace AutonomoApp.Business.Interfaces.IRepository;
 public interface IRepository<TEntity> : IDisposable where TEntity : EntityBase
 {
     Task Adicionar(TEntity entity);
-    IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase;
+    // IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase;
+    IQueryable<TAbela> Consultar<TAbela>() where TAbela : class;
     IQueryable<TEntity> Consultar();
     Task<TEntity> ObterPorId(Guid id);
     Task<List<TEntity>> ObterTodos();

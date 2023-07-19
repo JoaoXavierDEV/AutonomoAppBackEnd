@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using AutonomoApp.Business.Models;
 
 namespace AutonomoApp.Business.DTO;
-
-
 public record struct ServicoDTO
 {
-    public Pessoa Prestador { get; set; }
+    public Guid Prestador { get; set; }
     public string Nome { get; set; }
     public string Descricao { get; set; }
     public decimal Valor { get; set; }
     public IEnumerable<string> Tags { get; set; }
-    public CategoriaDto Categoria { get; set; }
-    public SubCategoriaDto Subcategoria { get; set; }
+    public Guid Categoria { get; set; }
+    public Guid Subcategoria { get; set; }
 
-    public ServicoDTO(Pessoa prestador, 
-        string nome, string descricao, 
-        decimal valor, IEnumerable<string> tags,
-        CategoriaDto categoria,
-        SubCategoriaDto subcategoria)
+    public ServicoDTO(Guid prestador, string nome, string descricao, decimal valor, IEnumerable<string> tags, Guid categoria, Guid subcategoria)
     {
         Prestador = prestador;
         Nome = nome;
@@ -28,6 +22,17 @@ public record struct ServicoDTO
         Tags = tags;
         Categoria = categoria;
         Subcategoria = subcategoria;
+    }
+
+    public Servico ToModel()
+    {
+        return new Servico()
+        {
+            Nome = Nome,
+            Descricao = Descricao,
+            Valor = Valor,
+            Tags = Tags,
+        };
     }
 }
 

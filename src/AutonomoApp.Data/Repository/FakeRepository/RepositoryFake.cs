@@ -15,7 +15,7 @@ public abstract class RepositoryFake<T> : IRepository<T> where T : EntityBase, n
     protected RepositoryFake() { }
 
     #region CONSULTAR<T>
-    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
+    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : class
     {
         if (typeof(TAbela) == typeof(PessoaFisica))
             return (IQueryable<TAbela>)DataBaseFake.GetPessoaFisica().AsQueryable();

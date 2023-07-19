@@ -4,6 +4,7 @@ using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
+using AutonomoApp.Data.Mappings.Identity;
 using AutonomoApp.Data.Repository;
 using AutonomoApp.Data.Repository.FakeRepository;
 using Microsoft.AspNetCore.Mvc;
@@ -62,22 +63,25 @@ public class ServicosController : MainController
     }
 
     [HttpPost("CadastrarServico")]
-    public async Task<Servico> CadastrarServico(ServicoDTO servico)
+    public async Task<ActionResult<Servico>> CadastrarServico(ServicoDTO servico)
     {
         try
         {
+            var tt2 = _servicoRepository.Consultar<UsuarioIdentity>()
+                .First(x => x.Id == UsuarioId);
+
             // TODO o historico que está dando erro, criar viewmodels
             var tt = servico.Tags.ToList().RemoveAll(x => x == "" && x == null && x == " ");
 
 
             // if (!ModelState.IsValid) throw new Exception();
 
-            //await _servicoRepository.Adicionar(new Servico());
+            await _servicoRepository.Adicionar(new Servico());
             return new Servico();
         }
         catch (Exception ex)
         {
-            
+            return CustomResponse(servico);
             throw;
         }
     }

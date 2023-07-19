@@ -7,11 +7,13 @@ using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Repository;
 using AutonomoApp.WebApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AutonomoApp.WebApi.Controllers.V1
 {
+    [Authorize]
     [ApiVersion("1.0", Deprecated = false)]
     [Route("api/v{version:apiVersion}/Categoria")]
     [Produces("application/json")]
@@ -36,18 +38,19 @@ namespace AutonomoApp.WebApi.Controllers.V1
         /// Obtem todas as categorias e suas respectivas subcategorias
         /// </summary>
         /// <returns>Lista</returns>
+        [AllowAnonymous]
         [HttpGet("ObterTodas")]
         public async Task<List<CategoriaViewModel>> ObterTodasCategorias()
         {
             return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategorias());
         }
-
+        [AllowAnonymous]
         [HttpGet("ObterTodasCategoriasESubCategorias")]
         public async Task<List<Categoria>> ObterTodasCategoriasESubCategorias()
         {
             return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
         }
-
+        [AllowAnonymous]
         [HttpGet("Obter/{id:guid}")]
         public async Task<Categoria> ObterCategoria(Guid id)
         {

@@ -1,4 +1,5 @@
-﻿using AutonomoApp.Business.Interfaces.IRepository;
+﻿using AutonomoApp.Business.DTO;
+using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -25,9 +26,24 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
             .FirstOrDefaultAsync();
     }
 
-    public async void VincularCategoria(Servico servico, Guid categoriaId)
+    public async void VincularCategoria(ServicoDTO servicoDto)
     {
+        var servico = servicoDto.ToModel();
+
+        var categoriaId = servicoDto.Categoria;
         Db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
-        await Atualizar(servico);
+
+        var pessoaId = servicoDto.Prestador;
+        Db.Entry(servico).Property("ClientePrestadorId").CurrentValue = pessoaId;
+
+        var subCategoriaId = servicoDto.Subcategoria;
+        Db.Entry(servico).Property("SubcategoriaId").CurrentValue = subCategoriaId;
+
+        await Adicionar(servico);
+    }
+
+    public void VincularCategoria(Servico servico, Guid categoriaId)
+    {
+        throw new NotImplementedException();
     }
 }

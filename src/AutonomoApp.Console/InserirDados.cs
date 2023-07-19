@@ -28,8 +28,8 @@ namespace AutonomoApp.ConsoleApp
         public void BuildEntity()
         {
             ResetarDb();
-            CarregarDadosCategorias();
-            CarregarUsuarioIdentity();
+            // CarregarDadosCategorias();
+            //CarregarUsuarioIdentity();
             //CarregarDadosPessoa();
             //CarregarServico();
             //RelacionamentosCateSubCat();

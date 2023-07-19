@@ -21,7 +21,8 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
         return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
     }
 
-    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
+    // public IQueryable<TAbela> Consultar<TAbela>() where TAbela : EntityBase
+    public IQueryable<TAbela> Consultar<TAbela>() where TAbela : class
     {
         return Db.Set<TAbela>();
     }

@@ -53,8 +53,8 @@ public class ServicoService : BaseService, IServicoService
             Descricao = ser.Descricao,
             Valor = ser.Valor,
             Tags = ser.Tags,
-            Categoria = catdto,
-            Subcategoria = subCatDto
+            //Categoria = catdto,
+            //Subcategoria = subCatDto
 
         };
         return servicoDto;
