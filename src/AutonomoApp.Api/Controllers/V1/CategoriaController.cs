@@ -78,6 +78,7 @@ namespace AutonomoApp.WebApi.Controllers.V1
             {
                 return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
             }
+
             return CustomResponse(categoriaViewModel);
         }
 

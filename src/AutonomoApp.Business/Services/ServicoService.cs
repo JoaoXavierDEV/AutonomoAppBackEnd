@@ -20,7 +20,7 @@ public class ServicoService : BaseService, IServicoService
     {
         _servicoRepository = servicoRepository;
     }
-    public List<Servico> ServicosPrestados(Guid id)
+    public List<Servico> ServicosPrestadosPorUsuario(Guid id)
     {
         return _servicoRepository.Consultar<Servico>()
             .Where(z => z.Id == id)
@@ -60,19 +60,16 @@ public class ServicoService : BaseService, IServicoService
         return servicoDto;
     }
 
-    public void VincularCategoriaAoServico(Servico servico, Guid categoriaId)
+    public async void ValidarServico(ServicoDTO servico)
     {
-        ArgumentNullException.ThrowIfNull(servico, "servico invalido");
-        ArgumentNullException.ThrowIfNull(categoriaId, "guid invalido");
+        var query = _servicoRepository.Consultar<Servico>()
+            .Where(x => x.ClientePrestador.Id == servico.Prestador && x.Nome == servico.Nome)
+            .Count();
 
-        var query = _servicoRepository.Consultar<Categoria>().Count(x => x.Id == categoriaId);
+        if (query > 0) throw new Exception("Já existe um serviço cadastrado com esse nome!");
 
-        if (query == 0) 
-            throw new NullReferenceException("A query não retornou itens.");
-
-         _servicoRepository.VincularCategoria(servico, categoriaId);
-
-        
+         await _servicoRepository.CadastrarServico(servico);    
 
     }
+
 }

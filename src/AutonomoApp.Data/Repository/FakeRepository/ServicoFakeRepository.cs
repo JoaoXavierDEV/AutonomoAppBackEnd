@@ -1,4 +1,5 @@
-﻿using AutonomoApp.Business.Interfaces.IRepository;
+﻿using AutonomoApp.Business.DTO;
+using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using Bogus;
@@ -108,7 +109,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
             return lista.AsQueryable();
         }
 
-        public void VincularCategoria(Servico servico, Guid categoriaId)
+        public Task CadastrarServico(ServicoDTO servico)
         {
             throw new NotImplementedException();
         }

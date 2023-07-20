@@ -27,7 +27,7 @@ public abstract class Repository<T> : IRepository<T> where T : EntityBase, new()
         return Db.Set<TAbela>();
     }
 
-    public async Task Adicionar(T entity)
+    public virtual async Task Adicionar(T entity)
     {
         DbSet.Add(entity);
         await SaveChanges();

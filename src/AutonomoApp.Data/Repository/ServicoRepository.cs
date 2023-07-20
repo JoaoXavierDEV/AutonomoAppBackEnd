@@ -26,7 +26,8 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
             .FirstOrDefaultAsync();
     }
 
-    public async void VincularCategoria(ServicoDTO servicoDto)
+
+    public async Task CadastrarServico(ServicoDTO servicoDto)
     {
         var servico = servicoDto.ToModel();
 
@@ -41,9 +42,8 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
 
         await Adicionar(servico);
     }
-
-    public void VincularCategoria(Servico servico, Guid categoriaId)
-    {
-        throw new NotImplementedException();
-    }
+    //public override async Task Adicionar(Servico servico)
+    //{
+    //    await base.Adicionar(servico);
+    //}
 }

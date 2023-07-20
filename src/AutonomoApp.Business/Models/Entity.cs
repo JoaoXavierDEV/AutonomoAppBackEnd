@@ -8,11 +8,11 @@ namespace AutonomoApp.Business.Models
 {
     public abstract class EntityBase
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         protected EntityBase()
         {
-            Id = Guid.NewGuid();
+            //Id = Guid.NewGuid();
         }
 
 

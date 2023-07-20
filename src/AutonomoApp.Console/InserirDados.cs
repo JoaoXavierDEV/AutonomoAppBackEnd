@@ -71,6 +71,7 @@ namespace AutonomoApp.ConsoleApp
                     Subcategorias = new List<Subcategoria>{
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("d06d1ab2-254b-47bf-b93a-07918ee88e30"),
                             SubCategoriaEnum = (int)Tecnologia.DevenvolvimetoFrontEnd,
                             Nome = Tecnologia.DevenvolvimetoFrontEnd.GetEnumDescription(),
                         },
@@ -82,11 +83,13 @@ namespace AutonomoApp.ConsoleApp
                         },
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("f8316134-c75b-44a1-970b-0967b9c894ad"),
                             SubCategoriaEnum = (int)Tecnologia.Infra,
                             Nome = Tecnologia.Infra.GetEnumDescription(),
                         },
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("32df3d1d-24d7-4c72-abd1-5b7fd44aa4c4"),
                             SubCategoriaEnum = (int)Tecnologia.DevOps,
                             Nome = Tecnologia.DevOps.GetEnumDescription(),
                         }
@@ -94,6 +97,7 @@ namespace AutonomoApp.ConsoleApp
                 },
                 new Categoria()
                 {
+                    Id = Guid.Parse("79f17f4a-95b9-4c90-8a6b-0857a247a6c5"),
                     CategoriaEnum = CategoriaEnum.ServicosGerais,
                     Nome = CategoriaEnum.ServicosGerais.GetEnumDescription(),
                     Descricao = "Serviços de Limpezae afins",
@@ -101,16 +105,19 @@ namespace AutonomoApp.ConsoleApp
                     {
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("d8eb10fc-6f02-4ed2-b44c-1a672e00c0db"),
                             SubCategoriaEnum = (int)ServicosGerais.Varrer,
                             Nome = ServicosGerais.Varrer.GetEnumDescription()
                         },
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("bf6436a4-5b26-4872-83e6-428a8dfc6dba"),
                             SubCategoriaEnum = (int)ServicosGerais.LavarLouca,
                             Nome = ServicosGerais.LavarLouca.GetEnumDescription()
                         },
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("9c7f8561-4181-4e44-b07d-e17108d53202"),
                             SubCategoriaEnum = (int)ServicosGerais.Limpeza,
                             Nome = ServicosGerais.Limpeza.GetEnumDescription()
                         },
@@ -118,6 +125,7 @@ namespace AutonomoApp.ConsoleApp
                 },
                 new Categoria()
                 {
+                    Id = Guid.Parse("6c629fe0-59e6-44d1-a4cb-509c8fb68a53"),
                     CategoriaEnum = CategoriaEnum.Lanches,
                     Nome = CategoriaEnum.Lanches.GetEnumDescription(),
                     Descricao = "Peça seu lanche",
@@ -125,16 +133,19 @@ namespace AutonomoApp.ConsoleApp
                     {
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("dfda8419-293d-4490-8062-28085ed297f9"),
                             SubCategoriaEnum = (int)Lanches.Doces,
                             Nome = Lanches.Doces.GetEnumDescription()
                         },
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("f0ca3298-c48d-4f67-a83d-50eba0e31d14"),
                             SubCategoriaEnum = (int)Lanches.Pizza,
                             Nome = Lanches.Pizza.GetEnumDescription()
                         },
                         new Subcategoria()
                         {
+                            Id = Guid.Parse("2837f8d3-18ea-4d44-a451-c825eed1bb48"),
                             SubCategoriaEnum = (int)Lanches.Restaurantes,
                             Nome = Lanches.Restaurantes.GetEnumDescription()
                         },

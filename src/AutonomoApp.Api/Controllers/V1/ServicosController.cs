@@ -33,33 +33,13 @@ public class ServicosController : MainController
     [HttpGet("ObterTodosServicos")]
     public async Task<List<Servico>> ObterTodosServicos()
     {
-        var idServico = Guid.Parse("062932e5-7aa2-4cf0-8bea-a406233fdcf0");
-
-        var idCategoria = Guid.Parse("ea220006-51b2-4993-8a6b-ba2b04d8be7e");
-
-        var servico = new Servico()
-        {
-            Id = idServico,
-        };
-
-        _servicoService.VincularCategoriaAoServico(servico, idCategoria);
-
         var tt = await _servicoRepository.ObterTodos();
-
-        var dto2 = await _servicoService.ObterServicoDTO(idServico);
-
-
-        var dto = new ServicoDTO
-        {
-
-        };
-
         return tt;
     }
     [HttpGet("AtualizarServico")]
-    public void AtualizarServico(Servico servico, Guid categoriaID)
+    public void AtualizarServico(ServicoDTO servico)
     {
-        _servicoService.VincularCategoriaAoServico(servico, categoriaID);
+        _servicoService.ValidarServico(servico);
     }
 
     [HttpPost("CadastrarServico")]
@@ -67,21 +47,23 @@ public class ServicosController : MainController
     {
         try
         {
+            // teste pra ver se o usuario funcionou // remover dps
             var tt2 = _servicoRepository.Consultar<UsuarioIdentity>()
-                .First(x => x.Id == UsuarioId);
+                .First(x => x.Id == Guid.Parse("7da12a17-b738-4158-45df-08db88c53be4"));
+
 
             // TODO o historico que está dando erro, criar viewmodels
-            var tt = servico.Tags.ToList().RemoveAll(x => x == "" && x == null && x == " ");
+            var tt = servico.Tags.Where(x => x != "" && x != null && x != " ").ToList();
 
 
             // if (!ModelState.IsValid) throw new Exception();
 
-            await _servicoRepository.Adicionar(new Servico());
-            return new Servico();
+            _servicoService.ValidarServico(servico);
+            return CustomResponse(servico);
         }
         catch (Exception ex)
         {
-            return CustomResponse(servico);
+            return CustomResponse(ex);
             throw;
         }
     }
