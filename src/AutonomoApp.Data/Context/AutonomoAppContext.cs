@@ -40,6 +40,7 @@ public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdent
     {
         ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         ChangeTracker.AutoDetectChangesEnabled = false;
+        
         //Database.EnsureDeleted();
         //Database.EnsureCreated();
     }

@@ -8,5 +8,5 @@ namespace AutonomoApp.Business.Interfaces.IService;
 public interface IServicoService
 {
     Task<ServicoDTO> ObterServicoDTO(Guid id);
-    void ValidarServico(ServicoDTO servico);
+    Task ValidarServico(Servico servico);
 }

@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
-using AutonomoApp.Data.Mappings.Identity;
-using AutonomoApp.Data.Repository;
-using AutonomoApp.Data.Repository.FakeRepository;
+using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutonomoApp.WebApi.Controllers.V1;
@@ -37,35 +34,37 @@ public class ServicosController : MainController
         return tt;
     }
     [HttpGet("AtualizarServico")]
-    public void AtualizarServico(ServicoDTO servico)
+    public void AtualizarServico(ServicoViewModel servico)
     {
-        _servicoService.ValidarServico(servico);
+        _servicoService.ValidarServico(_mapper.Map<Servico>(servico));
     }
 
     [HttpPost("CadastrarServico")]
-    public async Task<ActionResult<Servico>> CadastrarServico(ServicoDTO servico)
+    public async Task<ActionResult<ServicoViewModel>> CadastrarServico(ServicoViewModel servico)
     {
         try
         {
-            // teste pra ver se o usuario funcionou // remover dps
-            var tt2 = _servicoRepository.Consultar<UsuarioIdentity>()
-                .First(x => x.Id == Guid.Parse("7da12a17-b738-4158-45df-08db88c53be4"));
+            servico.Tags = RemoverTagsInvalidas(servico.Tags);
 
+            var servicoMap = _mapper.Map<Servico>(servico);
 
-            // TODO o historico que está dando erro, criar viewmodels
-            var tt = servico.Tags.Where(x => x != "" && x != null && x != " ").ToList();
+            await _servicoService.ValidarServico(_mapper.Map<Servico>(servico));
 
-
-            // if (!ModelState.IsValid) throw new Exception();
-
-            _servicoService.ValidarServico(servico);
             return CustomResponse(servico);
+        }
+        catch (AutoMapperMappingException ex)
+        {
+            throw;
         }
         catch (Exception ex)
         {
-            return CustomResponse(ex);
             throw;
         }
+    }
+
+    private static List<String> RemoverTagsInvalidas(IEnumerable<string> lista)
+    {
+        return lista.Where(x => x != "" && x != null && x != " ").ToList();
     }
 }
 

@@ -277,7 +277,7 @@ namespace AutonomoApp.ConsoleApp
 
             var servico = new Servico()
             {
-                Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
+                //Id = Guid.Parse("062932E5-7AA2-4CF0-8BEA-A406233FDCF0"),
                 Nome = "App de PetShop",
                 Descricao = "Desenvolver aplicativo para Android em Flutter",
                 Valor = 8500.99m,
@@ -286,13 +286,13 @@ namespace AutonomoApp.ConsoleApp
 
             db.Servico.AddRange(servico);
 
-            var categoriaId = Guid.Parse("1d46cfa5-33f4-448d-b01d-10ef6f09111e");
+            var categoriaId = Guid.Parse("79f17f4a-95b9-4c90-8a6b-0857a247a6c5");
             db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
             
-            var pessoaId = Guid.Parse("A9B756EB-81C9-48DE-977D-0A4D3DA2817B");
+            var pessoaId = Guid.Parse("A79A1705-4292-4B34-B55A-C081B9E9E7AF");
             db.Entry(servico).Property("ClientePrestadorId").CurrentValue = pessoaId;
 
-            var subCategoriaId = Guid.Parse("9D1FFC68-1595-4D6A-A62C-3D82F1A0BBFB");
+            var subCategoriaId = Guid.Parse("d8eb10fc-6f02-4ed2-b44c-1a672e00c0db");
             db.Entry(servico).Property("SubcategoriaId").CurrentValue = subCategoriaId;
 
 

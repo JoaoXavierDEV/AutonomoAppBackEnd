@@ -10,5 +10,5 @@ public interface IServicoRepository : IRepository<Servico>
 {
     Task<List<Servico>> ObterTodosServicos();
     Task<Servico> ObterServicoPorUsuario(Guid id);
-    Task CadastrarServico(ServicoDTO servico);
+    Task CadastrarServico(Servico servico);
 }

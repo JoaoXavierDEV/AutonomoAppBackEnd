@@ -27,20 +27,29 @@ public class ServicoRepository : Repository<Servico>, IServicoRepository
     }
 
 
-    public async Task CadastrarServico(ServicoDTO servicoDto)
+    public async Task CadastrarServico(Servico servico)
     {
-        var servico = servicoDto.ToModel();
+        try
+        {
+            //var categoriaId = servico.Categoria.Id;
+            //servico.Categoria = null;
+            //Db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
 
-        var categoriaId = servicoDto.Categoria;
-        Db.Entry(servico).Property("CategoriaId").CurrentValue = categoriaId;
+            //var pessoaId = servico.ClientePrestador.Id;
+            //servico.ClientePrestador = null;
+            //Db.Entry(servico).Property("ClientePrestadorId").CurrentValue = pessoaId;
 
-        var pessoaId = servicoDto.Prestador;
-        Db.Entry(servico).Property("ClientePrestadorId").CurrentValue = pessoaId;
+            //var subCategoriaId = servico.Subcategoria.Id;
+            //servico.Subcategoria = null;
+            //Db.Entry(servico).Property("SubcategoriaId").CurrentValue = subCategoriaId;
 
-        var subCategoriaId = servicoDto.Subcategoria;
-        Db.Entry(servico).Property("SubcategoriaId").CurrentValue = subCategoriaId;
+            await Adicionar(servico);
+        }
+        catch (Exception)
+        {
 
-        await Adicionar(servico);
+            throw;
+        }
     }
     //public override async Task Adicionar(Servico servico)
     //{

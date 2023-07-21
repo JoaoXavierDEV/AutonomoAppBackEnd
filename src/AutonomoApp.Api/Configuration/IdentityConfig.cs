@@ -24,7 +24,6 @@ namespace AutonomoApp.WebApi.Configuration
                 //.AddUserStore<UsuarioIdentity>()
                 //.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<UsuarioIdentityRole>()
-                // .AddRoles<UsuarioIdentityRole>() // testar
                 .AddEntityFrameworkStores<AutonomoAppContext>()
                 .AddErrorDescriber<IdentityMensagensPortugues>()
                 .AddDefaultTokenProviders();

@@ -42,7 +42,7 @@ public class ServicoService : BaseService, IServicoService
         // subcategoria
         var subcatID = Guid.Parse("9d1ffc68-1595-4d6a-a62c-3d82f1a0bbfb");
         var subcat = _servicoRepository
-            .Consultar<Subcategoria>()            
+            .Consultar<Subcategoria>()
             .FirstOrDefault(x => x.Id == subcatID);
         var subCatDto = new SubCategoriaDto(subcat);
 
@@ -52,7 +52,7 @@ public class ServicoService : BaseService, IServicoService
             Nome = ser.Nome,
             Descricao = ser.Descricao,
             Valor = ser.Valor,
-            Tags = ser.Tags,
+            Tags = ser.Tags.ToList(),
             //Categoria = catdto,
             //Subcategoria = subCatDto
 
@@ -60,16 +60,26 @@ public class ServicoService : BaseService, IServicoService
         return servicoDto;
     }
 
-    public async void ValidarServico(ServicoDTO servico)
+    public async Task ValidarServico(Servico servico)
     {
-        var query = _servicoRepository.Consultar<Servico>()
-            .Where(x => x.ClientePrestador.Id == servico.Prestador && x.Nome == servico.Nome)
-            .Count();
+        try
+        {
+            // TERMINAR criar validação com o iuser
+            //var query = _servicoRepository.Consultar<Servico>()
+            //    .Where(x => x.ClientePrestador.Id == servico.ClientePrestador.Id && x.Nome == servico.Nome)
+            //    .Count();
 
-        if (query > 0) throw new Exception("Já existe um serviço cadastrado com esse nome!");
+            //if (query > 0) throw new Exception("Já existe um serviço cadastrado com esse nome!");
 
-         await _servicoRepository.CadastrarServico(servico);    
+            await _servicoRepository.CadastrarServico(servico);
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
 
     }
+
 
 }

@@ -13,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AutonomoApp.WebApi.Controllers.V1
 {
-    [Authorize]
+    //[Authorize]
     [ApiVersion("1.0", Deprecated = false)]
     [Route("api/v{version:apiVersion}/Categoria")]
     [Produces("application/json")]

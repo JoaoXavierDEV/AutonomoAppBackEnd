@@ -113,5 +113,10 @@ namespace AutonomoApp.Data.Repository.FakeRepository
         {
             throw new NotImplementedException();
         }
+
+        public Task CadastrarServico(Servico servico)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

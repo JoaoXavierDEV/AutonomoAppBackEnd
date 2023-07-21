@@ -10,6 +10,8 @@ using AutonomoApp.Data.Context;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using AutonomoApp.WebApi.Extensions;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
 
 namespace AutonomoApp.WebApi.Configuration
 {
@@ -23,8 +25,12 @@ namespace AutonomoApp.WebApi.Configuration
                 // options.RespectBrowserAcceptHeader = true;
                 //options.OutputFormatters.RemoveType<StringOutputFormatter>();
                 //options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>();
+            }).AddJsonOptions(op =>
+            {
+                //op.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
                // .AddXmlDataContractSerializerFormatters();
+            
 
             services.AddApiVersioning(op =>
             {
