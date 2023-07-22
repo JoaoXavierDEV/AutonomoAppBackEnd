@@ -3,6 +3,7 @@ using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
+using AutonomoApp.Data.Repository;
 using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,10 +34,17 @@ public class ServicosController : MainController
         var tt = await _servicoRepository.ObterTodos();
         return tt;
     }
-    [HttpGet("AtualizarServico")]
-    public void AtualizarServico(ServicoViewModel servico)
+
+    [HttpGet("Obter/{id:guid}")]
+    public async Task<Servico> ObterServico(Guid id)
     {
-        _servicoService.ValidarServico(_mapper.Map<Servico>(servico));
+        return await _servicoRepository.ObterPorId(id);
+    }
+
+    [HttpPut("AtualizarServico/{id:guid}")]
+    public void AtualizarServico(Guid id, ServicoViewModel servico)
+    {
+        _servicoRepository.Atualizar(_mapper.Map<Servico>(servico));
     }
 
     [HttpPost("CadastrarServico")]
@@ -62,9 +70,24 @@ public class ServicosController : MainController
         }
     }
 
-    private static List<String> RemoverTagsInvalidas(IEnumerable<string> lista)
+    [HttpDelete("Deletar/{id:guid}")]
+    public async Task<ActionResult<Servico>> Deletar(Guid id)
     {
-        return lista.Where(x => x != "" && x != null && x != " ").ToList();
+        try
+        {
+            var servico = await ObterServico(id);
+            if (servico == null) return NotFound(new { erru = true, dado = "Não encontrado: " + id });
+            await _servicoRepository.Remover(id);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
+        }
+        return Ok(new { erru = false, dado = id });
     }
+
+    private static List<String> RemoverTagsInvalidas(IEnumerable<string> lista)
+    => lista.Where(x => x != "" && x != null && x != " ").ToList();
+    
 }
 

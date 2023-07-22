@@ -27,8 +27,9 @@ public class AutoMapperConfig : Profile
             .ForMember(dest => dest.CategoriaId, otp => otp.MapFrom(x => x.Id));
 
         CreateMap<Categoria, Servico>()
-            .ForMember(dest => dest.Categoria, otp => otp.MapFrom(x => x))
-            ;
+            .ForMember(dest => dest.Categoria, otp => otp.MapFrom(x => x));
+
+        CreateMap<Guid, ServicoViewModel>();
 
         Action<ServicoViewModel, Servico> teste = (view,ser) =>
         {
@@ -42,7 +43,6 @@ public class AutoMapperConfig : Profile
             ser.ClientePrestador.Id = view.Prestador;
         };
 
-        CreateMap<Guid, ServicoViewModel>();
 
         CreateMap<ServicoViewModel, Servico>()
             .ForMember(dest => dest.Nome, otp => otp.MapFrom(x => x.Nome))
@@ -53,19 +53,8 @@ public class AutoMapperConfig : Profile
             .ForMember(dest => dest.ClientePrestadorId, y => y.MapFrom(x => x.Prestador))
             .ForMember(dest => dest.CategoriaId, y => y.MapFrom(x => x.CategoriaId))
             .ForMember(dest => dest.SubcategoriaId, y => y.MapFrom(x => x.SubcategoriaId))
-
-
-
             //.AfterMap(teste)
-
-            .ReverseMap()
-            //.IncludeMembers(x => x.Categoria, x => x.Categoria.Id)
-            //.ForMember(dest => dest.CategoriaId, y => y.MapFrom(x => x.Categoria.Id))
-            //.ForMember(dest => dest.Subcategoria.Id, y => y.MapFrom(x => x.Subcategoria))
-            //.ForMember(dest => dest.ClientePrestador.Id, y => y.MapFrom(x => x.Prestador))
-
-            
-            ;
+            .ReverseMap();
 
     }
 }
