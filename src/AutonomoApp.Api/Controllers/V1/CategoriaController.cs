@@ -46,9 +46,10 @@ namespace AutonomoApp.WebApi.Controllers.V1
         }
         [AllowAnonymous]
         [HttpGet("ObterTodasCategoriasESubCategorias")]
-        public async Task<List<Categoria>> ObterTodasCategoriasESubCategorias()
+        public async Task<List<CategoriaViewModel>> ObterTodasCategoriasESubCategorias()
         {
-            return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
+            // return await _categoriaRepository.ObterTodasCategoriasESubcategorias();
+            return _mapper.Map<List<CategoriaViewModel>>(await _categoriaRepository.ObterTodasCategoriasESubcategorias());
         }
         [AllowAnonymous]
         [HttpGet("Obter/{id:guid}")]

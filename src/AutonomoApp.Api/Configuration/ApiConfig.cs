@@ -62,13 +62,24 @@ namespace AutonomoApp.WebApi.Configuration
                         .AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader());
+                
+                //options.AddPolicy("Production",
+                //    builder =>
+                //        builder
+                //        .AllowAnyOrigin()
+                //        .AllowAnyMethod()
+                //        .AllowAnyHeader());
 
 
                 options.AddPolicy("Production",
                     builder =>
                         builder
-                            .WithMethods("GET")
-                            .WithOrigins("https://autonomoappwebapi.azurewebsites.net")
+                            //.WithMethods("GET")
+                            .WithMethods("")
+                            //.WithOrigins("https://autonomoappwebapi.azurewebsites.net")
+                            .WithOrigins("https://joaojfmx-001-site1.ctempurl.com")
+                            .WithOrigins("https://joaojfmx-001-site2.ctempurl.com")
+                            .WithOrigins("http://joaojfmx-001-site2.ctempurl.com")
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
                             .WithHeaders(HeaderNames.ContentType, "x-custom-header")
                             .AllowAnyHeader());
@@ -85,11 +96,15 @@ namespace AutonomoApp.WebApi.Configuration
             }
             else
             {
-                app.UseCors("Production");
+                // funciona em modo dev, refatorar
+                //app.UseCors("Production");
+                app.UseCors("Development");
                 app.UseHsts();
             }
+            app.UseDeveloperExceptionPage();
             //app.UseMiddleware<ExceptionMiddleware>();
 
+            // vai redirecionar automaticamente para https
             app.UseHttpsRedirection();
 
             app.UseRouting();

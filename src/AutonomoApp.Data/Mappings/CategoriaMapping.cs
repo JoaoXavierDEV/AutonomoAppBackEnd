@@ -17,12 +17,12 @@ public class CategoriaMapping : IEntityTypeConfiguration<Categoria>
         builder
             .Property(p => p.Nome)
             .HasColumnName("Nome")
-            .HasColumnType("varchar(20)");
+            .HasColumnType("varchar(200)");
 
         builder
             .Property(p => p.Descricao)
             .IsRequired(false)
-            .HasColumnType("varchar(150)");
+            .HasColumnType("varchar(500)");
 
         builder
             .HasMany(p => p.Subcategorias)

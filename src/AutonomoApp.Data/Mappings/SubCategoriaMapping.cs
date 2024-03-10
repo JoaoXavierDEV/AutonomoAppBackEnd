@@ -11,11 +11,13 @@ public class SubCategoriaMapping : IEntityTypeConfiguration<Subcategoria>
         //builder.Ignore(p => p.SubCategoriaEnum);
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Nome);
+        builder.Property(p => p.Nome)
+             .HasColumnType("varchar(200)");
+
         builder
             .Property(p => p.Descricao)
             .IsRequired(false)
-            .HasColumnType("varchar(150)");
+            .HasColumnType("varchar(500)");
 
         builder.Property(x => x.SubCategoriaEnum).HasColumnName("EnumId");
 

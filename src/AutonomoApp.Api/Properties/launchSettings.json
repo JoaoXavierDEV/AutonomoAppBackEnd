@@ -23,7 +23,9 @@
       "launchBrowser": true,
       "launchUrl": "",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SQLCONNSTR_DEV": "Server=ASUS-ROG\\SQLEXPRESS;Database=AADBDev;User Id=sa; Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true",
+        "SQLCONNSTR_PROD": "Data Source=SQL5105.site4now.net;Initial Catalog=db_aa1b6c_mrshll;User Id=db_aa1b6c_mrshll_admin;Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true"
       }
     },
     "IIS - PRODUCTION": {
@@ -31,7 +33,9 @@
       "launchBrowser": true,
       "launchUrl": "",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "SQLCONNSTR_DEV": "Server=ASUS-ROG\\SQLEXPRESS;Database=AADBDev;User Id=sa; Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true",
+        "SQLCONNSTR_PROD": "Data Source=SQL5105.site4now.net;Initial Catalog=db_aa1b6c_mrshll;User Id=db_aa1b6c_mrshll_admin;Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true"
       }
     },
     "IIS - STAGING": {
@@ -39,7 +43,9 @@
       "launchBrowser": true,
       "launchUrl": "",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Staging"
+        "ASPNETCORE_ENVIRONMENT": "Staging",
+        "SQLCONNSTR_DEV": "Server=ASUS-ROG\\SQLEXPRESS;Database=AADBDev;User Id=sa; Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true",
+        "SQLCONNSTR_PROD": "Data Source=SQL5105.site4now.net;Initial Catalog=db_aa1b6c_mrshll;User Id=db_aa1b6c_mrshll_admin;Password=$Oblivion95; MultipleActiveResultSets=true; pooling=true"
       }
     },
     "Docker": {

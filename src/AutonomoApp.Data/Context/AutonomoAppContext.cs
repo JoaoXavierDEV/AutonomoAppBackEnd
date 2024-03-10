@@ -42,7 +42,7 @@ public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdent
         ChangeTracker.AutoDetectChangesEnabled = false;
         
         //Database.EnsureDeleted();
-        //Database.EnsureCreated();
+        Database.EnsureCreated();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,13 +51,14 @@ public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdent
 
         var config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            //.AddJsonFile("appsettings.json", true, true)
-            //.AddJsonFile($"appsettings.{environmentName}.json", true, true)
+            .AddJsonFile("appsettings.json", true, true)
+            .AddJsonFile($"appsettings.{environmentName}.json", true, true)
             .AddEnvironmentVariables()
             .AddUserSecrets<AutonomoAppContext>()
             .Build();
 
         var cnn = config.GetConnectionString($"{environmentName}");
+        //var cnn = config.GetConnectionString("Development");
 
         // const string strConnection = "";
 

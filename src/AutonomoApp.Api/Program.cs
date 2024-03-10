@@ -15,7 +15,15 @@ builder.Configuration
 
 builder.Services.AddDbContext<AutonomoAppContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString($"{builder.Environment.EnvironmentName}"));
+    string cnn = string.Empty;
+    if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+        cnn = Environment.GetEnvironmentVariable("SQLCONNSTR_DEV");
+    else
+        cnn = Environment.GetEnvironmentVariable("SQLCONNSTR_PROD");
+
+
+    options.UseSqlServer(cnn);
+    //options.UseSqlServer(builder.Configuration.GetConnectionString($"{builder.Environment.EnvironmentName}"));
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

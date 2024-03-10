@@ -6,24 +6,23 @@ namespace AutonomoApp.WebApi.ViewModels
     public class CategoriaViewModel
     {
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid IdCategoria { get; set; } = Guid.NewGuid();
         [Description("Nome da categoria")]
         [Required(ErrorMessage = "Campo deve ser preenchido")]
-        public string Nome { get; set; }
+        public string NomeCategoria { get; set; }
         [Display(Name = "Descricao hue Categoriaa",Description = "hue teste")]
         [StringLength(200, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
-        public string Descricao { get; set; }
-        public List<SubCategoriaViewModel> Subcategoria { get; set ; }
+        public string DescricaoCategoria { get; set; }
+        public List<SubCategoriaViewModel> Subcategorias { get; set ; }
 
     }
 
     public class SubCategoriaViewModel
     {
         [Key]
-        public Guid IdCategoria { get; set; }
-
-        public string Nome { get; set; }
-        public string Descricao { get; set; }
+        public Guid IdSubCategoria { get; set; }
+        public string NomeSubcategoria { get; set; }
+        public string DescricaoSubcategoria { get; set; }
     }
 }
 

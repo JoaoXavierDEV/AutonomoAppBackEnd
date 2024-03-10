@@ -74,7 +74,7 @@ namespace AutonomoApp.ConsoleApp
                 .First();
             string tt = "gfg";
 
-            tt.IsNullOrEmpty();
+            //tt.IsNullOrEmpty(); //Extensions está no WebAPI
 
             //db.ChangeTracker.Clear();
             List<Servico> servicoAll = db.Servico

@@ -36,8 +36,8 @@
       <FileName>Models\ServicoSolicitado.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Servico" />
       <Property Name="ClienteSolicitante" />
+      <Property Name="Servico" />
     </ShowAsAssociation>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Endereco">
@@ -68,9 +68,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AutonomoApp.Business.Models.Servico">
-    <Position X="6.5" Y="3" Width="1.75" />
+    <Position X="6.5" Y="3" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAABCAABAEABAABgGAAAIAAEAAAAQEAAAAQAAgUAAAA=</HashCode>
+      <HashCode>AAAFCAABAEABAABgGAAAIAAEAAAAQEAAAAQAIgUAAEA=</HashCode>
       <FileName>Models\Servico.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

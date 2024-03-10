@@ -53,9 +53,6 @@ namespace AutonomoApp.WebApi.Controllers
                     Endereco = registerUser.Endereco,
                     Nascimento = registerUser.Nascimento,
                     Documento = registerUser.Documento,
-                    
-                    
-
                     // Benefícios = new List<Beneficio> { new Beneficio { Codigo = "AFF", Descricao = "Aff kade", Nome = "testeeee", TipoDeBeneficio = Business.Models.Enums.TipoDeBeneficio.Avaliacao} }
 
                 } : 
