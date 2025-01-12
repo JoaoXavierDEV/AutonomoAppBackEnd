@@ -21,4 +21,7 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutonomoApp.Framework\AutonomoApp.Framework.csproj" />
+  </ItemGroup>
 </Project>

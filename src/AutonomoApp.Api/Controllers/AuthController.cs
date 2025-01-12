@@ -66,14 +66,14 @@ namespace AutonomoApp.WebApi.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return CustomResponse(await GerarJwt(user.Email));
+                return CustomResponse(result: await GerarJwt(user.Email));
             }
             foreach (var error in result.Errors)
             {
                 NotificarErro(error.Description);
             }
 
-            return CustomResponse(registerUser);
+            return CustomResponse(result: registerUser);
         }
 
         [HttpPost("entrar")]

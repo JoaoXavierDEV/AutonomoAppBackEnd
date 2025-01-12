@@ -31,17 +31,17 @@ public class AutoMapperConfig : Profile
 
         CreateMap<Guid, ServicoViewModel>();
 
-        Action<ServicoViewModel, Servico> teste = (view,ser) =>
-        {
-            ser.Categoria = new Categoria();
-            ser.Categoria.Id = view.CategoriaId;
+        //Action<ServicoViewModel, Servico> teste = (view,ser) =>
+        //{
+        //    ser.Categoria = new Categoria();
+        //    ser.Categoria.Id = view.CategoriaId;
 
-            ser.Subcategoria = new();
-            ser.Subcategoria.Id = view.SubcategoriaId;
+        //    ser.Subcategoria = new();
+        //    ser.Subcategoria.Id = view.SubcategoriaId;
 
-            ser.ClientePrestador = new PessoaFisica();
-            ser.ClientePrestador.Id = view.Prestador;
-        };
+        //    ser.ClientePrestador = new PessoaFisica();
+        //    ser.ClientePrestador.Id = view.Prestador;
+        //};
 
 
         CreateMap<ServicoViewModel, Servico>()

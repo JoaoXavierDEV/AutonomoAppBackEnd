@@ -59,7 +59,7 @@ namespace AutonomoApp.WebApi.Controllers.V1
 
             try
             {
-                //await _categoriaService.AdicionarSubcategoria(_mapper.Map<Subcategoria>(subCategoriaViewModel));
+                await _subcategoriaService.Adicionar(_mapper.Map<Subcategoria>(subCategoriaViewModel));
             }
             catch (Exception ex)
             {

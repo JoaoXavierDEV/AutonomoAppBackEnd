@@ -56,7 +56,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                         .RuleFor(x => x.Descricao, y => y.Name.JobDescriptor())
                         .RuleFor(x => x.Valor, y => y.Finance.Amount(100, 1000, 2))
                         .RuleFor(x => x.Desconto, y => y.Random.Decimal())
-                        .RuleFor(x => x.TemDesconto, y => y.Random.Bool())
+                        .RuleFor(x => x.AplicaDesconto, y => y.Random.Bool())
                         .RuleFor(x => x.AnuncioAtivo, y => y.Random.Bool())
                         );
                 }
@@ -101,7 +101,7 @@ namespace AutonomoApp.Data.Repository.FakeRepository
                     .RuleFor(x => x.Descricao, y => y.Name.JobDescriptor())
                     .RuleFor(x => x.Valor, y => y.Finance.Amount(100, 1000, 2))
                     .RuleFor(x => x.Desconto, y => Math.Round(y.Random.Decimal(01,90),0))
-                    .RuleFor(x => x.TemDesconto, y => y.Random.Bool())
+                    .RuleFor(x => x.AplicaDesconto, y => y.Random.Bool())
                     .RuleFor(x => x.AnuncioAtivo, y => y.Random.Bool())
                     );
             }

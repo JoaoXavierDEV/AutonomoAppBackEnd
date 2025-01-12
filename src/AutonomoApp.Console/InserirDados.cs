@@ -1,4 +1,4 @@
-﻿using AutonomoApp.Business.Extensions;
+﻿using AutonomoApp.Framework;
 using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
@@ -276,7 +276,7 @@ namespace AutonomoApp.ConsoleApp
                     Documento = "24485264820",
                 },
             };
-            db.UsuarioIdentity.Add(user);
+            //db.UsuarioIdentity.Add(user);
             db.SaveChanges();
             db.ChangeTracker.Clear();
 
@@ -318,10 +318,10 @@ namespace AutonomoApp.ConsoleApp
             {
                 Valor = 250.00m,
                 Desconto = 8.0m,
-                TemDesconto = true,
+                AplicaDesconto = true,
             };
-            var result = ss.PrecoComDesconto();
-            var precodesconto = ss.ValorDescontado();
+            var result = ss.PrecoComDesconto;
+            var precodesconto = ss.ValorDescontado;
             var valooor = ss.Valor;
             ss.Valor = 300.00m;
             var valooor2 = ss.Valor;

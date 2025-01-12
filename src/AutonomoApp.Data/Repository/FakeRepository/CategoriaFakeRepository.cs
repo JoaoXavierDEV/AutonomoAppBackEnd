@@ -1,14 +1,5 @@
 ﻿using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
-using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
-using AutonomoApp.Business.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutonomoApp.Business.Extensions;
-using Bogus;
 
 namespace AutonomoApp.Data.Repository.FakeRepository;
 
@@ -21,10 +12,10 @@ public class CategoriaFakeRepository : RepositoryFake<Categoria>, ICategoriaRepo
         {
             return result.Select(x => new Categoria
             {
-                Descricao= x.Descricao,
-                Nome= x.Nome,
-                CategoriaEnum= x.CategoriaEnum,
-                Id= x.Id,
+                Descricao = x.Descricao,
+                Nome = x.Nome,
+                CategoriaEnum = x.CategoriaEnum,
+                Id = x.Id,
             }).ToList();
         };
         var task = new Task<List<Categoria>>(RetornaSubcategorias);

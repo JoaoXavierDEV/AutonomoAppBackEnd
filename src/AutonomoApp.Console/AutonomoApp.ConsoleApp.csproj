@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,7 +8,11 @@
     <UserSecretsId>21841614-b78e-4438-aae9-ad5395836a13</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="setupcln_1.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\AutonomoApp.Business\AutonomoApp.Business.csproj" />
+    <ProjectReference Include="..\AutonomoApp.Framework\AutonomoApp.Framework.csproj" />
     <ProjectReference Include="..\AutonomoApp.Data\AutonomoApp.Data.csproj" />
   </ItemGroup>
   <ItemGroup>

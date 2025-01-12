@@ -10,8 +10,8 @@ using Microsoft.IdentityModel.Protocols;
 
 namespace AutonomoApp.Data.Context;
 
-//public class AutonomoAppContext : DbContext
-public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdentityRole,Guid>
+public class AutonomoAppContext : DbContext
+//public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdentityRole,Guid>
 {
     #region DbSet<>
     public DbSet<Categoria> Categorias { get; set; }
@@ -28,7 +28,7 @@ public class AutonomoAppContext : IdentityDbContext<UsuarioIdentity,UsuarioIdent
     #endregion
 
     // Usuario Identity
-    public DbSet<UsuarioIdentity> UsuarioIdentity { get; set; }
+    //public DbSet<UsuarioIdentity> UsuarioIdentity { get; set; }
     
 
     public AutonomoAppContext()

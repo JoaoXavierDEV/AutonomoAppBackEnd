@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using AutonomoApp.Business.Extensions;
 
 #nullable disable
 namespace AutonomoApp.Business.Models;

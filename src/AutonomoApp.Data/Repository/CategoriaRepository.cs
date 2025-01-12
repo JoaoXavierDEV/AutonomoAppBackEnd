@@ -13,7 +13,7 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     {
         return await Db.Categorias
             //.Include(x => x.Subcategorias)
-            .OrderBy(x=> x.CategoriaEnum)
+            .OrderBy(x => x.CategoriaEnum)
             .ToListAsync();
     }
 
@@ -21,8 +21,26 @@ public class CategoriaRepository : Repository<Categoria>, ICategoriaRepository
     {
         return await Db.Categorias
             .Include(x => x.Subcategorias)
-            .OrderBy(x=> x.CategoriaEnum)
+            .OrderBy(x => x.CategoriaEnum)
             .ToListAsync();
+    }
+
+    public override Task Adicionar(Categoria entity)
+    {
+        using (var trans = Db.Database.BeginTransaction())
+        {
+            try
+            {
+                var task = base.Adicionar(entity);
+                trans.Commit();
+                return task;
+            }
+            catch (Exception)
+            {
+                trans.Rollback();
+                throw;
+            }
+        }
     }
 
 }

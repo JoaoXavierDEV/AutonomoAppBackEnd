@@ -15,6 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.WebApi", "src\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutonomoApp.ConsoleApp", "src\AutonomoApp.Console\AutonomoApp.ConsoleApp.csproj", "{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{B90FE167-B774-464E-8640-DBE00005DE4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{905A4C7C-CE03-4588-862B-ACD60DCF7714}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomoApp.Framework", "src\AutonomoApp.Framework\AutonomoApp.Framework.csproj", "{906A3B89-DC2D-4169-8906-6F859C43F6CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,9 +43,16 @@ Global
 		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A42DF73C-FAC7-46C6-901F-27F5E35EF4C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906A3B89-DC2D-4169-8906-6F859C43F6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906A3B89-DC2D-4169-8906-6F859C43F6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906A3B89-DC2D-4169-8906-6F859C43F6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906A3B89-DC2D-4169-8906-6F859C43F6CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{906A3B89-DC2D-4169-8906-6F859C43F6CE} = {B90FE167-B774-464E-8640-DBE00005DE4F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1C191093-7528-4CC7-88B7-B17681D288D2}

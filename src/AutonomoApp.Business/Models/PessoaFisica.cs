@@ -17,6 +17,11 @@ public sealed class PessoaFisica : Pessoa
         };
     }
 
+    /// <summary>
+    /// dddd
+    /// </summary>
+    /// <remarks>adsasdasada</remarks>
+    /// <returns>Retorna a Idade no Ano</returns>
     public int GetIdadeNoAno()
     {
         return (DateTime.Now.Year - Nascimento.Year);

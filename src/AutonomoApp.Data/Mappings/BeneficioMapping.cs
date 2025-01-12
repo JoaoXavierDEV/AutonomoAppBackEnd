@@ -1,4 +1,4 @@
-﻿using AutonomoApp.Business.Extensions;
+﻿using AutonomoApp.Framework;
 using AutonomoApp.Business.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

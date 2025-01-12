@@ -1,72 +1,80 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using AutonomoApp.Business.Extensions;
-using AutonomoApp.Business.Models;
-using AutonomoApp.Business.Models.Enums;
-using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
-using AutonomoApp.Data.Context;
+﻿using AutonomoApp.ConsoleApp.View;
+using AutonomoApp.Framework;
+using System;
+using static AutonomoApp.ConsoleApp.View.Color;
+using static AutonomoApp.ConsoleApp.View.Menu;
 
 namespace AutonomoApp.ConsoleApp;
 
 public class Program
 {
+    public static bool CloseApp { get; set; }
     public static void Main()
     {
         try
         {
-            bool result = true;
-            Marshall();
             do
             {
-                //InserirDados.ServicosTeste();
-                Menu();
-                //Console.WriteLine(" Deseja sair? S - N");
-                //var exit = Console.ReadLine();
-                //result = exit == "N" || exit == "n";
-                // Console.Clear();
-            } while (result);
+                Header(Art.Octopus, Color.MAGENTA);
+
+                MenuPadrao();
+
+                FecharConsole();
+
+            } while (CloseApp);
         }
         catch (InvalidOperationException e) // when(e.InnerException != null) 
         {
-            Console.WriteLine("\n" +
-            $"  ===============================================================================================================  \n"
-            + "   " + e.Message +
-            $"  ===============================================================================================================  \n"
-            );
+            ShowErrorMessage(e.GetAllMessages());
             //Console.ReadKey();
-            Main();
+            // Main();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            ShowErrorMessage(e.GetAllMessages());
+        }
+        finally
+        {
+            Main();
         }
 
     }
-    private static void Menu()
+
+    private static void FecharConsole()
+    {
+        Console.WriteLine("   # - Deseja sair? S - N");
+        string exit = Console.ReadLine();
+        CloseApp = exit is "N" or "n";
+
+        Console.WriteLine("   # - Limpar Console? S - N");
+        if (string.Equals(Console.ReadLine(), "S", StringComparison.OrdinalIgnoreCase))
+            Console.Clear();
+
+
+        System.Diagnostics.Debug.WriteLine("=> Arquivo gerado");
+
+    }
+
+    private static void MenuPadrao()
     {
         Console.WriteLine(
-            $"   # - MENU - \n" +
-            $"  INSERT \n" +
-            $"  1 - Resetar Banco de dados\n" +
-            $"  2 - Resetar e Carregar \n" +
-            $"  3 - Carregar Usuario Identity \n" +
-            $"  4 - Carregar Categorias \n" +
-            $"  5 - Carregar Servico \n" +
-            $"  6 - Carregar Servico \n" +
-            $"  GET \n" +
-            $"  10 - Get Servico \n" +
-            $"  11 - Get Categoria e Subcategorias \n" +
+            //$"   # -  # - MENU - \n" +
+            $"   # - INSERT \n" +
+            $"   # - 1 - Resetar Banco de dados\n" +
+            $"   # - 2 - Resetar e Carregar \n" +
+            $"   # - 3 - Carregar Usuario Identity \n" +
+            $"   # - 4 - Carregar Categorias \n" +
+            $"   # - 5 - Carregar Servico \n" +
+            $"   # - 6 - Carregar Servico \n" +
+            $"   # - GET \n" +
+            $"   # - 10 - Get Servico \n" +
+            $"   # - 11 - Get Categoria e Subcategorias \n" +
             $"  ===============================================================================================================  \n"
-            );
+            .PadRight(Console.WindowWidth).PadLeft(Console.WindowWidth));
 
-        var banco = new InserirDados();
-
-        switch (Console.ReadLine())
+        InserirDados banco = new();
+        string key = Console.ReadLine().ToLower();
+        switch (key)
         {
             case "1":
                 InserirDados.ResetarDb();
@@ -95,59 +103,28 @@ public class Program
                 ObterDados.GetCatSub();
                 break;
 
-            case "e":
+            case "r":
                 return;
             default:
-                Console.WriteLine("  - Opção inválida");
+                Console.Clear();
+                Console.WriteLine($"{Environment.NewLine}   # - {key} - Opção inválida");
+                throw new InvalidOperationException("hue");
                 break;
         };
 
-        Console.WriteLine("\n" +
+        //Console.Clear();
+
+        Console.WriteLine("\n" + GREEN +
             $"   # ============================================================================================================= #   \n" +
             $"   # - OK\n" +
             $"   # ============================================================================================================= #   \n"
-            );
+            + NORMAL.PadRight(Console.WindowWidth).PadLeft(Console.WindowWidth));
     }
 
-    private static void Marshall()
-    {
-        Console.WriteLine(
-            $"\n" +
-            $"   # ============================================================================================================= #   \n" +
-            $"   # ||    \n" +
-            $"   # ||    ███╗   ███╗   █████╗   ██████╗   ███████╗  ██╗  ██╗   █████╗   ██╗       ██╗      \n" +
-            $"   # ||    ████╗ ████║  ██╔══██╗  ██╔══██╗  ██╔════╝  ██║  ██║  ██╔══██╗  ██║       ██║      \n" +
-            $"   # ||    ██╔████╔██║  ███████║  ██████╔╝  ███████╗  ███████║  ███████║  ██║       ██║      \n" +
-            $"   # ||    ██║╚██╔╝██║  ██╔══██║  ██╔══██╗  ╚════██║  ██╔══██║  ██╔══██║  ██║       ██║      \n" +
-            $"   # ||    ██║ ╚═╝ ██║  ██║  ██║  ██║  ██║  ███████║  ██║  ██║  ██║  ██║  ███████╗  ███████╗ \n" +
-            $"   # ||    ╚═╝     ╚═╝  ╚═╝  ╚═╝  ╚═╝  ╚═╝  ╚══════╝  ╚═╝  ╚═╝  ╚═╝  ╚═╝  ╚══════╝  ╚══════╝ \n" +
-            $"   # ||    \n" +
-            $"   # ||    - AutonomoAppBackEnd {RetornarBranch()} - Build: {DateTime.Now:ddMMyyyy.HHmm}_MRSHLL\n" +
-            $"   # ||    \n" +
-            $"   # ||    - {DateTime.Now:dddd, dd MMMM yyyy HH:mm:ss}\n" +
-            $"   # ||    \n" +
-            $"   # ============================================================================================================= #   \n"
 
 
-            );
-    }
-    private enum Branch
-    {
-        [Description("DEV")]
-        Development = 1,
-        [Description("PROD")]
-        Production,
-        [Description("HMG")]
-        Staging,
-        [Description("PROJECT")]
-        Project
-    }
-    private static string RetornarBranch()
-    {
-        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-        Branch descricao = (Branch)Enum.Parse(typeof(Branch), environmentName);
-        return descricao.GetEnumDescription();
-    }
+
+
 
 
 

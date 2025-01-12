@@ -13,9 +13,9 @@ builder.Configuration
     .AddEnvironmentVariables()
     .AddUserSecrets<Program>();
 
-builder.Services.AddDbContext<AutonomoAppContext>(options =>
+builder.Services.AddDbContext<AutonomoAppContext>(static options =>
 {
-    string cnn = string.Empty;
+    string? cnn = string.Empty;
     if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
         cnn = Environment.GetEnvironmentVariable("SQLCONNSTR_DEV");
     else

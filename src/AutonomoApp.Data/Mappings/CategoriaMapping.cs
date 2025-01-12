@@ -4,7 +4,7 @@ using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 using AutonomoApp.Business.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using AutonomoApp.Business.Extensions;
+using AutonomoApp.Framework;
 
 namespace AutonomoApp.Data.Mappings;
 

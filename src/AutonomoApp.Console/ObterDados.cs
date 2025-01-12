@@ -72,7 +72,6 @@ namespace AutonomoApp.ConsoleApp
                 .Select(x => x)
                 .AsNoTracking()
                 .First();
-            string tt = "gfg";
 
             //tt.IsNullOrEmpty(); //Extensions está no WebAPI
 

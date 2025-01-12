@@ -19,6 +19,10 @@ public class Conta : EntityBase
     public DateTime DataInicio { get; set; } = DateTime.UtcNow;
     public DateTime? DataFim { get; set; } 
 
+
+    /// <summary>
+    /// Construtor
+    /// </summary>
     public Conta()
     {
         UsuarioVerificado = false;

@@ -1,5 +1,5 @@
-﻿using AutonomoApp.Business.Extensions;
-using AutonomoApp.Business.Models.Enums;
+﻿using AutonomoApp.Business.Models.Enums;
+using AutonomoApp.Framework;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -77,7 +77,8 @@ namespace AutonomoApp.WebApi.Controllers.V1
             }
             catch (Exception ex)
             {
-                return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
+                //return BadRequest(new { erru = true, erros = ex.InnerException?.Message ?? ex.Message });
+                return CustomResponse(categoriaViewModel);
             }
 
             return CustomResponse(categoriaViewModel);
@@ -88,7 +89,10 @@ namespace AutonomoApp.WebApi.Controllers.V1
         {
             // TODO criar ToViewModel
             await _categoriaService.Atualizar(_mapper.Map<Categoria>(categoriaViewModel));
-            return Ok(categoriaViewModel);
+            
+            // CustomResponse(categoriaViewModel);
+
+            return CustomResponse(result: categoriaViewModel);
         }
 
         [HttpDelete("DeletarCategoria/{id:guid}")]

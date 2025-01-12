@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using AutonomoApp.Business.Extensions;
+using AutonomoApp.Framework;
 using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
@@ -33,11 +33,38 @@ public class CategoriaService : BaseService, ICategoriaService
     {
         // if (categoria.Nome.Length < 5) throw new ArgumentNullException("Exce");
 
-        if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return;
+        // if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return; // funcionando
+
+        Validar(categoria);
+
+        /* TRANSACTION
+         * A.C.I.D.
+         * ATOMICIDADE - faz tudo, ou não faz nada // trans.rollback
+         * CONSISTENCIA - dados devem ser válidos
+         * ISOLAMENTO - uma transação deve ser isolada de outras
+         * DURABILIDADE - garante que os dados sejam persistidos // commit
+         */
+
+        try
+        {
+            await _categoriaRepository.Adicionar(categoria);
+
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+
+    }
+    public async Task Atualizar(Categoria categoria)
+    {
+        Validar(categoria);
 
         await _categoriaRepository.Adicionar(categoria);
     }
-    public async Task Atualizar(Categoria categoria)
+
+    private void Validar(Categoria categoria)
     {
         if (!ExecutarValidacao(new CategoriaValidation(), categoria)) return;
 
@@ -52,12 +79,7 @@ public class CategoriaService : BaseService, ICategoriaService
             Notificar("Já existe uma Categoria com o mesmo nome");
             return;
         }
-
-        await _categoriaRepository.Adicionar(categoria);
     }
-
-
-
 
     public async Task Remover(Guid id)
     {
