@@ -364,3 +364,11 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /src/AutonomoApp.Api/Extensions/ViewModelExtensions.cs
+/src/AutonomoApp.Framework/AutonomoApp.Framework.csproj
+/src/AutonomoApp.Framework/Anonymous.cs
+/src/AutonomoApp.Framework/AutonomoApp.Framework.csproj
+/src/AutonomoApp.Framework/CollectionExtension.cs
+/src/AutonomoApp.Framework/DecimalExtensions.cs
+/src/AutonomoApp.Framework/EnumExtensions.cs
+/src/AutonomoApp.Framework/ExceptionExtension.cs
+/src/AutonomoApp.Framework/StringExtensions.cs
