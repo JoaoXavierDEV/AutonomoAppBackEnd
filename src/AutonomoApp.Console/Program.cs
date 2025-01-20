@@ -51,7 +51,7 @@ public class Program
             Console.Clear();
 
 
-        System.Diagnostics.Debug.WriteLine("=> Arquivo gerado");
+        System.Diagnostics.Debug.WriteLine("=> ");
 
     }
 

@@ -1,15 +1,11 @@
 ﻿using AutoMapper;
-using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
-using AutonomoApp.Business.Services;
-using AutonomoApp.Data.Repository;
 using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AutonomoApp.WebApi.Controllers.V1
 {
@@ -89,7 +85,7 @@ namespace AutonomoApp.WebApi.Controllers.V1
         {
             // TODO criar ToViewModel
             await _categoriaService.Atualizar(_mapper.Map<Categoria>(categoriaViewModel));
-            
+
             // CustomResponse(categoriaViewModel);
 
             return CustomResponse(result: categoriaViewModel);

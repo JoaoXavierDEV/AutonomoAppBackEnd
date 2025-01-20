@@ -1,7 +1,6 @@
 using AutonomoApp.WebApi.Configuration;
 using AutonomoApp.Data.Context;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +12,7 @@ builder.Configuration
     .AddEnvironmentVariables()
     .AddUserSecrets<Program>();
 
-builder.Services.AddDbContext<AutonomoAppContext>(static options =>
+builder.Services.AddDbContext<AutonomoAppContext>(options =>
 {
     string? cnn = string.Empty;
     if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
@@ -27,7 +26,6 @@ builder.Services.AddDbContext<AutonomoAppContext>(static options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddIdentityConfig(builder.Configuration);
 builder.Services.AddWebApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.ResolveDependencies();

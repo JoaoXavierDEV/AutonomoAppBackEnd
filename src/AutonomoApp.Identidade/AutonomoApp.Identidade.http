@@ -1,0 +1,6 @@
+@AutonomoApp.Identidade_HostAddress = http://localhost:5115
+
+GET {{AutonomoApp.Identidade_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -29,6 +29,7 @@
     <ProjectReference Include="..\AutonomoApp.Data\AutonomoApp.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

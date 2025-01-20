@@ -1,106 +1,116 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using AutonomoApp.Business.Interfaces;
-using AutonomoApp.Business.Models;
-using AutonomoApp.Data.Mappings.Identity;
-using AutonomoApp.WebApi.Extensions;
-using AutonomoApp.WebApi.ViewModels;
+﻿using AutonomoApp.Identidade.Data;
+using AutonomoApp.Identidade.Extensions;
+using AutonomoApp.Identidade.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Linq;
+using System.Collections;
 
-namespace AutonomoApp.WebApi.Controllers
+namespace AutonomoApp.Identidade.Controllers
 {
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}")]
-    public class AuthController : MainController
+    [ApiVersion("1.1")]
+    //[Route("api/v{version:apiVersion}")]
+    [Route("identidade")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
-        private readonly SignInManager<UsuarioIdentity> _signInManager;
-        private readonly UserManager<UsuarioIdentity> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly ApplicationDbContext _context;
         private readonly AppSettings _appSettings;
         private readonly ILogger _logger;
 
-        public AuthController(INotificador notificador,
-                              SignInManager<UsuarioIdentity> signInManager,
-                              UserManager<UsuarioIdentity> userManager,
+        public AuthController(
+                              SignInManager<IdentityUser> signInManager,
+                              UserManager<IdentityUser> userManager,
+                              ApplicationDbContext context,
                               IOptions<AppSettings> appSettings,
-                              IUser user, ILogger<AuthController> logger) : base(notificador, user)
+                              ILogger<AuthController> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _context = context;
             _logger = logger;
             _appSettings = appSettings.Value;
         }
 
         //[EnableCors("Development")]
         [HttpPost("nova-conta")]
-        public async Task<ActionResult> Registrar(RegistrarUsuarioViewModel registerUser)
+        public async Task<ActionResult> Registrar(UsuarioRegistro usuarioRegistro)
         {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
-
-            var user = new UsuarioIdentity
+            using (var transaction = await _context.Database.BeginTransactionAsync())
             {
-                UserName = registerUser.Email,
-                Email = registerUser.Email,
-                EmailConfirmed = true,
-                Pessoa = registerUser.PessoaFisica ? 
-                new Business.Models.PessoaFisica
+                try
                 {
-                    Nome = registerUser.Nome,
-                    Conta = new Conta(),
-                    Endereco = registerUser.Endereco,
-                    Nascimento = registerUser.Nascimento,
-                    Documento = registerUser.Documento,
-                    // Benefícios = new List<Beneficio> { new Beneficio { Codigo = "AFF", Descricao = "Aff kade", Nome = "testeeee", TipoDeBeneficio = Business.Models.Enums.TipoDeBeneficio.Avaliacao} }
+                    if (!ModelState.IsValid) return BadRequest(ModelState);
 
-                } : 
-                new Business.Models.PessoaJuridica
-                {
+                    var user = new IdentityUser
+                    {
+                        UserName = usuarioRegistro.Email,
+                        Email = usuarioRegistro.Email,
+                        EmailConfirmed = true
+                    };
+
+                    var result = await _userManager.CreateAsync(user, usuarioRegistro.Senha);
+
+                    if (result.Succeeded)
+                    {
+                        LoginResponseViewModel jwtResponse = await GerarJwt(usuarioRegistro.Email);
+
+                        await _signInManager.SignInAsync(user, false);
+
+                        await transaction.CommitAsync();
+
+                        return Ok(jwtResponse);
+                    }
+                    else
+                    {
+                        var listaErros = result.Errors.ToList();
+
+                        //erros.ForEach(erro => ModelState.AddModelError(string.Empty, erro.Description));
+                        return BadRequest(result.Errors);
+                    }
 
                 }
-            };
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
 
-            var result = await _userManager.CreateAsync(user, registerUser.Password);
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return CustomResponse(result: await GerarJwt(user.Email));
-            }
-            foreach (var error in result.Errors)
-            {
-                NotificarErro(error.Description);
-            }
+                    _logger.LogError(ex, "Erro ao registrar usuário");
 
-            return CustomResponse(result: registerUser);
+                    return StatusCode(500, ex.Message.ToString());
+                }
+            }
         }
 
         [HttpPost("entrar")]
-        public async Task<ActionResult> Login(LoginUserViewModel loginUser)
+        public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
+            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("Usuario " + loginUser.Email + " logado com sucesso");
-                return CustomResponse(await GerarJwt(loginUser.Email));
-            }
-            if (result.IsLockedOut)
-            {
-                NotificarErro("Usuário temporariamente bloqueado por tentativas inválidas");
-                return CustomResponse(loginUser);
+                return Ok(await GerarJwt(usuarioLogin.Email));
             }
 
-            NotificarErro("Usuário ou Senha incorretos");
-            return CustomResponse(loginUser);
+            if (result.IsLockedOut)
+            {
+                return BadRequest("Usuário temporariamente bloqueado por tentativas inválidas");
+            }
+
+            return BadRequest("Usuário ou Senha incorretos");
         }
 
         private async Task<LoginResponseViewModel> GerarJwt(string email)
         {
-            var user = await _userManager.FindByEmailAsync(email) as UsuarioIdentity;
+            var user = await _userManager.FindByEmailAsync(email);
             var claims = await _userManager.GetClaimsAsync(user);
             var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -109,6 +119,7 @@ namespace AutonomoApp.WebApi.Controllers
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(DateTime.UtcNow).ToString(), ClaimValueTypes.Integer64));
+
             foreach (var userRole in userRoles)
             {
                 claims.Add(new Claim("role", userRole));
@@ -119,6 +130,7 @@ namespace AutonomoApp.WebApi.Controllers
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {
                 Issuer = _appSettings.Emissor,

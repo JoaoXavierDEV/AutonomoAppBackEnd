@@ -100,8 +100,8 @@ namespace AutonomoApp.WebApi.Configuration
             {
                 Title = "AutonomoApp WebAPI RestFul ",
                 Version = description.ApiVersion.ToString(),
-                Description = "API em .NET para o TCC.",
-                Contact = new OpenApiContact() { Name = "João Fernando Xavier", Email = "joao_jfmx@outlook.com" },
+                Description = "API para registro de serviços.",
+                Contact = new OpenApiContact() { Name = "João Xavier", Email = "joao_jfmx@outlook.com" },
                 License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") },
                 TermsOfService = new Uri("https://opensource.org/licenses/MIT")
             };
