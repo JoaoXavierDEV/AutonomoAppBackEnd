@@ -1,5 +1,5 @@
 ﻿using AutonomoApp.Business.Models.Enums;
-using AutonomoApp.Framework;
+using AutonomoApp.Framework.ExtensionMethods;
 using System.ComponentModel.DataAnnotations;
 
 namespace AutonomoApp.Business.Models;

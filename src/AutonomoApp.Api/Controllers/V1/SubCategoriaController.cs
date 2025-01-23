@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using AutonomoApp.Business.DTO;
-using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
-using AutonomoApp.Business.Services;
-using AutonomoApp.Data.Repository;
+using AutonomoApp.Framework.Controllers;
+using AutonomoApp.Framework.Interfaces;
 using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using static System.Net.Mime.MediaTypeNames;
+using Asp.Versioning;
 
 namespace AutonomoApp.WebApi.Controllers.V1
 {

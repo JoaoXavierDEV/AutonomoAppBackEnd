@@ -1,4 +1,4 @@
-﻿namespace AutonomoApp.Business.Notificacoes
+﻿namespace AutonomoApp.Framework.Notificacoes
 {
     public class Notificacao
     {

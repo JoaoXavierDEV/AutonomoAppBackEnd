@@ -1,6 +1,6 @@
-﻿using AutonomoApp.Business.Interfaces;
+﻿using AutonomoApp.Framework.Interfaces;
 
-namespace AutonomoApp.Business.Notificacoes
+namespace AutonomoApp.Framework.Notificacoes
 {
     public class Notificador : INotificador
     {

@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
-using AutonomoApp.Data.Repository;
+using AutonomoApp.Framework.Controllers;
+using AutonomoApp.Framework.Interfaces;
 using AutonomoApp.WebApi.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
 
 namespace AutonomoApp.WebApi.Controllers.V1;
 
@@ -88,6 +89,6 @@ public class ServicosController : MainController
 
     private static List<String> RemoverTagsInvalidas(IEnumerable<string> lista)
     => lista.Where(x => x != "" && x != null && x != " ").ToList();
-    
+
 }
 

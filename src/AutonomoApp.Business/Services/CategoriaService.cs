@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using AutonomoApp.Framework;
 using AutonomoApp.Business.Interfaces;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
@@ -13,7 +12,8 @@ using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 using AutonomoApp.Business.Models.Validations;
-using AutonomoApp.Business.Notificacoes;
+using AutonomoApp.Framework.Interfaces;
+using AutonomoApp.Framework.ExtensionMethods;
 
 namespace AutonomoApp.Business.Services;
 

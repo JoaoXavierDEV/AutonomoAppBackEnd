@@ -1,7 +1,9 @@
-﻿using AutonomoApp.Business.Interfaces;
-using AutonomoApp.Business.Interfaces.IRepository;
+﻿using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Models;
+using AutonomoApp.Framework.Controllers;
+using AutonomoApp.Framework.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Asp.Versioning;
 
 namespace AutonomoApp.WebApi.Controllers.V1;
 

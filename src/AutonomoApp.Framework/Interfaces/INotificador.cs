@@ -1,7 +1,7 @@
-﻿using AutonomoApp.Business.Notificacoes;
+﻿using AutonomoApp.Framework.Notificacoes;
 using System.Collections.Generic;
 
-namespace AutonomoApp.Business.Interfaces
+namespace AutonomoApp.Framework.Interfaces
 {
     public interface INotificador
     {

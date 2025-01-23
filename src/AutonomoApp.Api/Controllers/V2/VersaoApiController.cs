@@ -1,13 +1,14 @@
-﻿using AutonomoApp.Business.Interfaces;
+﻿using Asp.Versioning;
 using AutonomoApp.Data.Context;
+using AutonomoApp.Framework.Controllers;
+using AutonomoApp.Framework.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
 
 namespace AutonomoApp.WebApi.Controllers.V2
 {
     [ApiVersion("2.1", Deprecated = false)]
     [Route("api/v{version:apiVersion}/VersaoApiController")]
-    //[Produces("application/json")]
+    [Produces("application/json")]
     public class VersaoApiController : MainController
     {
         public VersaoApiController(INotificador notificador, IUser appUser) : base(notificador, appUser)

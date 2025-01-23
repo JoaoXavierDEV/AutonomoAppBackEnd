@@ -1,23 +1,24 @@
-﻿using AutonomoApp.Identidade.Data;
+﻿using Asp.Versioning;
+using AutonomoApp.Framework.Controllers;
+using AutonomoApp.Framework.Interfaces;
+using AutonomoApp.Identidade.Data;
 using AutonomoApp.Identidade.Extensions;
 using AutonomoApp.Identidade.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Linq;
-using System.Collections;
 
 namespace AutonomoApp.Identidade.Controllers
 {
     [ApiVersion("1.1")]
     //[Route("api/v{version:apiVersion}")]
     [Route("identidade")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -30,7 +31,8 @@ namespace AutonomoApp.Identidade.Controllers
                               UserManager<IdentityUser> userManager,
                               ApplicationDbContext context,
                               IOptions<AppSettings> appSettings,
-                              ILogger<AuthController> logger)
+                              INotificador notificador, IUser user,
+                              ILogger<AuthController> logger) : base(notificador, user)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -38,12 +40,16 @@ namespace AutonomoApp.Identidade.Controllers
             _logger = logger;
             _appSettings = appSettings.Value;
         }
-
+        /// <summary>
+        /// a
+        /// </summary>
+        /// <param name="usuarioRegistro"></param>
+        /// <returns></returns>
         //[EnableCors("Development")]
         [HttpPost("nova-conta")]
         public async Task<ActionResult> Registrar(UsuarioRegistro usuarioRegistro)
         {
-            using (var transaction = await _context.Database.BeginTransactionAsync())
+            using (IDbContextTransaction transaction = await _context.Database.BeginTransactionAsync())
             {
                 try
                 {
@@ -70,9 +76,6 @@ namespace AutonomoApp.Identidade.Controllers
                     }
                     else
                     {
-                        var listaErros = result.Errors.ToList();
-
-                        //erros.ForEach(erro => ModelState.AddModelError(string.Empty, erro.Description));
                         return BadRequest(result.Errors);
                     }
 
@@ -83,11 +86,17 @@ namespace AutonomoApp.Identidade.Controllers
 
                     _logger.LogError(ex, "Erro ao registrar usuário");
 
+                    CustomResponse(ex);
+
                     return StatusCode(500, ex.Message.ToString());
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuarioLogin"></param>
+        /// <returns></returns>
         [HttpPost("entrar")]
         public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
@@ -107,7 +116,11 @@ namespace AutonomoApp.Identidade.Controllers
 
             return BadRequest("Usuário ou Senha incorretos");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         private async Task<LoginResponseViewModel> GerarJwt(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -156,7 +169,11 @@ namespace AutonomoApp.Identidade.Controllers
 
             return response;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }

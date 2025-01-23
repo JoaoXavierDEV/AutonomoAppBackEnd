@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bogus.Extensions.Brazil;
-using AutonomoApp.Framework;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
+using AutonomoApp.Framework.ExtensionMethods;
 
 namespace AutonomoApp.Data.Repository.FakeRepository
 {

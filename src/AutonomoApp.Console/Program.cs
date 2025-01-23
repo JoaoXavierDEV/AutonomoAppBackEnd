@@ -1,5 +1,5 @@
 ﻿using AutonomoApp.ConsoleApp.View;
-using AutonomoApp.Framework;
+using AutonomoApp.Framework.ExtensionMethods;
 using System;
 using static AutonomoApp.ConsoleApp.View.Color;
 using static AutonomoApp.ConsoleApp.View.Menu;

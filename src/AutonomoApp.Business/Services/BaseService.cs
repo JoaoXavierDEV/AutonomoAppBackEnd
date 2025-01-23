@@ -1,7 +1,6 @@
-﻿using AutonomoApp.Business.Interfaces;
-using AutonomoApp.Business.Interfaces.IRepository;
-using AutonomoApp.Business.Models;
-using AutonomoApp.Business.Notificacoes;
+﻿using AutonomoApp.Business.Models;
+using AutonomoApp.Framework.Interfaces;
+using AutonomoApp.Framework.Notificacoes;
 using FluentValidation;
 using FluentValidation.Results;
 

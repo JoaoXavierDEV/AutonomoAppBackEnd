@@ -1,10 +1,9 @@
-﻿using System.Reflection;
-using System.Text;
+﻿using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
-using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 using System.Text.Json;
 
 
@@ -46,17 +45,21 @@ namespace AutonomoApp.WebApi.Configuration
                 c.OperationFilter<SwaggerDefaultValues>();
                 c.EnableAnnotations();
                 var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+                if (File.Exists(xmlPath)) c.IncludeXmlComments(xmlPath);
             });
 
-        
+
 
             return services;
         }
 
-        public static IApplicationBuilder UseSwaggerConfig(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+        public static IApplicationBuilder UseSwaggerConfiguration(this IApplicationBuilder app, Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider? provider = null)
         {
             //app.UseMiddleware<SwaggerAuthorizedMiddleware>();
+
+            provider = app.ApplicationServices.GetRequiredService<Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider>();
+
             app.UseSwagger();
             app.UseSwaggerUI(
                 options =>
@@ -82,9 +85,9 @@ namespace AutonomoApp.WebApi.Configuration
 
     public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
-        readonly IApiVersionDescriptionProvider provider;
+        readonly Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider provider;
 
-        public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider) => this.provider = provider;
+        public ConfigureSwaggerOptions(Asp.Versioning.ApiExplorer.IApiVersionDescriptionProvider provider) => this.provider = provider;
 
         public void Configure(SwaggerGenOptions options)
         {
@@ -108,9 +111,9 @@ namespace AutonomoApp.WebApi.Configuration
 
             if (description.IsDeprecated)
             {
-                
+
                 info.Description += $"<p><b style=&#34;color:red;&#34;>Esta versão está obsoleta!</b></p>";
-                
+
             }
 
             return info;

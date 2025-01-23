@@ -6,8 +6,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Models\NovaPasta\**" />
+    <Compile Remove="Notificacoes\**" />
     <EmbeddedResource Remove="Models\NovaPasta\**" />
+    <EmbeddedResource Remove="Notificacoes\**" />
     <None Remove="Models\NovaPasta\**" />
+    <None Remove="Notificacoes\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Interfaces\INotificador.cs" />
+    <Compile Remove="Interfaces\IUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="DiagramasDeClasses\ClassDiagram1.cd" />

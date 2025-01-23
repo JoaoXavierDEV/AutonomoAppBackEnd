@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 
-namespace AutonomoApp.WebApi.Configuration
+namespace AutonomoApp.Identidade.Configuration
 {
     public static class ApiConfig
     {
@@ -116,6 +116,7 @@ namespace AutonomoApp.WebApi.Configuration
                 endpoints.MapControllers();
             });
 
+            //app.MapControllers();
 
             return app;
         }

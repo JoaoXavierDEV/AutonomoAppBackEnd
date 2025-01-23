@@ -1,4 +1,4 @@
-﻿using AutonomoApp.Business.Interfaces;
+﻿using AutonomoApp.Framework.Interfaces;
 using System.Security.Claims;
 
 namespace AutonomoApp.WebApi.Extensions

@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace AutonomoApp.Business.Interfaces
+namespace AutonomoApp.Framework.Interfaces
 {
     public interface IUser
     {

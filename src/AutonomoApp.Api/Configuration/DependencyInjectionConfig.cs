@@ -1,11 +1,11 @@
-﻿using AutonomoApp.Business.Interfaces;
-using AutonomoApp.Business.Interfaces.IRepository;
+﻿using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
-using AutonomoApp.Business.Notificacoes;
 using AutonomoApp.Business.Services;
 using AutonomoApp.Data.Context;
 using AutonomoApp.Data.Repository;
 using AutonomoApp.Data.Repository.FakeRepository;
+using AutonomoApp.Framework.Interfaces;
+using AutonomoApp.Framework.Notificacoes;
 using AutonomoApp.WebApi.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;

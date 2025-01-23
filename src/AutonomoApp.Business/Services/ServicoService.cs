@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutonomoApp.Business.DTO;
-using AutonomoApp.Business.Interfaces;
+﻿using AutonomoApp.Business.DTO;
 using AutonomoApp.Business.Interfaces.IRepository;
 using AutonomoApp.Business.Interfaces.IService;
 using AutonomoApp.Business.Models;
-using Microsoft.EntityFrameworkCore;
+using AutonomoApp.Framework.Interfaces;
 
 namespace AutonomoApp.Business.Services;
 

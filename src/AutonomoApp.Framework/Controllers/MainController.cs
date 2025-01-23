@@ -1,13 +1,9 @@
-﻿using AutonomoApp.Business.Interfaces;
-using AutonomoApp.Business.Notificacoes;
-using AutonomoApp.WebApi.ViewModels;
-using FluentValidation;
+﻿using AutonomoApp.Framework.Interfaces;
+using AutonomoApp.Framework.Notificacoes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Collections.Generic;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace AutonomoApp.WebApi.Controllers
+namespace AutonomoApp.Framework.Controllers
 {
     [ApiController]
     public abstract class MainController : ControllerBase

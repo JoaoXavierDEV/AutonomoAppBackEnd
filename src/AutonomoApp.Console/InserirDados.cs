@@ -1,5 +1,4 @@
-﻿using AutonomoApp.Framework;
-using AutonomoApp.Business.Models;
+﻿using AutonomoApp.Business.Models;
 using AutonomoApp.Business.Models.Enums;
 using AutonomoApp.Business.Models.Enums.SubCategoriaEnum;
 using AutonomoApp.Data.Context;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutonomoApp.Framework.ExtensionMethods;
 
 namespace AutonomoApp.ConsoleApp
 

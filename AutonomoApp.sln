@@ -22,6 +22,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomoApp.Framework", "src\AutonomoApp.Framework\AutonomoApp.Framework.csproj", "{906A3B89-DC2D-4169-8906-6F859C43F6CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomoApp.Identidade", "src\AutonomoApp.Identidade\AutonomoApp.Identidade.csproj", "{10C4C637-570C-4EFF-86AD-1320A76A0D4D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{906A3B89-DC2D-4169-8906-6F859C43F6CE} = {906A3B89-DC2D-4169-8906-6F859C43F6CE}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
