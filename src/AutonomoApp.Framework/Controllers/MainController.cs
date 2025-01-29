@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace AutonomoApp.Framework.Controllers
 {
     [ApiController]
-    public abstract class MainController : ControllerBase
+    public abstract class MainController : ControllerBase, IController
     {
         private readonly INotificador _notificador;
         public readonly IUser AppUser;
@@ -34,20 +34,25 @@ namespace AutonomoApp.Framework.Controllers
 
         protected ActionResult CustomResponse(object result = null)
         {
-            var tt = new CustomResponseDTO(ModelState, result);
+            var respondeDTO = new CustomResponseDTO(ModelState, result);
 
             if (OperacaoValida())
             {
-                return Ok(tt);
+                return Ok(respondeDTO);
                 
-                return Ok(new
-                {
-                    success = true,
-                    data = result
-                });
             }
 
-            return BadRequest(tt);
+            return BadRequest(new ValidationProblemDetails(new ModelStateDictionary(ModelState))
+            {
+                Title = "Erro de validação",
+                Status = 400,
+                Detail = "Ocorreu um ou mais erros de validação",
+                Instance = HttpContext.Request.Path,
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+
+            });
+
+            return BadRequest(respondeDTO);
 
             return BadRequest(new
             {
@@ -71,14 +76,30 @@ namespace AutonomoApp.Framework.Controllers
             foreach (var erro in erros)
             {
                 var errorMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotificarErro(errorMsg);
+                this.NotificarErro(errorMsg);
             }
         }
 
-        protected void NotificarErro(string mensagem)
+
+
+        protected void LimparErroProcessamento()
+        {
+            _notificador.Limpar();
+        }
+
+        /// <summary>
+        /// Notificar erro
+        /// </summary>
+        /// Manter [ApiExplorerSettings(IgnoreApi = true)] para que não seja visível no swagger 
+        /// <param name="mensagem"></param>
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public void NotificarErro(string mensagem)
         {
             _notificador.Handle(new Notificacao(mensagem));
         }
+
+
+
     }
 
     public record struct CustomResponseDTO

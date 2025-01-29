@@ -15,8 +15,8 @@ using System.Text;
 
 namespace AutonomoApp.Identidade.Controllers
 {
-    [ApiVersion("1.1")]
-    //[Route("api/v{version:apiVersion}")]
+    //[ApiVersion("1.1")]
+    [Route("api/v{version:apiVersion}")]
     [Route("identidade")]
     public class AuthController : MainController
     {
@@ -66,7 +66,7 @@ namespace AutonomoApp.Identidade.Controllers
 
                     if (result.Succeeded)
                     {
-                        LoginResponseViewModel jwtResponse = await GerarJwt(usuarioRegistro.Email);
+                        var jwtResponse = await GerarJwt(usuarioRegistro.Email);
 
                         await _signInManager.SignInAsync(user, false);
 
@@ -100,7 +100,7 @@ namespace AutonomoApp.Identidade.Controllers
         [HttpPost("entrar")]
         public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
 
@@ -116,18 +116,24 @@ namespace AutonomoApp.Identidade.Controllers
 
             return BadRequest("Usuário ou Senha incorretos");
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
-        private async Task<LoginResponseViewModel> GerarJwt(string email)
+
+
+        private async Task<UsuarioRespostaLogin> GerarJwt(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var claims = await _userManager.GetClaimsAsync(user);
+
+            var identityClaims = await ObterClaimsUsuario(claims, user);
+            var encodedToken = CodificarToken(identityClaims);
+
+            return ObterRespostaToken(encodedToken, user, claims);
+        }
+
+        private async Task<ClaimsIdentity> ObterClaimsUsuario(ICollection<Claim> claims, IdentityUser user)
+        {
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()));
@@ -141,9 +147,13 @@ namespace AutonomoApp.Identidade.Controllers
             var identityClaims = new ClaimsIdentity();
             identityClaims.AddClaims(claims);
 
+            return identityClaims;
+        }
+
+        private string CodificarToken(ClaimsIdentity identityClaims)
+        {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {
                 Issuer = _appSettings.Emissor,
@@ -152,28 +162,24 @@ namespace AutonomoApp.Identidade.Controllers
                 Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiracaoHoras),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             });
+            return tokenHandler.WriteToken(token);
+        }
 
-            var encodedToken = tokenHandler.WriteToken(token);
-
-            var response = new LoginResponseViewModel
+        private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
+        {
+            return new UsuarioRespostaLogin
             {
                 AccessToken = encodedToken,
                 ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoHoras).TotalSeconds,
-                UserToken = new UserTokenViewModel
+                UsuarioToken = new UsuarioToken
                 {
-                    Id = user.Id.ToString(),
+                    Id = user.Id,
                     Email = user.Email,
-                    Claims = claims.Select(c => new ClaimViewModel { Type = c.Type, Value = c.Value })
+                    Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value })
                 }
             };
-
-            return response;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
+
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }

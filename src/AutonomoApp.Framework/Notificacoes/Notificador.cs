@@ -16,6 +16,11 @@ namespace AutonomoApp.Framework.Notificacoes
             _notificacoes.Add(notificacao);
         }
 
+        public void Limpar()
+        {
+            _notificacoes.Clear();
+        }
+
         public List<Notificacao> ObterNotificacoes()
         {
             return _notificacoes;

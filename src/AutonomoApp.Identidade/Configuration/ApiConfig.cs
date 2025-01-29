@@ -6,6 +6,20 @@ namespace AutonomoApp.Identidade.Configuration
 {
     public static class ApiConfig
     {
+        public static WebApplicationBuilder AddWebApiConfig(this WebApplicationBuilder builder)
+        {
+            builder.Configuration
+                .SetBasePath(builder.Environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
+
+            if (builder.Environment.IsDevelopment())
+                builder.Configuration.AddUserSecrets<Program>();
+
+            return builder;
+        }
+
         public static IServiceCollection AddWebApiConfig(this IServiceCollection services)
         {
             services.AddControllers(options =>
@@ -84,6 +98,7 @@ namespace AutonomoApp.Identidade.Configuration
         }
         public static IApplicationBuilder UseApiConfig(this IApplicationBuilder app)
         {
+
             var Environment = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
 
             if (Environment.IsDevelopment())

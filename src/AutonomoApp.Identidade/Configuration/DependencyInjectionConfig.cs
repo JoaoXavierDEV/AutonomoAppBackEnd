@@ -1,5 +1,6 @@
 ﻿using AutonomoApp.Framework.Interfaces;
 using AutonomoApp.Framework.Notificacoes;
+using AutonomoApp.Identidade.Extensions;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using static AutonomoApp.Identidade.Configuration.SwaggerConfig;
@@ -22,7 +23,7 @@ namespace AutonomoApp.Identidade.Configuration
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<INotificador, Notificador>();
 
-            //services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IUser, AspNetUser>();
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
             return services;

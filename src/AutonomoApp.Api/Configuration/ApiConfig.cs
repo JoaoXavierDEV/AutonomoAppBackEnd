@@ -6,6 +6,20 @@ namespace AutonomoApp.WebApi.Configuration
 {
     public static class ApiConfig
     {
+        public static WebApplicationBuilder AddWebApiConfig(this WebApplicationBuilder builder)
+        {
+            builder.Configuration
+                .SetBasePath(builder.Environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
+
+            if (builder.Environment.IsDevelopment())
+                builder.Configuration.AddUserSecrets<Program>();
+
+            return builder;
+        }
+
         public static IServiceCollection AddWebApiConfig(this IServiceCollection services)
         {
             services.AddControllers(options =>

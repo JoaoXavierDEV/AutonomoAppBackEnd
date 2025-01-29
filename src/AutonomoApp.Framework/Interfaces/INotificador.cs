@@ -8,5 +8,6 @@ namespace AutonomoApp.Framework.Interfaces
         bool TemNotificacao();
         List<Notificacao> ObterNotificacoes();
         void Handle(Notificacao notificacao);
+        void Limpar();
     }
 }
